@@ -422,6 +422,43 @@
       padding-top: 0.2rem;
     }
 
+    /* SİMÜLASYON iframe */
+    .sim-wrapper {
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .sim-label {
+      padding: 0.75rem 1.25rem;
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sim-label::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #1D9E75;
+      animation: pulse 2s infinite;
+    }
+
+    .sim-frame {
+      width: 100%;
+      height: 780px;
+      border: none;
+      display: block;
+    }
+
     /* AUTHOR */
     .author-card {
       background: var(--surface);
@@ -515,7 +552,6 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-
     <h1 data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu" data-en="Wearable Technologies and Flight Safety Optimization within the Scope of <span>Complementary Diagnostic Safety Approach (CDSA)</span>">
       Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu
     </h1>
@@ -538,10 +574,9 @@
 <section id="ozet" class="fade-in">
   <div class="section-label" data-tr="Özet" data-en="Abstract">Özet</div>
   <div class="abstract-box" style="margin-top: 1rem;">
-    <p data-tr="Havacılık emniyeti tarihsel süreçte reaktif ve proaktif yaklaşımlarla gelişim sağlamış olsa da artık özellikle kaza kırım incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatacak üçüncü ve nihai bir paradigmaya ihtiyaç duyulmaktadır. Bu çalışmada akıllı pilot saatleri ve giyilebilir sensör teknolojilerinin kaza analiz sürecinde Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA) olarak üstlenebileceği roller ve bu teknolojik sıçramanın beraberinde getirebileceği karmaşık hukuki ve etik ikilemler incelenmektedir. Geleneksel uçuş veri kaydedicileri uçağın mekanik durumunu kaydetmekte oldukça başarılı olmalarına rağmen bazı ölümcül kazalarda pilotun karar alma anındaki akut stres, gizli hipoksi, mikro-uyku gibi içsel fizyolojisi ölçülemediğinden nedensellik analizlerinde bilişsel açıdan karanlıkta kalmaktadır. Bu doğrultuda uçuş verilerinin anonimleştirilmiş makro analizlerle işlenmesi, kişisel verilerin yalnızca kaza anında bağımsız otoritelerce açılabilmesini sağlayan kriptografik çoklu imza mimarisi ve ICAO standartlarına entegre edilecek küresel bir Biyometrik Uçuş Verisi Bildirgesi hazırlanması önerilmiştir." data-en="Although aviation safety has evolved through reactive and proactive approaches over time, there is now a need for a third and final paradigm — particularly in accident investigations — that can illuminate the cognitive and physiological state of flight crew. This study examines the roles that smart pilot watches and wearable sensor technologies can assume as a Complementary Diagnostic Safety Approach (CDSA) in accident analysis, and the complex legal and ethical dilemmas this technological leap may bring. While traditional flight data recorders are highly successful at recording the mechanical state of the aircraft, in some fatal accidents, the pilot's internal physiology at the moment of decision-making — such as acute stress, covert hypoxia, and micro-sleep — cannot be measured, leaving causal analyses cognitively in the dark. Accordingly, this study proposes processing flight data through anonymized macro-analyses, a cryptographic multi-signature architecture that allows personal data to be accessed only by independent authorities at the moment of an accident, and the preparation of a global Biometric Flight Data Declaration to be integrated into ICAO standards.">
+    <p data-tr="Havacılık emniyeti tarihsel süreçte reaktif ve proaktif yaklaşımlarla gelişim sağlamış olsa da artık özellikle kaza kırım incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatacak üçüncü ve nihai bir paradigmaya ihtiyaç duyulmaktadır. Bu çalışmada akıllı pilot saatleri ve giyilebilir sensör teknolojilerinin kaza analiz sürecinde Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA) olarak üstlenebileceği roller ve bu teknolojik sıçramanın beraberinde getirebileceği karmaşık hukuki ve etik ikilemler incelenmektedir. Geleneksel uçuş veri kaydedicileri uçağın mekanik durumunu kaydetmekte oldukça başarılı olmalarına rağmen bazı ölümcül kazalarda pilotun karar alma anındaki akut stres, gizli hipoksi, mikro-uyku gibi içsel fizyolojisi ölçülemediğinden nedensellik analizlerinde bilişsel açıdan karanlıkta kalmaktadır." data-en="Although aviation safety has evolved through reactive and proactive approaches over time, there is now a need for a third and final paradigm — particularly in accident investigations — that can illuminate the cognitive and physiological state of flight crew. This study examines the roles that smart pilot watches and wearable sensor technologies can assume as a Complementary Diagnostic Safety Approach (CDSA) in accident analysis, and the complex legal and ethical dilemmas this technological leap may bring. While traditional flight data recorders are highly successful at recording the mechanical state of the aircraft, in some fatal accidents, the pilot's internal physiology at the moment of decision-making — such as acute stress, covert hypoxia, and micro-sleep — cannot be measured, leaving causal analyses cognitively in the dark.">
       Havacılık emniyeti tarihsel süreçte reaktif ve proaktif yaklaşımlarla gelişim sağlamış olsa da artık özellikle kaza kırım incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatacak üçüncü ve nihai bir paradigmaya ihtiyaç duyulmaktadır. Bu çalışmada akıllı pilot saatleri ve giyilebilir sensör teknolojilerinin kaza analiz sürecinde Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA) olarak üstlenebileceği roller ve bu teknolojik sıçramanın beraberinde getirebileceği karmaşık hukuki ve etik ikilemler incelenmektedir. Geleneksel uçuş veri kaydedicileri uçağın mekanik durumunu kaydetmekte oldukça başarılı olmalarına rağmen bazı ölümcül kazalarda pilotun karar alma anındaki akut stres, gizli hipoksi, mikro-uyku gibi içsel fizyolojisi ölçülemediğinden nedensellik analizlerinde bilişsel açıdan karanlıkta kalmaktadır.
     </p>
-
   </div>
 </section>
 
@@ -580,6 +615,8 @@
 <section id="mimari" class="fade-in" style="padding-top: 4rem; padding-bottom: 4rem;">
   <div class="section-label" data-tr="CDSA Mimarisi" data-en="CDSA Architecture">CDSA Mimarisi</div>
   <div class="arch-grid">
+
+    <!-- AŞAMA 1 -->
     <div class="arch-card">
       <h3 data-tr="Aşama 1 — Tanısal / Bireysel Veri" data-en="Phase 1 — Diagnostic / Individual Data">Aşama 1 — Tanısal / Bireysel Veri</h3>
       <p data-tr="Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı." data-en="Cryptographic data layer opened only with the simultaneous approval of a threshold number of independent parties at the moment of an accident.">Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı.</p>
@@ -590,14 +627,18 @@
         </div>
         <div class="arch-step">
           <div class="step-num">2</div>
-          <div class="step-text" data-tr="2/3 eşik şeması ile çoklu imza" data-en="Multi-signature with 2/3 threshold scheme">2/3 eşik şeması ile çoklu imza</div>
+          <div class="step-text" data-tr="3/3 eşik şeması ile çoklu imza" data-en="Multi-signature with 3/3 threshold scheme">3/3 eşik şeması ile çoklu imza</div>
         </div>
         <div class="arch-step">
           <div class="step-num">3</div>
           <div class="step-text" data-tr="Bağımsız otorite onayı zorunluluğu" data-en="Independent authority approval requirement">Bağımsız otorite onayı zorunluluğu</div>
         </div>
       </div>
+
+
     </div>
+
+    <!-- AŞAMA 2 -->
     <div class="arch-card">
       <h3 data-tr="Aşama 2 — Makro / Anonim Veri" data-en="Phase 2 — Macro / Anonymous Data">Aşama 2 — Makro / Anonim Veri</h3>
       <p data-tr="Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır." data-en="Continuously flowing data stripped of pilot identity. Used for SMS-integrated proactive safety decisions.">Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır.</p>
@@ -616,6 +657,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -637,9 +679,7 @@
         </div>
         <div class="app-desc" data-tr="Akıllı saat arayüzü üzerinden anlık SpO₂, kalp atış hızı ve solunum verilerini izleyen LSTM tabanlı hipoksi risk tahmin sistemi." data-en="LSTM-based hypoxia risk prediction system that monitors real-time SpO₂, heart rate, and respiration data through a smartwatch interface.">Akıllı saat arayüzü üzerinden anlık SpO₂, kalp atış hızı ve solunum verilerini izleyen LSTM tabanlı hipoksi risk tahmin sistemi.</div>
         <iframe class="app-frame" src="https://orfeomete.github.io/hipoksi-app-/" title="Hipoksi Tespit Uygulaması" loading="lazy"></iframe>
-        <a class="app-link" href="https://orfeomete.github.io/hipoksi-app-/" target="_blank">
-          Tam Ekran Aç ↗
-        </a>
+        <a class="app-link" href="https://orfeomete.github.io/hipoksi-app-/" target="_blank">Tam Ekran Aç ↗</a>
       </div>
 
       <div class="app-card fade-in">
@@ -652,9 +692,7 @@
         </div>
         <div class="app-desc" data-tr="Pilotun uçuş öncesi ve uçuş esnasındaki durumunu kalp atış hızı, stres ve uyku seviyeleriyle takip eden bütünleşik sistem." data-en="Integrated monitoring system that tracks the pilot's pre-flight and in-flight readiness with heart rate, stress level, and sleep quality parameters.">Pilotun uçuş öncesi ve uçuş esnasındaki durumunu kalp atış hızı, stres ve uyku seviyeleriyle takip eden bütünleşik sistem.</div>
         <iframe class="app-frame" src="https://orfeomete.github.io/pilotguard-app-/" title="PilotGuard SmartWatch" loading="lazy"></iframe>
-        <a class="app-link" href="https://orfeomete.github.io/pilotguard-app-/" target="_blank">
-          Tam Ekran Aç ↗
-        </a>
+        <a class="app-link" href="https://orfeomete.github.io/pilotguard-app-/" target="_blank">Tam Ekran Aç ↗</a>
       </div>
 
       <div class="app-card fade-in">
@@ -668,9 +706,7 @@
         </div>
         <div class="app-desc" data-tr="Uçuş sonrası kişisel biyometrik değerlendirme sistemi. Uçuş fazlarına göre stres analizi, SpO₂ takibi, AI önerileri ve şifreli yerel veri depolama." data-en="Post-flight personal biometric evaluation system. Stress analysis by flight phase, SpO₂ tracking, AI recommendations, and encrypted local data storage.">Uçuş sonrası kişisel biyometrik değerlendirme sistemi. Uçuş fazlarına göre stres analizi, SpO₂ takibi, AI önerileri ve şifreli yerel veri depolama.</div>
         <iframe class="app-frame" src="https://orfeomete.github.io/PilotReflect-new/" title="PilotReflect EFB" loading="lazy"></iframe>
-        <a class="app-link" href="https://orfeomete.github.io/PilotReflect-new/" target="_blank">
-          Tam Ekran Aç ↗
-        </a>
+        <a class="app-link" href="https://orfeomete.github.io/PilotReflect-new/" target="_blank">Tam Ekran Aç ↗</a>
       </div>
 
     </div>
@@ -699,7 +735,6 @@
 </footer>
 
 <script>
-  // LANGUAGE TOGGLE
   let lang = 'tr';
   function toggleLang() {
     lang = lang === 'tr' ? 'en' : 'tr';
@@ -710,12 +745,9 @@
     });
   }
 
-  // FADE IN ON SCROLL
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
 
