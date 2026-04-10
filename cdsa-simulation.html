@@ -3,765 +3,403 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CDSA — Uçuş Emniyeti Optimizasyonu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>CDSA Çoklu İmza Simülasyonu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --surface2: #f1f5f9;
-      --accent: #2563eb;
-      --accent2: #0891b2;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: rgba(0,0,0,0.08);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(248,250,252,0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.3rem;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 1rem;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    .lang-btn {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-    }
-
-    .lang-btn:hover { background: var(--accent); border-color: var(--accent); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(37,99,235,0.07) 0%, transparent 70%),
-                  radial-gradient(ellipse 50% 40% at 80% 80%, rgba(8,145,178,0.05) 0%, transparent 60%);
-    }
-
-    .hero-grid { display: none; }
-
-    .hero-content { position: relative; max-width: 900px; }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.3);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 2rem;
-    }
-
-    .hero-badge::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.5); }
-    }
-
-    .hero h1 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(1.4rem, 3vw, 2.4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      max-width: 680px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-
-    .hero-meta {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .meta-tag {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 0.4rem 1rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-    }
-
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 0;
-    }
-
-    /* ABSTRACT */
-    .abstract-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem;
-      margin-top: 2rem;
-    }
-
-    .abstract-box p {
-      color: var(--text-muted);
-      line-height: 1.9;
-      font-size: 1rem;
-    }
-
-    .keywords {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .keyword {
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.2);
-      color: var(--accent);
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
-      font-size: 0.8rem;
-    }
-
-    /* BOLUMLER */
-    .sections-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .section-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: border-color 0.3s, transform 0.3s;
-      cursor: default;
-    }
-
-    .section-card:hover {
-      border-color: rgba(59,130,246,0.4);
-      transform: translateY(-4px);
-    }
-
-    .section-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 3rem;
-      font-weight: 800;
-      color: rgba(59,130,246,0.15);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .section-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-    }
-
-    .section-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    /* APPS */
-    .apps-section {
-      padding: 6rem 2rem;
-      background: #f1f5f9;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .apps-inner { max-width: 1100px; margin: 0 auto; }
-
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .app-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .app-card:hover {
-      border-color: rgba(59,130,246,0.5);
-      transform: translateY(-6px);
-    }
-
-    .app-header {
-      padding: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .app-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-    }
-
-    .app-tag {
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.2);
-      color: var(--accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-      font-size: 0.7rem;
-    }
-
-    .app-desc {
-      padding: 1rem 1.5rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .app-frame {
-      width: 100%;
-      height: 420px;
-      border: none;
-      display: block;
-    }
-
-    .app-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 1rem;
-      border-top: 1px solid var(--border);
-      text-decoration: none;
-      color: var(--accent);
-      font-size: 0.85rem;
-      transition: background 0.2s;
-    }
-
-    .app-link:hover { background: rgba(59,130,246,0.05); }
-
-    /* CDSA ARCHITECTURE */
-    .arch-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 768px) {
-      .arch-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-    }
-
-    .arch-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-    }
-
-    .arch-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--accent2);
-    }
-
-    .arch-card p {
-      color: var(--text-muted);
-      line-height: 1.8;
-      font-size: 0.95rem;
-    }
-
-    .arch-steps {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .arch-step {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-
-    .step-num {
-      min-width: 28px;
-      height: 28px;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .step-text {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      padding-top: 0.2rem;
-    }
-
-    /* SİMÜLASYON iframe */
-    .sim-wrapper {
-      margin-top: 2rem;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      background: var(--surface);
-    }
-
-    .sim-label {
-      padding: 0.75rem 1.25rem;
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .sim-label::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #1D9E75;
-      animation: pulse 2s infinite;
-    }
-
-    .sim-frame {
-      width: 100%;
-      height: 780px;
-      border: none;
-      display: block;
-    }
-
-    /* AUTHOR */
-    .author-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 3rem;
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 600px) {
-      .author-card { flex-direction: column; text-align: center; }
-    }
-
-    .author-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    .author-name {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    .author-role {
-      color: var(--accent);
-      font-size: 0.9rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .author-bio {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 3rem 2rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-
-    footer a { color: var(--accent); text-decoration: none; }
-
-    /* FADE IN */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; color: #0f172a; padding: 2rem; }
+    .wrap { max-width: 860px; margin: 0 auto; }
+
+    .header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+    .case-badge { font-size: 10px; letter-spacing: 0.12em; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+    .case-title { font-size: 16px; font-weight: 600; color: #0f172a; }
+    .case-sub { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .status-pill { font-size: 11px; padding: 4px 12px; border-radius: 99px; background: #FAEEDA; color: #BA7517; border: 0.5px solid #EF9F27; font-weight: 500; white-space: nowrap; }
+    .status-pill.unlocked { background: #E1F5EE; color: #085041; border-color: #1D9E75; }
+
+    .info-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin-bottom: 1.5rem; }
+    .info-card { background: #f1f5f9; border-radius: 8px; padding: 10px 12px; }
+    .info-label { font-size: 10px; color: #64748b; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+    .info-value { font-size: 12px; font-weight: 500; color: #0f172a; font-family: 'IBM Plex Mono', monospace; }
+
+    .divider { height: 0.5px; background: #e2e8f0; margin-bottom: 1.5rem; }
+    .section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #64748b; margin-bottom: 12px; }
+
+    .parties-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 1.5rem; }
+
+    .party-card { background: #fff; border: 0.5px solid #e2e8f0; border-radius: 12px; padding: 1rem; transition: all 0.2s; cursor: pointer; }
+    .party-card:hover { border-color: #cbd5e1; }
+    .party-card.approved { border: 1.5px solid #1D9E75; background: #E1F5EE; cursor: default; }
+    .party-card.rejected { border: 1.5px solid #E24B4A; background: #FCEBEB; animation: shake 0.3s; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+    .party-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .party-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 600; background: #f1f5f9; color: #64748b; border: 0.5px solid #e2e8f0; font-family: 'IBM Plex Mono', monospace; text-align: center; line-height: 1.2; letter-spacing: 0; }
+    .party-card.approved .party-avatar { background: #1D9E75; color: white; border-color: #1D9E75; }
+    .party-status-dot { width: 8px; height: 8px; border-radius: 50%; background: #EF9F27; margin-top: 4px; }
+    .party-card.approved .party-status-dot { background: #1D9E75; }
+    .party-card.rejected .party-status-dot { background: #E24B4A; }
+
+    .party-name { font-size: 13px; font-weight: 600; color: #0f172a; margin-bottom: 1px; }
+    .party-role { font-size: 10px; color: #64748b; line-height: 1.4; margin-bottom: 6px; }
+    .party-geo { font-size: 10px; color: #94a3b8; font-family: 'IBM Plex Mono', monospace; margin-bottom: 8px; }
+    .party-card.approved .party-geo { color: #0F6E56; }
+
+    .party-hash { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #0F6E56; background: #9FE1CB33; padding: 4px 6px; border-radius: 4px; margin-bottom: 6px; word-break: break-all; display: none; }
+    .party-card.approved .party-hash { display: block; }
+
+    .party-ts { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #0F6E56; margin-bottom: 8px; display: none; }
+    .party-card.approved .party-ts { display: block; }
+
+    .party-btn { width: 100%; padding: 6px; border-radius: 8px; border: 0.5px solid #cbd5e1; background: transparent; color: #0f172a; cursor: pointer; font-size: 12px; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .party-btn:hover { background: #f1f5f9; }
+    .party-approved-label { font-size: 11px; color: #085041; font-weight: 500; text-align: center; display: none; }
+    .party-card.approved .party-approved-label { display: block; }
+    .party-card.approved .party-btn { display: none; }
+
+    .progress-section { margin-bottom: 1.5rem; }
+    .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .progress-dots { display: flex; gap: 6px; }
+    .prog-dot { width: 10px; height: 10px; border-radius: 50%; background: #f1f5f9; border: 0.5px solid #cbd5e1; transition: all 0.3s; }
+    .prog-dot.active { background: #1D9E75; border-color: #0F6E56; }
+    .progress-count { font-size: 12px; color: #64748b; font-family: 'IBM Plex Mono', monospace; }
+    .progress-bg { height: 4px; background: #f1f5f9; border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 99px; background: #1D9E75; transition: width 0.5s ease; width: 0%; }
+
+    .log-section { margin-bottom: 1.5rem; }
+    .log-box { background: #0f1923; border-radius: 12px; padding: 14px 16px; min-height: 140px; max-height: 200px; overflow-y: auto; border: 0.5px solid #1e2d3d; }
+    .log-line { font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 2; display: flex; gap: 8px; }
+    .log-ts { color: #3d5a72; min-width: 76px; }
+    .log-tag { min-width: 72px; }
+    .log-msg { color: #7CA9C9; }
+    .log-line.ok .log-tag { color: #5DCAA5; }
+    .log-line.ok .log-msg { color: #9FE1CB; }
+    .log-line.warn .log-tag { color: #FAC775; }
+    .log-line.warn .log-msg { color: #FAC775; }
+    .log-line.err .log-tag { color: #F09595; }
+    .log-line.err .log-msg { color: #F09595; }
+    .log-line.dim .log-tag { color: #3d5a72; }
+    .log-line.dim .log-msg { color: #3d5a72; }
+
+    .unlock-panel { display: none; background: #0A1A12; border: 1.5px solid #1D9E75; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; }
+    .unlock-panel.show { display: block; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .unlock-header { background: #0F2D1A; padding: 10px 16px; display: flex; justify-content: space-between; border-bottom: 0.5px solid #1D9E7566; }
+    .unlock-hl { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5DCAA5; letter-spacing: 0.08em; }
+    .unlock-hr { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #1D9E75; }
+    .unlock-cols { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 0.5px solid #1D9E7522; }
+    .unlock-col { padding: 14px 16px; }
+    .unlock-col:first-child { border-right: 0.5px solid #1D9E7522; }
+    .ucol-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5a8a73; margin-bottom: 8px; letter-spacing: 0.08em; }
+    .urow { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 0.5px solid #1D9E7511; }
+    .urow:last-child { border-bottom: none; }
+    .ukey { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5a8a73; }
+    .uval { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5DCAA5; }
+    .uval.decrypt-anim { color: #FAC775; }
+    .unlock-records { padding: 12px 16px; border-bottom: 0.5px solid #1D9E7522; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #5DCAA5; line-height: 2; }
+    .unlock-footer { background: #0F2D1A; padding: 8px 16px; display: flex; justify-content: space-between; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #3d7a60; letter-spacing: 0.06em; }
+
+    .reset-btn { width: 100%; padding: 8px; border-radius: 8px; border: 0.5px solid #e2e8f0; background: transparent; color: #64748b; cursor: pointer; font-size: 13px; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .reset-btn:hover { background: #f1f5f9; }
+
+    .overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.5); z-index: 100; align-items: center; justify-content: center; }
+    .overlay.show { display: flex; }
+    .modal { background: #fff; border-radius: 16px; padding: 1.5rem; width: 360px; border: 0.5px solid #e2e8f0; }
+    .modal-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: #0f172a; }
+    .modal-sub { font-size: 12px; color: #64748b; margin-bottom: 1rem; }
+    .modal-geo { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #475569; background: #f1f5f9; padding: 10px 12px; border-radius: 8px; margin-bottom: 1rem; line-height: 1.9; white-space: pre; }
+    .modal-lbl { font-size: 10px; color: #64748b; margin-bottom: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .modal-inp { width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #e2e8f0; font-family: 'IBM Plex Mono', monospace; font-size: 15px; letter-spacing: 0.2em; color: #0f172a; margin-bottom: 4px; text-transform: uppercase; background: #fff; }
+    .modal-inp:focus { outline: none; border-color: #2563eb; }
+    .modal-hint { font-size: 10px; color: #94a3b8; font-family: 'IBM Plex Mono', monospace; margin-bottom: 1rem; }
+    .modal-err { font-size: 11px; color: #A32D2D; margin-bottom: 8px; display: none; }
+    .modal-btns { display: flex; gap: 8px; }
+    .mbtn { flex: 1; padding: 8px; border-radius: 8px; border: 0.5px solid #e2e8f0; background: transparent; color: #64748b; cursor: pointer; font-size: 13px; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .mbtn.primary { background: #2563eb; color: white; border-color: #2563eb; }
+    .mbtn.primary:hover { background: #1d4ed8; }
   </style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">CDSA</div>
-  <ul class="nav-links">
-    <li><a href="#ozet" data-tr="Özet" data-en="Abstract">Özet</a></li>
-    <li><a href="#bolumler" data-tr="İçerik" data-en="Content">İçerik</a></li>
-    <li><a href="#mimari" data-tr="CDSA Mimarisi" data-en="CDSA Architecture">CDSA Mimarisi</a></li>
-    <li><a href="#uygulamalar" data-tr="Canlı Demolar" data-en="Live Demos">Canlı Demolar</a></li>
-    <li><a href="#sonuc" data-tr="Sonuç" data-en="Conclusion">Sonuç</a></li>
-  </ul>
-  <button class="lang-btn" onclick="toggleLang()">EN</button>
-</nav>
+  <div class="header-row">
+    <div>
+      <div class="case-badge">CDSA · Aşama 1 · Olay Dosyası #2026-041</div>
+      <div class="case-title">Kriptografik Çoklu İmza Protokolü</div>
+      <div class="case-sub">TC-XXX · B737-800 · LTBA/IST → LTBJ/ESB · 10 Nis 2026 · 14:31Z</div>
+    </div>
+    <div class="status-pill" id="status-pill">Kilit Aktif</div>
+  </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <h1 data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu" data-en="Wearable Technologies and Flight Safety Optimization within the Scope of <span>Complementary Diagnostic Safety Approach (CDSA)</span>">
-      Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu
-    </h1>
-    <p class="hero-sub" data-tr="Akıllı pilot saatleri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol." data-en="The diagnostic role that smart pilot watches and synthetic data processing architectures can assume in aviation accident analysis and proactive safety management.">
-      Akıllı pilot saatleri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol.
-    </p>
-    <div class="hero-meta">
-      <span class="meta-tag" data-tr="Havacılık Emniyeti" data-en="Aviation Safety">Havacılık Emniyeti</span>
-      <span class="meta-tag" data-tr="Tamamlayıcı Tanısal Katman" data-en="Complementary Diagnostic Layer">Tamamlayıcı Tanısal Katman</span>
-      <span class="meta-tag" data-tr="Giyilebilir Teknolojiler" data-en="Wearable Technologies">Giyilebilir Teknolojiler</span>
-      <span class="meta-tag" data-tr="Veri Mahremiyeti" data-en="Data Privacy">Veri Mahremiyeti</span>
-      <span class="meta-tag" data-tr="İnsan Faktörü" data-en="Human Factor">İnsan Faktörü</span>
+  <div class="info-grid">
+    <div class="info-card"><div class="info-label">Şifreleme</div><div class="info-value">AES-256-GCM</div></div>
+    <div class="info-card"><div class="info-label">Eşik Şeması</div><div class="info-value">3 / 3</div></div>
+    <div class="info-card"><div class="info-label">Veri Boyutu</div><div class="info-value">14.7 MB</div></div>
+    <div class="info-card"><div class="info-label">Protokol</div><div class="info-value">ICAO Ek-13</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="section-label">Yetkili Taraflar — Yetki Kodu ile Onay Gerekiyor</div>
+
+  <div class="parties-grid">
+    <div class="party-card" id="card-0" onclick="openModal(0)">
+      <div class="party-header">
+        <div class="party-avatar" id="av-0">SHGM<br>2026</div>
+        <div class="party-status-dot"></div>
+      </div>
+      <div class="party-name">SHGM</div>
+      <div class="party-role">Sivil Havacılık Genel Müdürlüğü</div>
+      <div class="party-geo">Ankara, TR · 39.9208°N 32.8541°E</div>
+      <div class="party-hash" id="hash-0"></div>
+      <div class="party-ts" id="ts-0"></div>
+      <button class="party-btn">Yetki Kodunu Gir</button>
+      <div class="party-approved-label">✓ İmza Doğrulandı</div>
+    </div>
+    <div class="party-card" id="card-1" onclick="openModal(1)">
+      <div class="party-header">
+        <div class="party-avatar" id="av-1">IFAL<br>2026</div>
+        <div class="party-status-dot"></div>
+      </div>
+      <div class="party-name">IFALPA</div>
+      <div class="party-role">Uluslararası Pilotlar Dernekleri Federasyonu</div>
+      <div class="party-geo">Montréal, CA · 45.5017°N 73.5673°W</div>
+      <div class="party-hash" id="hash-1"></div>
+      <div class="party-ts" id="ts-1"></div>
+      <button class="party-btn">Yetki Kodunu Gir</button>
+      <div class="party-approved-label">✓ İmza Doğrulandı</div>
+    </div>
+    <div class="party-card" id="card-2" onclick="openModal(2)">
+      <div class="party-header">
+        <div class="party-avatar" id="av-2">NTSB<br>2026</div>
+        <div class="party-status-dot"></div>
+      </div>
+      <div class="party-name">NTSB</div>
+      <div class="party-role">Bağımsız Kaza Soruşturma Kurulu</div>
+      <div class="party-geo">Washington DC, US · 38.8951°N 77.0364°W</div>
+      <div class="party-hash" id="hash-2"></div>
+      <div class="party-ts" id="ts-2"></div>
+      <button class="party-btn">Yetki Kodunu Gir</button>
+      <div class="party-approved-label">✓ İmza Doğrulandı</div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-top">
+      <div class="progress-dots">
+        <div class="prog-dot" id="pd-0"></div>
+        <div class="prog-dot" id="pd-1"></div>
+        <div class="prog-dot" id="pd-2"></div>
+      </div>
+      <div class="progress-count" id="prog-count">0 / 3 onay tamamlandı</div>
+    </div>
+    <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+  </div>
+
+  <div class="log-section">
+    <div class="section-label">Güvenli Sistem Logu</div>
+    <div class="log-box" id="log-box"></div>
+  </div>
+
+  <div class="unlock-panel" id="unlock-panel">
+    <div class="unlock-header">
+      <div class="unlock-hl">▶ ERİŞİM AÇILDI · CDSA PROTOKOLÜ · 3/3 ONAY</div>
+      <div class="unlock-hr" id="unlock-time"></div>
+    </div>
+    <div class="unlock-cols">
+      <div class="unlock-col">
+        <div class="ucol-title">DOSYA BİLGİSİ</div>
+        <div class="urow"><div class="ukey">DOSYA</div><div class="uval">TC-XXX_bio_2026-04-10.enc</div></div>
+        <div class="urow"><div class="ukey">BOYUT</div><div class="uval">14.7 MB · 1,847 kayıt</div></div>
+        <div class="urow"><div class="ukey">ŞİFRE ÇÖZÜCü</div><div class="uval blink" id="decrypt-key">Hesaplanıyor...</div></div>
+        <div class="urow"><div class="ukey">CHECKSUM</div><div class="uval">md5:3f9a...c72b ✓</div></div>
+      </div>
+      <div class="unlock-col">
+        <div class="ucol-title">TANISSAL VERİ</div>
+        <div class="urow"><div class="ukey">HRV ORT.</div><div class="uval">42 ms · −8% baseline</div></div>
+        <div class="urow"><div class="ukey">SpO₂ MİN.</div><div class="uval">%91 · 14:32Z descent</div></div>
+        <div class="urow"><div class="ukey">STRES İND.</div><div class="uval">81/100 · Approach faz</div></div>
+        <div class="urow"><div class="ukey">BULGU</div><div class="uval">Sinsi hipoksi tespit edildi</div></div>
+      </div>
+    </div>
+    <div class="unlock-records" id="approval-records"></div>
+    <div class="unlock-footer">
+      <span>■ GDPR MD.25 UYUMLU · ADİL KÜLTÜR GÜVENCE AKTİF</span>
+      <span>ICAO EK-13 REF · ERİŞİM LOGU OLUŞTURULDU</span>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="reset()">Sıfırla</button>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub">Biyometrik veriye erişim onayı için kurumsal yetki kodunuzu girin.</div>
+    <div class="modal-geo" id="modal-geo"></div>
+    <div class="modal-lbl">Yetki Kodu</div>
+    <input type="text" class="modal-inp" id="modal-inp" maxlength="9" placeholder="XXXX-XXXX" oninput="fmt(this)" onkeydown="handleKey(event)">
+    <div class="modal-hint" id="modal-hint"></div>
+    <div class="modal-err" id="modal-err">Geçersiz yetki kodu. Lütfen tekrar deneyin.</div>
+    <div class="modal-btns">
+      <button class="mbtn" onclick="closeModal()">İptal</button>
+      <button class="mbtn primary" onclick="submitCode()">Doğrula ve İmzala</button>
     </div>
   </div>
 </div>
-
-<div class="divider"></div>
-
-<!-- OZET -->
-<section id="ozet" class="fade-in">
-  <div class="section-label" data-tr="Özet" data-en="Abstract">Özet</div>
-  <div class="abstract-box" style="margin-top: 1rem;">
-    <p data-tr="Havacılık emniyeti tarihsel süreçte reaktif ve proaktif yaklaşımlarla gelişim sağlamış olsa da artık özellikle kaza kırım incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatacak üçüncü ve nihai bir paradigmaya ihtiyaç duyulmaktadır. Bu çalışmada akıllı pilot saatleri ve giyilebilir sensör teknolojilerinin kaza analiz sürecinde Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA) olarak üstlenebileceği roller ve bu teknolojik sıçramanın beraberinde getirebileceği karmaşık hukuki ve etik ikilemler incelenmektedir. Geleneksel uçuş veri kaydedicileri uçağın mekanik durumunu kaydetmekte oldukça başarılı olmalarına rağmen bazı ölümcül kazalarda pilotun karar alma anındaki akut stres, gizli hipoksi, mikro-uyku gibi içsel fizyolojisi ölçülemediğinden nedensellik analizlerinde bilişsel açıdan karanlıkta kalmaktadır." data-en="Although aviation safety has evolved through reactive and proactive approaches over time, there is now a need for a third and final paradigm — particularly in accident investigations — that can illuminate the cognitive and physiological state of flight crew. This study examines the roles that smart pilot watches and wearable sensor technologies can assume as a Complementary Diagnostic Safety Approach (CDSA) in accident analysis, and the complex legal and ethical dilemmas this technological leap may bring. While traditional flight data recorders are highly successful at recording the mechanical state of the aircraft, in some fatal accidents, the pilot's internal physiology at the moment of decision-making — such as acute stress, covert hypoxia, and micro-sleep — cannot be measured, leaving causal analyses cognitively in the dark.">
-      Havacılık emniyeti tarihsel süreçte reaktif ve proaktif yaklaşımlarla gelişim sağlamış olsa da artık özellikle kaza kırım incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatacak üçüncü ve nihai bir paradigmaya ihtiyaç duyulmaktadır. Bu çalışmada akıllı pilot saatleri ve giyilebilir sensör teknolojilerinin kaza analiz sürecinde Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA) olarak üstlenebileceği roller ve bu teknolojik sıçramanın beraberinde getirebileceği karmaşık hukuki ve etik ikilemler incelenmektedir. Geleneksel uçuş veri kaydedicileri uçağın mekanik durumunu kaydetmekte oldukça başarılı olmalarına rağmen bazı ölümcül kazalarda pilotun karar alma anındaki akut stres, gizli hipoksi, mikro-uyku gibi içsel fizyolojisi ölçülemediğinden nedensellik analizlerinde bilişsel açıdan karanlıkta kalmaktadır.
-    </p>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- BOLUMLER -->
-<section id="bolumler" class="fade-in">
-  <div class="section-label" data-tr="İçerik" data-en="Content">İçerik</div>
-  <div class="sections-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem;">
-    <div class="section-card">
-      <div class="section-num">01</div>
-      <h3 data-tr="Havacılık Emniyetinde Dönüşüm" data-en="Transformation in Aviation Safety">Havacılık Emniyetinde Dönüşüm</h3>
-      <p data-tr="Reaktif, proaktif ve tanısal yaklaşımların tarihsel evrimi. Geleneksel FDR/CVR sistemlerinin bilişsel karanlık bölgeleri ve CDSA'nın bu boşluğu nasıl kapatabileceği." data-en="Historical evolution of reactive, proactive and diagnostic approaches. The cognitive blind spots of traditional FDR/CVR systems and how CDSA can fill this gap.">Reaktif, proaktif ve tanısal yaklaşımların tarihsel evrimi. Geleneksel FDR/CVR sistemlerinin bilişsel karanlık bölgeleri ve CDSA'nın bu boşluğu nasıl kapatabileceği.</p>
-    </div>
-    <div class="section-card">
-      <div class="section-num">02</div>
-      <h3 data-tr="Etik İkilemler ve Veri Mahremiyeti" data-en="Ethical Dilemmas and Data Privacy">Etik İkilemler ve Veri Mahremiyeti</h3>
-      <p data-tr="GDPR kapsamında biyometrik verilerin hukuki statüsü, Panoptikon etkisi, Adil Kültür ile çatışma riskleri ve ALPA'nın savunmacı tutumu." data-en="Legal status of biometric data under GDPR, the Panopticon effect, risks of conflict with Just Culture, and ALPA's defensive stance.">GDPR kapsamında biyometrik verilerin hukuki statüsü, Panoptikon etkisi, Adil Kültür ile çatışma riskleri ve ALPA'nın savunmacı tutumu.</p>
-    </div>
-    <div class="section-card">
-      <div class="section-num">03</div>
-      <h3 data-tr="Bilişsel Verilerin Tanısal Gücü" data-en="Diagnostic Power of Cognitive Data">Bilişsel Verilerin Tanısal Gücü</h3>
-      <p data-tr="HRV, SpO₂ ve GSR verilerinin FDR ile milisaniyelik sensör füzyonu. CFIT ve LOC-I kaza tiplerinde gizli hipoksinin algoritmik tespiti." data-en="Millisecond sensor fusion of HRV, SpO₂ and GSR data with FDR. Algorithmic detection of covert hypoxia in CFIT and LOC-I accident types.">HRV, SpO₂ ve GSR verilerinin FDR ile milisaniyelik sensör füzyonu. CFIT ve LOC-I kaza tiplerinde gizli hipoksinin algoritmik tespiti.</p>
-    </div>
-    <div class="section-card">
-      <div class="section-num">04</div>
-      <h3 data-tr="Regülasyon ve Sentetik Veri Modeli" data-en="Regulation and Synthetic Data Model">Regülasyon ve Sentetik Veri Modeli</h3>
-      <p data-tr="ICAO Ek-13'e Biyometrik Uçuş Verisi standardı eklenmesi. Kriptografik çoklu imza mimarisinin 5 katmanlı erişim kontrol modeli ve iki aşamalı veri işleme." data-en="Adding a Biometric Flight Data standard to ICAO Annex 13. The 5-layer access control model of cryptographic multi-signature architecture and two-phase data processing.">ICAO Ek-13'e Biyometrik Uçuş Verisi standardı eklenmesi. Kriptografik çoklu imza mimarisinin 5 katmanlı erişim kontrol modeli ve iki aşamalı veri işleme.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- MIMARISI -->
-<section id="mimari" class="fade-in" style="padding-top: 4rem; padding-bottom: 4rem;">
-  <div class="section-label" data-tr="CDSA Mimarisi" data-en="CDSA Architecture">CDSA Mimarisi</div>
-  <div class="arch-grid">
-
-    <!-- AŞAMA 1 -->
-    <div class="arch-card">
-      <h3 data-tr="Aşama 1 — Tanısal / Bireysel Veri" data-en="Phase 1 — Diagnostic / Individual Data">Aşama 1 — Tanısal / Bireysel Veri</h3>
-      <p data-tr="Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı." data-en="Cryptographic data layer opened only with the simultaneous approval of a threshold number of independent parties at the moment of an accident.">Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı.</p>
-      <div class="arch-steps">
-        <div class="arch-step">
-          <div class="step-num">1</div>
-          <div class="step-text" data-tr="Akıllı saatte anlık şifreleme" data-en="Real-time encryption on smartwatch">Akıllı saatte anlık şifreleme</div>
-        </div>
-        <div class="arch-step">
-          <div class="step-num">2</div>
-          <div class="step-text" data-tr="3/3 eşik şeması ile çoklu imza" data-en="Multi-signature with 3/3 threshold scheme">3/3 eşik şeması ile çoklu imza</div>
-        </div>
-        <div class="arch-step">
-          <div class="step-num">3</div>
-          <div class="step-text" data-tr="Bağımsız otorite onayı zorunluluğu" data-en="Independent authority approval requirement">Bağımsız otorite onayı zorunluluğu</div>
-        </div>
-      </div>
-
-      <!-- SİMÜLASYON -->
-      <div class="sim-wrapper">
-        <div class="sim-label" data-tr="Canlı Simülasyon — Çoklu İmza Protokolü" data-en="Live Simulation — Multi-Signature Protocol">Canlı Simülasyon — Çoklu İmza Protokolü</div>
-        <iframe
-          class="sim-frame"
-          src="cdsa-simulation.html"
-          title="CDSA Çoklu İmza Simülasyonu"
-          loading="lazy">
-        </iframe>
-      </div>
-    </div>
-
-    <!-- AŞAMA 2 -->
-    <div class="arch-card">
-      <h3 data-tr="Aşama 2 — Makro / Anonim Veri" data-en="Phase 2 — Macro / Anonymous Data">Aşama 2 — Makro / Anonim Veri</h3>
-      <p data-tr="Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır." data-en="Continuously flowing data stripped of pilot identity. Used for SMS-integrated proactive safety decisions.">Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır.</p>
-      <div class="arch-steps">
-        <div class="arch-step">
-          <div class="step-num">1</div>
-          <div class="step-text" data-tr="Gerçek zamanlı anonimleştirme" data-en="Real-time anonymization">Gerçek zamanlı anonimleştirme</div>
-        </div>
-        <div class="arch-step">
-          <div class="step-num">2</div>
-          <div class="step-text" data-tr="Emniyet Yönetim Sistemi entegrasyonu" data-en="Safety Management System integration">Emniyet Yönetim Sistemi entegrasyonu</div>
-        </div>
-        <div class="arch-step">
-          <div class="step-num">3</div>
-          <div class="step-text" data-tr="Havayolu geneli proaktif analiz" data-en="Airline-wide proactive analysis">Havayolu geneli proaktif analiz</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- UYGULAMALAR -->
-<div class="apps-section" id="uygulamalar">
-  <div class="apps-inner">
-    <div class="section-label fade-in" data-tr="Canlı Demolar" data-en="Live Demos">Canlı Demolar</div>
-    <div class="apps-grid">
-
-      <div class="app-card fade-in">
-        <div class="app-header">
-          <div>
-            <div class="app-title" data-tr="Hipoksi Tespit Uygulaması" data-en="Hypoxia Detection App">Hipoksi Tespit Uygulaması</div>
-            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.3rem;">SmartWatch Simulator</div>
-          </div>
-          <span class="app-tag" style="white-space: nowrap;">SpO₂ · HRV</span>
-        </div>
-        <div class="app-desc" data-tr="Akıllı saat arayüzü üzerinden anlık SpO₂, kalp atış hızı ve solunum verilerini izleyen LSTM tabanlı hipoksi risk tahmin sistemi." data-en="LSTM-based hypoxia risk prediction system that monitors real-time SpO₂, heart rate, and respiration data through a smartwatch interface.">Akıllı saat arayüzü üzerinden anlık SpO₂, kalp atış hızı ve solunum verilerini izleyen LSTM tabanlı hipoksi risk tahmin sistemi.</div>
-        <iframe class="app-frame" src="https://orfeomete.github.io/hipoksi-app-/" title="Hipoksi Tespit Uygulaması" loading="lazy"></iframe>
-        <a class="app-link" href="https://orfeomete.github.io/hipoksi-app-/" target="_blank">Tam Ekran Aç ↗</a>
-      </div>
-
-      <div class="app-card fade-in">
-        <div class="app-header">
-          <div>
-            <div class="app-title" data-tr="PilotGuard SmartWatch" data-en="PilotGuard SmartWatch">PilotGuard SmartWatch</div>
-            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.3rem;">Pilot Readiness Monitor</div>
-          </div>
-          <span class="app-tag" style="white-space: nowrap;">Stres · Uyku · Hazırlık</span>
-        </div>
-        <div class="app-desc" data-tr="Pilotun uçuş öncesi ve uçuş esnasındaki durumunu kalp atış hızı, stres ve uyku seviyeleriyle takip eden bütünleşik sistem." data-en="Integrated monitoring system that tracks the pilot's pre-flight and in-flight readiness with heart rate, stress level, and sleep quality parameters.">Pilotun uçuş öncesi ve uçuş esnasındaki durumunu kalp atış hızı, stres ve uyku seviyeleriyle takip eden bütünleşik sistem.</div>
-        <iframe class="app-frame" src="https://orfeomete.github.io/pilotguard-app-/" title="PilotGuard SmartWatch" loading="lazy"></iframe>
-        <a class="app-link" href="https://orfeomete.github.io/pilotguard-app-/" target="_blank">Tam Ekran Aç ↗</a>
-      </div>
-
-      <div class="app-card fade-in">
-        <div class="app-header">
-          <div>
-            <div class="app-title">PilotReflect</div>
-            <div style="color: var(--text); font-size: 0.85rem; font-weight: 600; margin-top: 0.2rem;">EFB</div>
-            <div style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.1rem;">Post-Flight Biometric Reflection</div>
-          </div>
-          <span class="app-tag" style="white-space: nowrap;">EFB · ICAO</span>
-        </div>
-        <div class="app-desc" data-tr="Uçuş sonrası kişisel biyometrik değerlendirme sistemi. Uçuş fazlarına göre stres analizi, SpO₂ takibi, AI önerileri ve şifreli yerel veri depolama." data-en="Post-flight personal biometric evaluation system. Stress analysis by flight phase, SpO₂ tracking, AI recommendations, and encrypted local data storage.">Uçuş sonrası kişisel biyometrik değerlendirme sistemi. Uçuş fazlarına göre stres analizi, SpO₂ takibi, AI önerileri ve şifreli yerel veri depolama.</div>
-        <iframe class="app-frame" src="https://orfeomete.github.io/PilotReflect-new/" title="PilotReflect EFB" loading="lazy"></iframe>
-        <a class="app-link" href="https://orfeomete.github.io/PilotReflect-new/" target="_blank">Tam Ekran Aç ↗</a>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<!-- SONUÇ -->
-<section id="sonuc" class="fade-in">
-  <div class="section-label" data-tr="Sonuç" data-en="Conclusion">Sonuç</div>
-  <div class="abstract-box">
-    <p data-tr="Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir. Bu yaklaşım sayesinde pilotaj hatası gibi yüzeysel tanımlamaların yerine sinsi hipoksi, akut stres veya irkilme etkisi gibi bilişsel çöküşler ölçülerek geriye dönük modellemeler suretiyle bir nedensellik ağı çıkarılabilir. Kriptografik çoklu imza protokolüyle kilitlenen biyometrik verilerin sadece bağımsız otoriteler ve temsilciler onayıyla deşifre edilebilmesi, mahremiyet ile uçuş emniyeti arasındaki hassas teraziyi dengeleyen en uygulanabilir model olarak görülmüştür." data-en="In today's industry where mechanical failures are approaching zero from an aviation safety perspective, the focus is on the human factor as the most complex and unpredictable component. The Complementary Diagnostic Safety Approach investigated in this study demonstrates that a new era can begin in accident and incident investigations, going beyond aviation's reactive and proactive safety barriers. It is shown that the cognitive blind spots of accidents can be illuminated by combining flight telemetry (FDR/CVR) with the pilot's physiological data (SpO₂, HRV) through sensor fusion algorithms. Through this approach, instead of superficial definitions such as pilot error, cognitive collapses such as covert hypoxia, acute stress, or startle effect can be measured and a causality network can be extracted through retrospective modeling.">Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir. Bu yaklaşım sayesinde pilotaj hatası gibi yüzeysel tanımlamaların yerine sinsi hipoksi, akut stres veya irkilme etkisi gibi bilişsel çöküşler ölçülerek geriye dönük modellemeler suretiyle bir nedensellik ağı çıkarılabilir. Kriptografik çoklu imza protokolüyle kilitlenen biyometrik verilerin sadece bağımsız otoriteler ve temsilciler onayıyla deşifre edilebilmesi, mahremiyet ile uçuş emniyeti arasındaki hassas teraziyi dengeleyen en uygulanabilir model olarak görülmüştür.</p>
-  </div>
-</section>
-
-<div class="divider"></div>
-<footer>
-  <p style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem;">CDSA</p>
-  <p data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı" data-en="Complementary Diagnostic Safety Approach">Tamamlayıcı Tanısal Emniyet Yaklaşımı</p>
-  <p style="margin-top: 0.5rem;">
-    <a href="https://orfeomete.github.io/hipoksi-app-/" target="_blank">Hipoksi App</a> ·
-    <a href="https://orfeomete.github.io/pilotguard-app-/" target="_blank">PilotGuard</a> ·
-    <a href="https://orfeomete.github.io/PilotReflect/" target="_blank">PilotReflect</a>
-  </p>
-</footer>
 
 <script>
-  let lang = 'tr';
-  function toggleLang() {
-    lang = lang === 'tr' ? 'en' : 'tr';
-    document.querySelector('.lang-btn').textContent = lang === 'tr' ? 'EN' : 'TR';
-    document.querySelectorAll('[data-tr]').forEach(el => {
-      const val = el.getAttribute('data-' + lang);
-      if (val) el.innerHTML = val;
-    });
+  const approved = [false,false,false];
+  const hashes = ['a3f9c2d1e8b74f6a9c3d','c71e4a2b9d8f3e5c7a1b','f2b8e1d4c9a7f3b2d6e9'];
+  const codes = ['SHGM2026','IFAL2026','NTSB2026'];
+  const names = ['SHGM','IFALPA','NTSB'];
+  const hints = ['İpucu: SHGM-XXXX','İpucu: IFAL-XXXX','İpucu: NTSB-XXXX'];
+  const geoTexts = [
+    'Kurum : SHGM Genel Müdürlüğü\nKonum : Ankara, Türkiye\nKoord : 39.9208°N, 32.8541°E\nİP Adr: 193.140.xxx.xxx [TR-GOV]\nOturum: #SHG-20260410-0931',
+    'Kurum : IFALPA Headquarters\nKonum : Montréal, Kanada\nKoord : 45.5017°N, 73.5673°W\nİP Adr: 142.44.xxx.xxx [CA-ORG]\nOturum: #IFA-20260410-0931',
+    'Kurum : NTSB Washington HQ\nKonum : Washington DC, ABD\nKoord : 38.8951°N, 77.0364°W\nİP Adr: 74.125.xxx.xxx [US-GOV]\nOturum: #NTS-20260410-0931'
+  ];
+  const locs = ['Ankara,TR','Montréal,CA','Washington,US'];
+  const approvalRecs = [];
+  let active = -1;
+  let t0 = Date.now();
+
+  function ts() {
+    const e = Math.floor((Date.now()-t0)/1000);
+    return String(Math.floor(e/3600)).padStart(2,'0')+':'+String(Math.floor((e%3600)/60)).padStart(2,'0')+':'+String(e%60).padStart(2,'0');
+  }
+  function utc() { return new Date().toISOString().replace('T',' ').slice(0,19)+'Z'; }
+
+  function addLog(tag,msg,cls) {
+    const box = document.getElementById('log-box');
+    const el = document.createElement('div');
+    el.className='log-line'+(cls?' '+cls:'');
+    el.innerHTML='<span class="log-ts">['+ts()+']</span><span class="log-tag">'+tag+'</span><span class="log-msg">'+msg+'</span>';
+    box.appendChild(el);
+    box.scrollTop=box.scrollHeight;
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
+  function openModal(i) {
+    if(approved[i]) return;
+    active=i;
+    document.getElementById('modal-title').textContent=names[i]+' · Yetki Doğrulama';
+    document.getElementById('modal-geo').textContent=geoTexts[i];
+    document.getElementById('modal-hint').textContent=hints[i];
+    document.getElementById('modal-inp').value='';
+    document.getElementById('modal-err').style.display='none';
+    document.getElementById('overlay').classList.add('show');
+    setTimeout(()=>document.getElementById('modal-inp').focus(),100);
+    addLog(names[i],'Yetki doğrulama penceresi açıldı · '+locs[i],'warn');
+  }
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  function closeModal() {
+    document.getElementById('overlay').classList.remove('show');
+    active=-1;
+  }
+
+  function fmt(el) {
+    let v=el.value.replace(/[^a-zA-Z0-9]/g,'').toUpperCase();
+    if(v.length>4) v=v.slice(0,4)+'-'+v.slice(4,8);
+    el.value=v;
+  }
+
+  function handleKey(e) {
+    if(e.key==='Enter') submitCode();
+    if(e.key==='Escape') closeModal();
+  }
+
+  function submitCode() {
+    const i=active; if(i<0) return;
+    const inp=document.getElementById('modal-inp').value.replace('-','').toUpperCase();
+    if(inp!==codes[i]) {
+      document.getElementById('modal-err').style.display='block';
+      document.getElementById('card-'+i).classList.add('rejected');
+      addLog(names[i],'HATA · Geçersiz yetki kodu · Erişim reddedildi','err');
+      setTimeout(()=>document.getElementById('card-'+i).classList.remove('rejected'),600);
+      return;
+    }
+    closeModal();
+    doApprove(i);
+  }
+
+  function doApprove(i) {
+    approved[i]=true;
+    const t=ts(), u=utc();
+    document.getElementById('card-'+i).classList.add('approved');
+    document.getElementById('hash-'+i).textContent='SHA-256: '+hashes[i];
+    document.getElementById('ts-'+i).textContent='⏱ '+u+' · '+locs[i];
+    const count=approved.filter(Boolean).length;
+    document.getElementById('pd-'+(count-1)).classList.add('active');
+    document.getElementById('prog-fill').style.width=Math.round((count/3)*100)+'%';
+    document.getElementById('prog-count').textContent=count+' / 3 onay tamamlandı';
+    addLog(names[i],'Yetki kodu doğrulandı · Kriptografik imza oluşturuluyor','ok');
+    addLog(names[i],'SHA-256: '+hashes[i],'ok');
+    addLog(names[i],'Konum: '+locs[i]+' · Zaman: '+u,'ok');
+    approvalRecs.push('✓ '+names[i]+' · SHA-256:'+hashes[i].slice(0,12)+'... · '+u+' · '+locs[i]);
+    if(count===3) {
+      setTimeout(()=>{
+        addLog('SİSTEM','3/3 eşiği aşıldı · Shamir anahtar birleştirme başlatıldı','warn');
+        setTimeout(()=>{
+          addLog('SİSTEM','AES-256-GCM deşifre tamamlandı · 14.7 MB / 1847 kayıt açıldı','ok');
+          addLog('SİSTEM','Tanısal bulgular erişime hazır · Sinsi hipoksi tespit edildi','ok');
+          addLog('GDPR','MD.25 uyumlu erişim logu oluşturuldu · ICAO EK-13 referanslandı','ok');
+          addLog('GÜVENLİK','Adil Kültür güvencesi aktif · Veri salt soruşturma amaçlı','ok');
+          document.getElementById('status-pill').textContent='Kilit Açıldı';
+          document.getElementById('status-pill').classList.add('unlocked');
+          document.getElementById('unlock-time').textContent=utc();
+          document.getElementById('approval-records').innerHTML=approvalRecs.join('<br>');
+          document.getElementById('unlock-panel').classList.add('show');
+          animateDecrypt('decrypt-key', hashes[0].slice(0,8)+'...'+hashes[2].slice(-4));
+        },1000);
+      },500);
+    }
+  }
+
+  function animateDecrypt(id, finalText) {
+    const chars = '0123456789ABCDEFabcdef!@#$%^&*';
+    const el = document.getElementById(id);
+    el.classList.add('decrypt-anim');
+    let iteration = 0;
+    const total = 20;
+    const interval = setInterval(() => {
+      el.textContent = finalText.split('').map((char, i) => {
+        if (i < Math.floor(iteration / total * finalText.length)) return char;
+        return chars[Math.floor(Math.random() * chars.length)];
+      }).join('');
+      iteration++;
+      if (iteration >= total) {
+        clearInterval(interval);
+        el.textContent = finalText;
+        el.classList.remove('decrypt-anim');
+        el.style.color = '#5DCAA5';
+      }
+    }, 60);
+  }
+
+  function reset() {
+    for(let i=0;i<3;i++){
+      approved[i]=false;
+      const c=document.getElementById('card-'+i);
+      c.className='party-card';
+      document.getElementById('hash-'+i).style.display='none';
+      document.getElementById('ts-'+i).style.display='none';
+      document.getElementById('pd-'+i).classList.remove('active');
+    }
+    document.getElementById('prog-fill').style.width='0%';
+    document.getElementById('prog-count').textContent='0 / 3 onay tamamlandı';
+    document.getElementById('status-pill').textContent='Kilit Aktif';
+    document.getElementById('status-pill').classList.remove('unlocked');
+    document.getElementById('unlock-panel').classList.remove('show');
+    document.getElementById('decrypt-key').textContent='Hesaplanıyor...';
+    document.getElementById('approval-records').innerHTML='';
+    approvalRecs.length=0;
+    t0=Date.now();
+    document.getElementById('log-box').innerHTML='';
+    addLog('SİSTEM','AES-256-GCM kilidi aktif · Biyometrik veri şifreli','warn');
+    addLog('SİSTEM','3/3 yetkili imza bekleniyor · Eşik şeması aktif','dim');
+    addLog('GÜVENLİK','Oturum başlatıldı · Tüm erişim girişimleri loglanıyor','dim');
+  }
+
+  reset();
 </script>
-
 </body>
 </html>
