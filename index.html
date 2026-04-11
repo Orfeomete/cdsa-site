@@ -18,9 +18,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background: var(--bg);
@@ -41,7 +39,6 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
@@ -49,22 +46,18 @@
       letter-spacing: 0.1em;
       color: var(--accent);
     }
-
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
-
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 1rem;
       transition: color 0.2s;
     }
-
     .nav-links a:hover { color: var(--text); }
-
     .lang-btn {
       background: var(--surface2);
       border: 1px solid var(--border);
@@ -75,7 +68,6 @@
       font-size: 0.85rem;
       transition: all 0.2s;
     }
-
     .lang-btn:hover { background: var(--accent); border-color: var(--accent); }
 
     /* HERO */
@@ -89,18 +81,14 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero-bg {
       position: absolute;
       inset: 0;
       background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(37,99,235,0.07) 0%, transparent 70%),
                   radial-gradient(ellipse 50% 40% at 80% 80%, rgba(8,145,178,0.05) 0%, transparent 60%);
     }
-
     .hero-grid { display: none; }
-
     .hero-content { position: relative; max-width: 900px; }
-
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -114,7 +102,6 @@
       color: var(--accent);
       margin-bottom: 2rem;
     }
-
     .hero-badge::before {
       content: '';
       width: 6px; height: 6px;
@@ -122,12 +109,10 @@
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.5; transform: scale(1.5); }
     }
-
     .hero h1 {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: clamp(1.4rem, 3vw, 2.4rem);
@@ -135,13 +120,11 @@
       line-height: 1.1;
       margin-bottom: 1.5rem;
     }
-
     .hero h1 span {
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     .hero-sub {
       font-size: 1.1rem;
       color: var(--text-muted);
@@ -149,14 +132,12 @@
       margin: 0 auto 2.5rem;
       line-height: 1.7;
     }
-
     .hero-meta {
       display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
     }
-
     .meta-tag {
       background: var(--surface2);
       border: 1px solid var(--border);
@@ -172,7 +153,6 @@
       max-width: 1100px;
       margin: 0 auto;
     }
-
     .section-label {
       font-size: 0.85rem;
       letter-spacing: 0.2em;
@@ -180,7 +160,6 @@
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
-
     h2 {
       font-family: 'Syne', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.8rem);
@@ -188,7 +167,6 @@
       line-height: 1.2;
       margin-bottom: 1.5rem;
     }
-
     .divider {
       width: 100%;
       height: 1px;
@@ -204,20 +182,17 @@
       padding: 2.5rem;
       margin-top: 2rem;
     }
-
     .abstract-box p {
       color: var(--text-muted);
       line-height: 1.9;
       font-size: 1rem;
     }
-
     .keywords {
       margin-top: 1.5rem;
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
     }
-
     .keyword {
       background: rgba(59,130,246,0.1);
       border: 1px solid rgba(59,130,246,0.2);
@@ -234,7 +209,6 @@
       gap: 1.5rem;
       margin-top: 3rem;
     }
-
     .section-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -243,12 +217,10 @@
       transition: border-color 0.3s, transform 0.3s;
       cursor: default;
     }
-
     .section-card:hover {
       border-color: rgba(59,130,246,0.4);
       transform: translateY(-4px);
     }
-
     .section-num {
       font-family: 'Syne', sans-serif;
       font-size: 3rem;
@@ -257,7 +229,6 @@
       line-height: 1;
       margin-bottom: 1rem;
     }
-
     .section-card h3 {
       font-family: 'Syne', sans-serif;
       font-size: 1rem;
@@ -265,7 +236,6 @@
       margin-bottom: 0.8rem;
       color: var(--text);
     }
-
     .section-card p {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -279,16 +249,13 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     .apps-inner { max-width: 1100px; margin: 0 auto; }
-
     .apps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
     }
-
     .app-card {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -296,12 +263,10 @@
       overflow: hidden;
       transition: border-color 0.3s, transform 0.3s;
     }
-
     .app-card:hover {
       border-color: rgba(59,130,246,0.5);
       transform: translateY(-6px);
     }
-
     .app-header {
       padding: 1.5rem;
       display: flex;
@@ -309,13 +274,11 @@
       align-items: flex-start;
       border-bottom: 1px solid var(--border);
     }
-
     .app-title {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 1rem;
     }
-
     .app-tag {
       background: rgba(59,130,246,0.1);
       border: 1px solid rgba(59,130,246,0.2);
@@ -324,21 +287,18 @@
       border-radius: 100px;
       font-size: 0.7rem;
     }
-
     .app-desc {
       padding: 1rem 1.5rem;
       font-size: 0.85rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
-
     .app-frame {
       width: 100%;
       height: 420px;
       border: none;
       display: block;
     }
-
     .app-link {
       display: flex;
       align-items: center;
@@ -351,7 +311,6 @@
       font-size: 0.85rem;
       transition: background 0.2s;
     }
-
     .app-link:hover { background: rgba(59,130,246,0.05); }
 
     /* CDSA ARCHITECTURE */
@@ -361,19 +320,16 @@
       gap: 2rem;
       margin-top: 3rem;
     }
-
     @media (max-width: 768px) {
       .arch-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
-
     .arch-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 2rem;
     }
-
     .arch-card h3 {
       font-family: 'Syne', sans-serif;
       font-size: 1.1rem;
@@ -381,26 +337,22 @@
       margin-bottom: 1rem;
       color: var(--accent2);
     }
-
     .arch-card p {
       color: var(--text-muted);
       line-height: 1.8;
       font-size: 0.95rem;
     }
-
     .arch-steps {
       margin-top: 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
     }
-
     .arch-step {
       display: flex;
       gap: 1rem;
       align-items: flex-start;
     }
-
     .step-num {
       min-width: 28px;
       height: 28px;
@@ -414,7 +366,6 @@
       color: var(--accent);
       font-weight: 700;
     }
-
     .step-text {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -422,28 +373,26 @@
       padding-top: 0.2rem;
     }
 
-    /* SİMÜLASYON iframe */
+    /* iframe wrapper — Aşama 1 ve Aşama 2 için ortak */
     .sim-wrapper {
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       background: var(--surface);
     }
-
     .sim-label {
-      padding: 0.75rem 1.25rem;
+      padding: 0.5rem 1rem;
       background: var(--surface2);
       border-bottom: 1px solid var(--border);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-
     .sim-label::before {
       content: '';
       width: 6px; height: 6px;
@@ -451,13 +400,25 @@
       background: #1D9E75;
       animation: pulse 2s infinite;
     }
-
-    .sim-frame {
-      width: 100%;
-      height: 780px;
-      border: none;
-      display: block;
+    .sim-link {
+      border-top: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      text-align: center;
     }
+    .sim-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: rgba(8,145,178,0.1);
+      border: 1px solid rgba(8,145,178,0.3);
+      border-radius: 100px;
+      color: #0891b2;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .sim-link a:hover { background: rgba(8,145,178,0.2); }
 
     /* AUTHOR */
     .author-card {
@@ -470,11 +431,9 @@
       align-items: center;
       margin-top: 3rem;
     }
-
     @media (max-width: 600px) {
       .author-card { flex-direction: column; text-align: center; }
     }
-
     .author-avatar {
       width: 80px;
       height: 80px;
@@ -488,20 +447,17 @@
       font-weight: 800;
       flex-shrink: 0;
     }
-
     .author-name {
       font-family: 'Syne', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 0.3rem;
     }
-
     .author-role {
       color: var(--accent);
       font-size: 0.9rem;
       margin-bottom: 0.8rem;
     }
-
     .author-bio {
       color: var(--text-muted);
       font-size: 0.9rem;
@@ -516,7 +472,6 @@
       color: var(--text-muted);
       font-size: 0.85rem;
     }
-
     footer a { color: var(--accent); text-decoration: none; }
 
     /* FADE IN */
@@ -525,7 +480,6 @@
       transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
@@ -634,18 +588,13 @@
           <div class="step-text" data-tr="Bağımsız otorite onayı zorunluluğu" data-en="Independent authority approval requirement">Bağımsız otorite onayı zorunluluğu</div>
         </div>
       </div>
-
-      
-
-      <div style="margin-top:1.5rem; border:1px solid var(--border); border-radius:12px; overflow:hidden;">
-        <div style="padding:0.5rem 1rem; background:var(--surface2); border-bottom:1px solid var(--border); font-size:0.75rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); display:flex; align-items:center; gap:0.5rem;">
-          <span style="width:6px;height:6px;border-radius:50%;background:#1D9E75;display:inline-block;"></span>
-          <span data-tr="Canlı Simülasyon" data-en="Live Simulation">Canlı Simülasyon</span>
+      <div class="sim-wrapper">
+        <div class="sim-label" data-tr="Canlı Simülasyon" data-en="Live Simulation">Canlı Simülasyon</div>
+        <iframe src="cdsa-simulation.html?v=2" style="width:100%;height:480px;border:none;display:block;" loading="lazy" title="CDSA Çoklu İmza Simülasyonu"></iframe>
+        <div class="sim-link">
+          <a href="cdsa-simulation.html" target="_blank" data-tr="▶ Simülasyonu Aç" data-en="▶ Open Simulation">▶ Simülasyonu Aç</a>
         </div>
-        <iframe src="cdsa-simulation.html?v=3" style="width:100%;height:480px;border:none;display:block;" loading="lazy" title="CDSA Çoklu İmza Simülasyonu"></iframe>
-        <div style="border-top:1px solid var(--border);padding:0.75rem 1rem;text-align:center;"><a href="cdsa-simulation.html" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;">▶ Tam Ekran Aç</a></div>
       </div>
-
     </div>
 
     <!-- AŞAMA 2 -->
@@ -664,6 +613,14 @@
         <div class="arch-step">
           <div class="step-num">3</div>
           <div class="step-text" data-tr="Havayolu geneli proaktif analiz" data-en="Airline-wide proactive analysis">Havayolu geneli proaktif analiz</div>
+        </div>
+      </div>
+      <!-- ── PilotSense OPS iframe ── -->
+      <div class="sim-wrapper">
+        <div class="sim-label" data-tr="PilotSense OPS — Canlı Dashboard" data-en="PilotSense OPS — Live Dashboard">PilotSense OPS — Canlı Dashboard</div>
+        <iframe src="asama2-dashboard.html?v=1" style="width:100%;height:480px;border:none;display:block;" loading="lazy" title="PilotSense OPS"></iframe>
+        <div class="sim-link">
+          <a href="asama2-dashboard.html" target="_blank" data-tr="▶ PilotSense OPS'u Aç" data-en="▶ Open PilotSense OPS">▶ PilotSense OPS'u Aç</a>
         </div>
       </div>
     </div>
@@ -689,7 +646,7 @@
         </div>
         <div class="app-desc" data-tr="Akıllı saat arayüzü üzerinden anlık SpO₂, kalp atış hızı ve solunum verilerini izleyen LSTM tabanlı hipoksi risk tahmin sistemi." data-en="LSTM-based hypoxia risk prediction system that monitors real-time SpO₂, heart rate, and respiration data through a smartwatch interface.">Akıllı saat arayüzü üzerinden anlık SpO₂, kalp atış hızı ve solunum verilerini izleyen LSTM tabanlı hipoksi risk tahmin sistemi.</div>
         <iframe class="app-frame" src="https://orfeomete.github.io/hipoksi-app-/" title="Hipoksi Tespit Uygulaması" loading="lazy"></iframe>
-        <div class="app-link"><a href="https://orfeomete.github.io/hipoksi-app-/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;">▶ Tam Ekran Aç</a></div>
+        <div class="app-link"><a href="https://orfeomete.github.io/hipoksi-app-/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(8,145,178,0.2)'" onmouseout="this.style.background='rgba(8,145,178,0.1)'">▶ Tam Ekran Aç</a></div>
       </div>
 
       <div class="app-card fade-in">
@@ -702,7 +659,7 @@
         </div>
         <div class="app-desc" data-tr="Pilotun uçuş öncesi ve uçuş esnasındaki durumunu kalp atış hızı, stres ve uyku seviyeleriyle takip eden bütünleşik sistem." data-en="Integrated monitoring system that tracks the pilot's pre-flight and in-flight readiness with heart rate, stress level, and sleep quality parameters.">Pilotun uçuş öncesi ve uçuş esnasındaki durumunu kalp atış hızı, stres ve uyku seviyeleriyle takip eden bütünleşik sistem.</div>
         <iframe class="app-frame" src="https://orfeomete.github.io/pilotguard-app-/" title="PilotGuard SmartWatch" loading="lazy"></iframe>
-        <div class="app-link"><a href="https://orfeomete.github.io/pilotguard-app-/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;">▶ Tam Ekran Aç</a></div>
+        <div class="app-link"><a href="https://orfeomete.github.io/pilotguard-app-/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(8,145,178,0.2)'" onmouseout="this.style.background='rgba(8,145,178,0.1)'">▶ Tam Ekran Aç</a></div>
       </div>
 
       <div class="app-card fade-in">
@@ -716,7 +673,7 @@
         </div>
         <div class="app-desc" data-tr="Uçuş sonrası kişisel biyometrik değerlendirme sistemi. Uçuş fazlarına göre stres analizi, SpO₂ takibi, AI önerileri ve şifreli yerel veri depolama." data-en="Post-flight personal biometric evaluation system. Stress analysis by flight phase, SpO₂ tracking, AI recommendations, and encrypted local data storage.">Uçuş sonrası kişisel biyometrik değerlendirme sistemi. Uçuş fazlarına göre stres analizi, SpO₂ takibi, AI önerileri ve şifreli yerel veri depolama.</div>
         <iframe class="app-frame" src="https://orfeomete.github.io/PilotReflect-new/" title="PilotReflect EFB" loading="lazy"></iframe>
-        <div class="app-link"><a href="https://orfeomete.github.io/PilotReflect-new/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;">▶ Tam Ekran Aç</a></div>
+        <div class="app-link"><a href="https://orfeomete.github.io/PilotReflect-new/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(8,145,178,0.2)'" onmouseout="this.style.background='rgba(8,145,178,0.1)'">▶ Tam Ekran Aç</a></div>
       </div>
 
     </div>
@@ -729,18 +686,22 @@
 <section id="sonuc" class="fade-in">
   <div class="section-label" data-tr="Sonuç" data-en="Conclusion">Sonuç</div>
   <div class="abstract-box">
-    <p data-tr="Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir. Bu yaklaşım sayesinde pilotaj hatası gibi yüzeysel tanımlamaların yerine sinsi hipoksi, akut stres veya irkilme etkisi gibi bilişsel çöküşler ölçülerek geriye dönük modellemeler suretiyle bir nedensellik ağı çıkarılabilir. Kriptografik çoklu imza protokolüyle kilitlenen biyometrik verilerin sadece bağımsız otoriteler ve temsilciler onayıyla deşifre edilebilmesi, mahremiyet ile uçuş emniyeti arasındaki hassas teraziyi dengeleyen en uygulanabilir model olarak görülmüştür." data-en="In today's industry where mechanical failures are approaching zero from an aviation safety perspective, the focus is on the human factor as the most complex and unpredictable component. The Complementary Diagnostic Safety Approach investigated in this study demonstrates that a new era can begin in accident and incident investigations, going beyond aviation's reactive and proactive safety barriers. It is shown that the cognitive blind spots of accidents can be illuminated by combining flight telemetry (FDR/CVR) with the pilot's physiological data (SpO₂, HRV) through sensor fusion algorithms. Through this approach, instead of superficial definitions such as pilot error, cognitive collapses such as covert hypoxia, acute stress, or startle effect can be measured and a causality network can be extracted through retrospective modeling.">Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir. Bu yaklaşım sayesinde pilotaj hatası gibi yüzeysel tanımlamaların yerine sinsi hipoksi, akut stres veya irkilme etkisi gibi bilişsel çöküşler ölçülerek geriye dönük modellemeler suretiyle bir nedensellik ağı çıkarılabilir. Kriptografik çoklu imza protokolüyle kilitlenen biyometrik verilerin sadece bağımsız otoriteler ve temsilciler onayıyla deşifre edilebilmesi, mahremiyet ile uçuş emniyeti arasındaki hassas teraziyi dengeleyen en uygulanabilir model olarak görülmüştür.</p>
+    <p data-tr="Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir. Bu yaklaşım sayesinde pilotaj hatası gibi yüzeysel tanımlamaların yerine sinsi hipoksi, akut stres veya irkilme etkisi gibi bilişsel çöküşler ölçülerek geriye dönük modellemeler suretiyle bir nedensellik ağı çıkarılabilir. Kriptografik çoklu imza protokolüyle kilitlenen biyometrik verilerin sadece bağımsız otoriteler ve temsilciler onayıyla deşifre edilebilmesi, mahremiyet ile uçuş emniyeti arasındaki hassas teraziyi dengeleyen en uygulanabilir model olarak görülmüştür." data-en="In today's industry where mechanical failures are approaching zero from an aviation safety perspective, the focus is on the human factor as the most complex and unpredictable component. The Complementary Diagnostic Safety Approach investigated in this study demonstrates that a new era can begin in accident and incident investigations, going beyond aviation's reactive and proactive safety barriers. It is shown that the cognitive blind spots of accidents can be illuminated by combining flight telemetry (FDR/CVR) with the pilot's physiological data (SpO₂, HRV) through sensor fusion algorithms. Through this approach, instead of superficial definitions such as pilot error, cognitive collapses such as covert hypoxia, acute stress, or startle effect can be measured and a causality network can be extracted through retrospective modeling.">
+      Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir. Bu yaklaşım sayesinde pilotaj hatası gibi yüzeysel tanımlamaların yerine sinsi hipoksi, akut stres veya irkilme etkisi gibi bilişsel çöküşler ölçülerek geriye dönük modellemeler suretiyle bir nedensellik ağı çıkarılabilir. Kriptografik çoklu imza protokolüyle kilitlenen biyometrik verilerin sadece bağımsız otoriteler ve temsilciler onayıyla deşifre edilebilmesi, mahremiyet ile uçuş emniyeti arasındaki hassas teraziyi dengeleyen en uygulanabilir model olarak görülmüştür.
+    </p>
   </div>
 </section>
 
 <div class="divider"></div>
+
 <footer>
   <p style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem;">CDSA</p>
   <p data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı" data-en="Complementary Diagnostic Safety Approach">Tamamlayıcı Tanısal Emniyet Yaklaşımı</p>
   <p style="margin-top: 0.5rem;">
     <a href="https://orfeomete.github.io/hipoksi-app-/" target="_blank">Hipoksi App</a> ·
     <a href="https://orfeomete.github.io/pilotguard-app-/" target="_blank">PilotGuard</a> ·
-    <a href="https://orfeomete.github.io/PilotReflect/" target="_blank">PilotReflect</a>
+    <a href="https://orfeomete.github.io/PilotReflect/" target="_blank">PilotReflect</a> ·
+    <a href="asama2-dashboard.html" target="_blank">PilotSense OPS</a>
   </p>
 </footer>
 
