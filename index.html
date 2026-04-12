@@ -16,25 +16,26 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    section, .apps-section { scroll-margin-top: 100px; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(248,250,252,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 100; padding: 0.6rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); width: calc(100% - 160px); max-width: 900px; }
     .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.1em; color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
-    .lang-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 1rem; border-radius: 100px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+    .lang-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 1rem; border-radius: 16px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
     .lang-btn:hover { background: var(--accent); border-color: var(--accent); }
     .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(37,99,235,0.07) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(8,145,178,0.05) 0%, transparent 60%); }
     .hero-content { position: relative; max-width: 900px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 2rem; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); padding: 0.4rem 1rem; border-radius: 16px; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 2rem; }
     .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
     .hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
     .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.7; }
     .hero-meta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .meta-tag { background: var(--surface2); border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; color: var(--text-muted); }
+    .meta-tag { background: var(--surface2); border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 16px; font-size: 0.8rem; color: var(--text-muted); }
     section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.85rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
     h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
@@ -42,7 +43,7 @@
     .abstract-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; margin-top: 2rem; }
     .abstract-box p { color: var(--text-muted); line-height: 1.9; font-size: 1rem; }
     .keywords { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .keyword { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.8rem; }
+    .keyword { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 16px; font-size: 0.8rem; }
     .sections-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
     .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: border-color 0.3s, transform 0.3s; }
     .section-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
@@ -56,7 +57,7 @@
     .app-card:hover { border-color: rgba(59,130,246,0.5); transform: translateY(-6px); }
     .app-header { padding: 1.5rem; display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border); }
     .app-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
-    .app-tag { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 100px; font-size: 0.7rem; }
+    .app-tag { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: var(--accent); padding: 0.2rem 0.6rem; border-radius: 16px; font-size: 0.7rem; }
     .app-desc { padding: 1rem 1.5rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
     .app-frame { width: 100%; height: 420px; border: none; display: block; }
     .arch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
@@ -72,7 +73,7 @@
     .sim-label { padding: 0.5rem 1rem; background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
     .sim-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #1D9E75; animation: pulse 2s infinite; }
     .sim-link { border-top: 1px solid var(--border); padding: 0.75rem 1rem; text-align: center; }
-    .sim-link a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: rgba(8,145,178,0.1); border: 1px solid rgba(8,145,178,0.3); border-radius: 100px; color: #0891b2; font-size: 0.85rem; text-decoration: none; transition: all 0.2s; }
+    .sim-link a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.2rem; background: rgba(8,145,178,0.1); border: 1px solid rgba(8,145,178,0.3); border-radius: 16px; color: #0891b2; font-size: 0.85rem; text-decoration: none; transition: all 0.2s; }
     .sim-link a:hover { background: rgba(8,145,178,0.2); }
     .author-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 3rem; display: flex; gap: 2rem; align-items: center; margin-top: 3rem; }
     @media (max-width: 600px) { .author-card { flex-direction: column; text-align: center; } }
@@ -94,9 +95,9 @@
 <body>
 
 <nav>
-  <div class="nav-logo">
-    <img src="favicon.svg" width="36" height="36" alt="CDSA" style="border-radius:8px;display:block;">
-  </div>
+  <a href="#" style="text-decoration:none;">
+    <img src="favicon.svg" width="60" height="60" alt="CDSA" style="border-radius:14px;display:block;">
+  </a>
   <ul class="nav-links">
     <li><a href="#ozet" data-tr="Özet" data-en="Abstract">Özet</a></li>
     <li><a href="#bolumler" data-tr="İçerik" data-en="Content">İçerik</a></li>
