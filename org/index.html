@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDSA — Üç Sütun Özeti</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/pillar.css">
+  <style>
+    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .pillar-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; display: flex; flex-direction: column; gap: 1rem; }
+    .pillar-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; }
+    .pillar-card .sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .stat-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.4rem 0; border-bottom: 1px dashed var(--border); }
+    .stat-row .v { font-family: monospace; font-weight: 700; color: var(--accent); }
+    .btn-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: auto; }
+    .btn-row a { display: inline-flex; padding: 0.5rem 1rem; background: rgba(8,145,178,0.1); border: 1px solid rgba(8,145,178,0.3); border-radius: 16px; color: #0891b2; font-size: 0.8rem; text-decoration: none; }
+    .btn-row a:hover { background: rgba(8,145,178,0.2); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-home">
+    <img src="../favicon.svg" width="40" height="40" alt="CDSA" style="border-radius:10px;display:block;">
+    <span data-tr="← Ana Sayfa" data-en="← Home">← Ana Sayfa</span>
+  </a>
+  <button class="lang-btn" onclick="toggleLang()">EN</button>
+</nav>
+
+<header class="page-head">
+  <div class="section-label">CDSA — ORG</div>
+  <h1 data-tr="Üç Sütun Özeti — Federatif Pekiştirmeli Öğrenme Paradigması" data-en="Three-Pillar Summary — Federated Reinforcement Learning Paradigm">Üç Sütun Özeti — Federatif Pekiştirmeli Öğrenme Paradigması</h1>
+  <div class="badge-line">
+    <span class="precomp-badge">Precomputed seeded CPU-scale runs (Faz A, June 2026)</span>
+    <span class="meta-tag" data-tr="İnteraktif simülasyon — operasyonel değil" data-en="Interactive simulation — not operational">İnteraktif simülasyon — operasyonel değil</span>
+  </div>
+</header>
+
+<main id="content">
+  <section>
+    <div class="card">
+      <p style="color:var(--text-muted);line-height:1.9;font-size:0.95rem" data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA), Senaryo C Metodolojik Birleştirme Kararı (21 Mayıs 2026) ile Federatif Pekiştirmeli Öğrenme (FRL) çerçevesi olarak formalize edilmiş üçüncü nesil havacılık emniyeti paradigmasıdır. Üç sütun aynı çekirdek mimariyi paylaşır: çok-modaliteli kodlayıcılar + çapraz-modal dikkat füzyonu + PPO Actor-Critic + FedAvg/FedProx federatif katman + SHAP/karşıolgusal XAI. Aşağıdaki sayılar her sütunun deposundaki experiments/results JSON dosyalarından okunmaktadır." data-en="The Complementary Diagnostic Safety Approach (CDSA) is a third-generation aviation safety paradigm formalised as a Federated Reinforcement Learning (FRL) framework by the Scenario C Methodological Unification Decision (21 May 2026). The three pillars share the same core architecture: multi-modal encoders + cross-modal attention fusion + PPO Actor-Critic + FedAvg/FedProx federated layer + SHAP/counterfactual XAI. The numbers below are read from each pillar repository's experiments/results JSON files.">Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA), Senaryo C Metodolojik Birleştirme Kararı (21 Mayıs 2026) ile Federatif Pekiştirmeli Öğrenme (FRL) çerçevesi olarak formalize edilmiş üçüncü nesil havacılık emniyeti paradigmasıdır. Üç sütun aynı çekirdek mimariyi paylaşır: çok-modaliteli kodlayıcılar + çapraz-modal dikkat füzyonu + PPO Actor-Critic + FedAvg/FedProx federatif katman + SHAP/karşıolgusal XAI. Aşağıdaki sayılar her sütunun deposundaki experiments/results JSON dosyalarından okunmaktadır.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-tr="Sütunlar" data-en="Pillars">Sütunlar</h2>
+    <div class="pillar-grid" id="pillarGrid"></div>
+  </section>
+</main>
+
+<footer>
+  <p style="font-family:'Syne',sans-serif;font-weight:700;color:var(--accent);margin-bottom:0.5rem">CDSA</p>
+  <p data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı — Tek yazar: Mete Cantekin, Istanbul Beykent University" data-en="Complementary Diagnostic Safety Approach — Sole author: Mete Cantekin, Istanbul Beykent University">Tamamlayıcı Tanısal Emniyet Yaklaşımı — Tek yazar: Mete Cantekin, Istanbul Beykent University</p>
+  <p style="margin-top:0.5rem;font-size:11px;color:#94a3b8" data-tr="⚠ Araştırma simülasyon ortamı — operasyonel kullanım için değildir." data-en="⚠ Research simulation environment — not for operational use.">⚠ Araştırma simülasyon ortamı — operasyonel kullanım için değildir.</p>
+</footer>
+
+<script src="../assets/pillar.js"></script>
+<script>
+const PILLARS = [
+  { key: 'atm', name: 'CDSA-ATM',
+    subTr: 'Hava Trafik Yönetimi — ADS-B trajectory + ATS olayları + ANSP koordinasyonu (MA-FedPPO akış optimizasyonu).',
+    subEn: 'Air Traffic Management — ADS-B trajectory + ATS occurrences + ANSP coordination (MA-FedPPO flow optimisation).',
+    repo: 'https://github.com/Orfeomete/cdsa-atm', doi: '10.5281/zenodo.20649857' },
+  { key: 'mro', name: 'CDSA-MRO',
+    subTr: 'Bakım Emniyeti — motor sensör serileri + siber olaylar + bakım kayıtları füzyonu.',
+    subEn: 'Maintenance Safety — engine sensor series + cyber events + maintenance record fusion.',
+    repo: 'https://github.com/Orfeomete/cdsa-mro', doi: '10.5281/zenodo.20649672' },
+  { key: 'bb3', name: 'CDSA-BB3',
+    subTr: 'Pilot Biyometri — PPG + ECG + EEG kodlayıcıları ile bilişsel durum tespiti.',
+    subEn: 'Pilot Biometrics — cognitive-state detection with PPG + ECG + EEG encoders.',
+    repo: 'https://github.com/Orfeomete/cdsa-bb3', doi: '10.5281/zenodo.20649676' },
+];
+
+async function initOrg() {
+  const grid = document.getElementById('pillarGrid');
+  for (const p of PILLARS) {
+    let stats = '';
+    try {
+      const res = await loadJSON('../data/' + p.key + '/faz_a_results.json');
+      const rows = [];
+      if (res.fedavg) {
+        rows.push(['FedAvg kritik recall', 'FedAvg critical recall', String(res.fedavg.critical_recall)]);
+        rows.push(['FedAvg doğruluk', 'FedAvg accuracy', res.fedavg.accuracy_pct + '%']);
+      }
+      if (res.central_ppo) rows.push(['Central PPO kritik recall', 'Central PPO critical recall', String(res.central_ppo.critical_recall)]);
+      if (res.random) rows.push(['Random taban kritik recall', 'Random baseline critical recall', String(res.random.critical_recall)]);
+      stats = rows.map(([ktr, ken, v]) =>
+        `<div class="stat-row"><span ${t(ktr, ken)}>${esc(ktr)}</span><span class="v">${esc(v)}</span></div>`).join('');
+    } catch (e) {
+      stats = `<div class="err-box">${esc(e.message)}</div>`;
+    }
+    grid.insertAdjacentHTML('beforeend',
+      `<div class="pillar-card">` +
+      `<h3>${p.name}</h3>` +
+      `<div class="sub" ${t(p.subTr, p.subEn)}>${p.subTr}</div>` +
+      `<div>${stats}</div>` +
+      `<div class="btn-row">` +
+      `<a href="../${p.key}/" ${t('▶ Sonuç Paneli', '▶ Results Panel')}>▶ Sonuç Paneli</a>` +
+      `<a href="${p.repo}" target="_blank">GitHub</a>` +
+      `<a href="https://doi.org/${p.doi}" target="_blank">DOI</a>` +
+      `</div></div>`);
+  }
+  applyLang();
+}
+initOrg();
+</script>
+</body>
+</html>

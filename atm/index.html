@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDSA-ATM — Faz A Sonuç Paneli</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/pillar.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-home">
+    <img src="../favicon.svg" width="40" height="40" alt="CDSA" style="border-radius:10px;display:block;">
+    <span data-tr="← Ana Sayfa" data-en="← Home">← Ana Sayfa</span>
+  </a>
+  <button class="lang-btn" onclick="toggleLang()">EN</button>
+</nav>
+
+<header class="page-head">
+  <div class="section-label">CDSA-ATM</div>
+  <h1 data-tr="Hava Trafik Yönetimi Sütunu — MA-FedPPO Akış Optimizasyonu" data-en="Air Traffic Management Pillar — MA-FedPPO Flow Optimisation">Hava Trafik Yönetimi Sütunu — MA-FedPPO Akış Optimizasyonu</h1>
+  <div class="badge-line">
+    <span class="precomp-badge">Precomputed seeded CPU-scale runs (Faz A, June 2026)</span>
+    <span class="meta-tag" id="metaDate"></span>
+    <span class="meta-tag" data-tr="İnteraktif simülasyon — operasyonel değil" data-en="Interactive simulation — not operational">İnteraktif simülasyon — operasyonel değil</span>
+  </div>
+</header>
+
+<main id="content">
+  <section>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <section>
+    <h2 data-tr="Öğrenme Eğrileri" data-en="Learning Curves">Öğrenme Eğrileri</h2>
+    <div class="card" style="height:380px"><canvas id="curvesChart"></canvas></div>
+    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_a_curves.json (seed'li koşu, 11 Haziran 2026)." data-en="Source: experiments/results/faz_a_curves.json (seeded run, 11 June 2026).">Kaynak: experiments/results/faz_a_curves.json (seed'li koşu, 11 Haziran 2026).</p>
+  </section>
+
+  <section>
+    <h2 data-tr="Konfigürasyon Karşılaştırması" data-en="Configuration Comparison">Konfigürasyon Karşılaştırması</h2>
+    <div class="card" style="overflow-x:auto"><table class="cfg" id="cfgTable"></table></div>
+    <div class="note-box" id="cfgNote" hidden></div>
+  </section>
+
+  <section id="xaiSection" hidden>
+    <h2 data-tr="XAI — Grup-Shapley Modalite Katkıları" data-en="XAI — Group-Shapley Modality Contributions">XAI — Grup-Shapley Modalite Katkıları</h2>
+    <div class="card">
+      <div class="legend" id="xaiLegend"></div>
+      <div id="xaiBars"></div>
+    </div>
+    <div id="cfWrap" style="margin-top:1.5rem">
+      <h2 data-tr="Karşıolgusal Örnek" data-en="Counterfactual Example">Karşıolgusal Örnek</h2>
+      <div class="card" id="cfCard"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-tr="Eğitilmiş Ajan Karar Örnekleri" data-en="Trained-Agent Decision Samples">Eğitilmiş Ajan Karar Örnekleri</h2>
+    <div class="card">
+      <div class="dec-nav">
+        <button onclick="decPrev()" aria-label="previous">‹</button>
+        <span id="decCounter" style="font-family:monospace"></span>
+        <button onclick="decNext()" aria-label="next">›</button>
+        <span class="meta-tag" id="decAgent"></span>
+      </div>
+      <div class="dec-grid">
+        <div id="decFields"></div>
+        <div>
+          <div style="font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem" data-tr="Aksiyon dağılımı" data-en="Action distribution">Aksiyon dağılımı</div>
+          <div id="decDist"></div>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem">
+        <div style="font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)"><span data-tr="Durum vektörü" data-en="State vector">Durum vektörü</span> <span id="decDim"></span></div>
+        <div class="statevec" id="decState"></div>
+      </div>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/sample_decisions.json — eğitilmiş FedProx ajanıyla seed'li inference örnekleri." data-en="Source: experiments/results/sample_decisions.json — seeded inference samples from the trained FedProx agent.">Kaynak: experiments/results/sample_decisions.json — eğitilmiş FedProx ajanıyla seed'li inference örnekleri.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p style="font-family:'Syne',sans-serif;font-weight:700;color:var(--accent);margin-bottom:0.5rem">CDSA-ATM</p>
+  <p>
+    <a href="https://github.com/Orfeomete/cdsa-atm" target="_blank">GitHub: Orfeomete/cdsa-atm</a> ·
+    <a href="https://doi.org/10.5281/zenodo.20649857" target="_blank">DOI: 10.5281/zenodo.20649857</a> ·
+    <a href="../org/" data-tr="Üç Sütun Özeti" data-en="Three-Pillar Summary">Üç Sütun Özeti</a>
+  </p>
+  <p style="margin-top:0.5rem;font-size:11px;color:#94a3b8" data-tr="⚠ Araştırma simülasyon ortamı — operasyonel kullanım için değildir. Sayfadaki tüm sayılar repodaki experiments/results JSON dosyalarından okunur." data-en="⚠ Research simulation environment — not for operational use. All numbers on this page are read from the repository's experiments/results JSON files.">⚠ Araştırma simülasyon ortamı — operasyonel kullanım için değildir. Sayfadaki tüm sayılar repodaki experiments/results JSON dosyalarından okunur.</p>
+</footer>
+
+<script>
+window.PILLAR = { key: 'atm' };
+</script>
+<script src="../assets/pillar.js"></script>
+<script>initPillarPage();</script>
+</body>
+</html>
