@@ -92,10 +92,15 @@
     .repo-path { font-size: 10px; color: var(--text-muted); font-family: monospace; }
   </style>
   <style>
-    .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-top: 1.5rem; max-width: 560px; }
-    .contact-box input, .contact-box textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 0.9rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: var(--text); margin-bottom: 0.8rem; resize: vertical; }
-    .contact-box input:focus, .contact-box textarea:focus { outline: none; border-color: rgba(37,99,235,0.5); }
-    .contact-send { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; background: rgba(8,145,178,0.1); border: 1px solid rgba(8,145,178,0.3); border-radius: 16px; color: #0891b2; font-size: 0.9rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .contact-widget { position: fixed; right: 20px; bottom: 20px; z-index: 200; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; opacity: 0; transform: translateY(8px); transition: opacity 0.35s, transform 0.35s; pointer-events: none; }
+    .contact-widget.show { opacity: 1; transform: none; pointer-events: auto; }
+    .contact-fab { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); color: #fff; border: none; font-size: 1.3rem; cursor: pointer; box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
+    .contact-fab:hover { background: #1d4ed8; }
+    .contact-panel { width: 260px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: 0 10px 32px rgba(0,0,0,0.12); }
+    .contact-panel .cp-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.7rem; color: var(--text); }
+    .contact-panel input, .contact-panel textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 0.7rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.85rem; color: var(--text); margin-bottom: 0.6rem; resize: vertical; }
+    .contact-panel input:focus, .contact-panel textarea:focus { outline: none; border-color: rgba(37,99,235,0.5); }
+    .contact-send { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.1rem; background: rgba(8,145,178,0.1); border: 1px solid rgba(8,145,178,0.3); border-radius: 16px; color: #0891b2; font-size: 0.85rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
     .contact-send:hover { background: rgba(8,145,178,0.2); }
   </style>
 </head>
@@ -165,12 +170,12 @@
   <div class="section-label" data-tr="Sütunlar" data-en="Pillars">Sütunlar</div>
   <div class="arch-grid" style="margin-top:1.5rem;">
     <div class="arch-card">
-      <h3>CDSA-ATM</h3>
-      <p data-tr="Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu" data-en="Air Traffic Management — MA-FedPPO flow optimisation">Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu</p>
+      <h3>CDSA-BB3</h3>
+      <p data-tr="Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti" data-en="Pilot Biometrics — PPG + ECG + EEG cognitive-state detection">Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti</p>
       <div class="sim-wrapper">
-        <div class="sim-label" data-tr="CDSA-ATM · Faz A Paneli" data-en="CDSA-ATM · Faz A Panel">CDSA-ATM · Faz A Paneli</div>
-        <iframe src="/atm/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
-        <div class="sim-link"><a href="/atm/" target="_blank" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+        <div class="sim-label" data-tr="CDSA-BB3 · Faz A Paneli" data-en="CDSA-BB3 · Faz A Panel">CDSA-BB3 · Faz A Paneli</div>
+        <iframe src="/bb3/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
+        <div class="sim-link"><a href="/bb3/" target="_blank" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
       </div>
     </div>
     <div class="arch-card">
@@ -183,12 +188,12 @@
       </div>
     </div>
     <div class="arch-card">
-      <h3>CDSA-BB3</h3>
-      <p data-tr="Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti" data-en="Pilot Biometrics — PPG + ECG + EEG cognitive-state detection">Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti</p>
+      <h3>CDSA-ATM</h3>
+      <p data-tr="Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu" data-en="Air Traffic Management — MA-FedPPO flow optimisation">Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu</p>
       <div class="sim-wrapper">
-        <div class="sim-label" data-tr="CDSA-BB3 · Faz A Paneli" data-en="CDSA-BB3 · Faz A Panel">CDSA-BB3 · Faz A Paneli</div>
-        <iframe src="/bb3/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
-        <div class="sim-link"><a href="/bb3/" target="_blank" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+        <div class="sim-label" data-tr="CDSA-ATM · Faz A Paneli" data-en="CDSA-ATM · Faz A Panel">CDSA-ATM · Faz A Paneli</div>
+        <iframe src="/atm/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
+        <div class="sim-link"><a href="/atm/" target="_blank" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
       </div>
     </div>
     <div class="arch-card">
@@ -363,17 +368,6 @@
 
 <div class="divider"></div>
 
-<section id="iletisim" class="fade-in" style="padding:4rem 2rem;">
-  <div class="section-label" data-tr="İletişim" data-en="Contact">İletişim</div>
-  <div class="contact-box">
-    <input id="cSubject" type="text" placeholder="Konu / Subject">
-    <textarea id="cBody" rows="5" placeholder="Mesajınız / Your message"></textarea>
-    <button class="contact-send" onclick="sendContact()"><span data-tr="✉ Gönder" data-en="✉ Send">✉ Gönder</span></button>
-  </div>
-</section>
-
-<div class="divider"></div>
-
 <footer>
   <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--accent);margin-bottom:0.5rem;">CDSA</p>
   <p data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı" data-en="Complementary Diagnostic Safety Approach">Tamamlayıcı Tanısal Emniyet Yaklaşımı</p>
@@ -431,6 +425,16 @@
   window.addEventListener('scroll', updateActiveNav);
   updateActiveNav();
 
+
+  (function () {
+    function reveal() { document.getElementById('contactWidget').classList.add('show'); }
+    window.addEventListener('mousemove', reveal, { once: true });
+    window.addEventListener('touchstart', reveal, { once: true });
+  })();
+  function toggleContact() {
+    const p = document.getElementById('contactPanel');
+    p.hidden = !p.hidden;
+  }
   function sendContact() {
     const s = document.getElementById('cSubject').value.trim();
     const b = document.getElementById('cBody').value.trim();
@@ -441,5 +445,15 @@
   }
 
 </script>
+
+<div id="contactWidget" class="contact-widget">
+  <div class="contact-panel" id="contactPanel" hidden>
+    <div class="cp-title" data-tr="İletişim" data-en="Contact">İletişim</div>
+    <input id="cSubject" type="text" placeholder="Konu / Subject">
+    <textarea id="cBody" rows="3" placeholder="Mesajınız / Your message"></textarea>
+    <button class="contact-send" onclick="sendContact()"><span data-tr="✉ Gönder" data-en="✉ Send">✉ Gönder</span></button>
+  </div>
+  <button class="contact-fab" onclick="toggleContact()" aria-label="İletişim">✉</button>
+</div>
 </body>
 </html>
