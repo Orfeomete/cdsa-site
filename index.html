@@ -92,18 +92,8 @@
     .repo-path { font-size: 10px; color: var(--text-muted); font-family: monospace; }
   </style>
   <style>
-    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    a.pillar-card2 { display: flex; flex-direction: column; gap: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; text-decoration: none; color: var(--text); transition: border-color 0.3s, transform 0.3s; }
-    a.pillar-card2:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
-    .pillar-card2 h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; }
-    .pillar-card2 .pm-v { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); min-height: 2.4rem; }
-    .pillar-card2 .pm-k { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
-    .pillar-card2 .pd { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
-    .doi-list { display: flex; flex-direction: column; gap: 8px; margin-top: 1.5rem; }
-    .doi-list .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 0.85rem; }
-    .doi-list .row b { font-family: monospace; font-weight: 600; min-width: 80px; }
-    .about-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.3); border-radius: 16px; color: var(--accent); text-decoration: none; font-size: 0.9rem; margin-top: 1.2rem; }
-    .about-cta:hover { background: rgba(37,99,235,0.15); }
+    .metric-pill { min-width: 28px; width: auto; height: 28px; padding: 0 12px; border-radius: 14px; font-family: monospace; font-size: 0.85rem; }
+    .metric-pill:empty::before { content: '·'; }
   </style>
 </head>
 <body>
@@ -170,31 +160,47 @@
 
 <section id="sutunlar" class="fade-in" style="padding:4rem 2rem;">
   <div class="section-label" data-tr="Sütunlar" data-en="Pillars">Sütunlar</div>
-  <div class="pillar-grid">
-    <a class="pillar-card2" href="/atm/">
+  <div class="arch-grid" style="margin-top:1.5rem;">
+    <div class="arch-card">
       <h3>CDSA-ATM</h3>
-      <div class="pd" data-tr="Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu" data-en="Air Traffic Management — MA-FedPPO flow optimisation">Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu</div>
-      <div class="pm-v" id="atmMetric"></div>
-      <div class="pm-k" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div>
-    </a>
-    <a class="pillar-card2" href="/mro/">
+      <p data-tr="Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu" data-en="Air Traffic Management — MA-FedPPO flow optimisation">Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu</p>
+      <div class="arch-steps">
+        <div class="arch-step"><div class="step-num metric-pill" id="atmMetric"></div><div class="step-text" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div></div>
+      </div>
+      <div class="sim-wrapper">
+        <div class="sim-link" style="border-top:none;"><a href="/atm/" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+      </div>
+    </div>
+    <div class="arch-card">
       <h3>CDSA-MRO</h3>
-      <div class="pd" data-tr="Bakım Emniyeti — motor + siber + bakım füzyonu" data-en="Maintenance Safety — engine + cyber + maintenance fusion">Bakım Emniyeti — motor + siber + bakım füzyonu</div>
-      <div class="pm-v" id="mroMetric"></div>
-      <div class="pm-k" data-tr="kritik recall — dört konfigürasyon özdeş bulgu (Faz A)" data-en="critical recall — identical four-configuration finding (Faz A)">kritik recall — dört konfigürasyon özdeş bulgu (Faz A)</div>
-    </a>
-    <a class="pillar-card2" href="/bb3/">
+      <p data-tr="Bakım Emniyeti — motor + siber + bakım füzyonu" data-en="Maintenance Safety — engine + cyber + maintenance fusion">Bakım Emniyeti — motor + siber + bakım füzyonu</p>
+      <div class="arch-steps">
+        <div class="arch-step"><div class="step-num metric-pill" id="mroMetric"></div><div class="step-text" data-tr="kritik recall — dört konfigürasyon özdeş bulgu (Faz A)" data-en="critical recall — identical four-configuration finding (Faz A)">kritik recall — dört konfigürasyon özdeş bulgu (Faz A)</div></div>
+      </div>
+      <div class="sim-wrapper">
+        <div class="sim-link" style="border-top:none;"><a href="/mro/" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+      </div>
+    </div>
+    <div class="arch-card">
       <h3>CDSA-BB3</h3>
-      <div class="pd" data-tr="Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti" data-en="Pilot Biometrics — PPG + ECG + EEG cognitive-state detection">Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti</div>
-      <div class="pm-v" id="bb3Metric"></div>
-      <div class="pm-k" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div>
-    </a>
-    <a class="pillar-card2" href="/org/">
+      <p data-tr="Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti" data-en="Pilot Biometrics — PPG + ECG + EEG cognitive-state detection">Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti</p>
+      <div class="arch-steps">
+        <div class="arch-step"><div class="step-num metric-pill" id="bb3Metric"></div><div class="step-text" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div></div>
+      </div>
+      <div class="sim-wrapper">
+        <div class="sim-link" style="border-top:none;"><a href="/bb3/" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+      </div>
+    </div>
+    <div class="arch-card">
       <h3>CDSA-ORG</h3>
-      <div class="pd" data-tr="Üç sütun özeti — çerçeve, depolar ve DOI'ler" data-en="Three-pillar summary — framework, repositories and DOIs">Üç sütun özeti — çerçeve, depolar ve DOI'ler</div>
-      <div class="pm-v">3 × DOI</div>
-      <div class="pm-k" data-tr="üç sütun · üç GitHub deposu · üç Zenodo kaydı" data-en="three pillars · three GitHub repositories · three Zenodo records">üç sütun · üç GitHub deposu · üç Zenodo kaydı</div>
-    </a>
+      <p data-tr="Üç sütun özeti — çerçeve, depolar ve DOI'ler" data-en="Three-pillar summary — framework, repositories and DOIs">Üç sütun özeti — çerçeve, depolar ve DOI'ler</p>
+      <div class="arch-steps">
+        <div class="arch-step"><div class="step-num metric-pill">3 × DOI</div><div class="step-text" data-tr="üç sütun · üç GitHub deposu · üç Zenodo kaydı" data-en="three pillars · three GitHub repositories · three Zenodo records">üç sütun · üç GitHub deposu · üç Zenodo kaydı</div></div>
+      </div>
+      <div class="sim-wrapper">
+        <div class="sim-link" style="border-top:none;"><a href="/org/" data-tr="▶ Üç Sütun Özetini Aç" data-en="▶ Open Three-Pillar Summary">▶ Üç Sütun Özetini Aç</a></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -306,6 +312,36 @@
       <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;" data-tr="Proje Kaynak Kodları — GitHub" data-en="Project Source Code — GitHub">Proje Kaynak Kodları — GitHub</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
 
+        <a href="https://github.com/Orfeomete/cdsa-bb3" target="_blank" class="repo-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div><div class="repo-name">CDSA-BB3</div></div>
+        </a>
+
+        <a href="https://github.com/Orfeomete/cdsa-mro" target="_blank" class="repo-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div><div class="repo-name">CDSA-MRO</div></div>
+        </a>
+
+        <a href="https://github.com/Orfeomete/cdsa-atm" target="_blank" class="repo-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div><div class="repo-name">CDSA-ATM</div></div>
+        </a>
+
+        <a href="https://github.com/Orfeomete/cdsa-site" target="_blank" class="repo-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div><div class="repo-name">CDSA-ORG</div></div>
+        </a>
+
+        <a href="https://github.com/Orfeomete/pilotsense-auth" target="_blank" class="repo-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div><div class="repo-name">PilotSense AUTH</div></div>
+        </a>
+
+        <a href="https://github.com/Orfeomete/pilotsense-ops" target="_blank" class="repo-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div><div class="repo-name">PilotSense OPS</div></div>
+        </a>
+
         <a href="https://github.com/Orfeomete/hipoksi-app-" target="_blank" class="repo-card">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           <div><div class="repo-name">PilotO2 Watch Application</div></div>
@@ -321,31 +357,6 @@
           <div><div class="repo-name">PilotReflect EFB</div></div>
         </a>
 
-        <a href="https://github.com/Orfeomete/pilotsense-auth" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">PilotSense AUTH</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/pilotsense-ops" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">PilotSense OPS</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/cdsa-bb3" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">CDSA-BB3</div><div class="repo-path">Orfeomete/cdsa-bb3</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/cdsa-mro" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">CDSA-MRO</div><div class="repo-path">Orfeomete/cdsa-mro</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/cdsa-atm" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">CDSA-ATM</div><div class="repo-path">Orfeomete/cdsa-atm</div></div>
-        </a>
-
       </div>
     </div>
   </div>
@@ -357,14 +368,15 @@
   <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--accent);margin-bottom:0.5rem;">CDSA</p>
   <p data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı" data-en="Complementary Diagnostic Safety Approach">Tamamlayıcı Tanısal Emniyet Yaklaşımı</p>
   <p style="margin-top:0.5rem;">
-    <a href="https://orfeomete.github.io/hipoksi-app-/" target="_blank">PilotO2</a> ·
-    <a href="https://orfeomete.github.io/pilotguard-app-/" target="_blank">PilotGuard</a> ·
-    <a href="https://orfeomete.github.io/PilotReflect-new/" target="_blank">PilotReflect</a> ·
+    <a href="/bb3/">CDSA-BB3</a> ·
+    <a href="/mro/">CDSA-MRO</a> ·
+    <a href="/atm/">CDSA-ATM</a> ·
+    <a href="/org/">CDSA-ORG</a> ·
     <a href="https://orfeomete.github.io/pilotsense-auth/" target="_blank">PilotSense AUTH</a> ·
     <a href="https://orfeomete.github.io/pilotsense-ops/" target="_blank">PilotSense OPS</a> ·
-    <a href="/bb3/">BB3</a> ·
-    <a href="/mro/">MRO</a> ·
-    <a href="/atm/">ATM</a>
+    <a href="https://orfeomete.github.io/hipoksi-app-/" target="_blank">PilotO2</a> ·
+    <a href="https://orfeomete.github.io/pilotguard-app-/" target="_blank">PilotGuard</a> ·
+    <a href="https://orfeomete.github.io/PilotReflect-new/" target="_blank">PilotReflect</a>
   </p>
   <p style="margin-top:0.5rem;font-size:11px;color:#94a3b8;" data-tr="⚠ Sadece Eğitim Amaçlıdır" data-en="⚠ For Educational Purposes Only">⚠ Sadece Eğitim Amaçlıdır</p>
 </footer>
