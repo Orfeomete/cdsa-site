@@ -92,8 +92,11 @@
     .repo-path { font-size: 10px; color: var(--text-muted); font-family: monospace; }
   </style>
   <style>
-    .metric-pill { min-width: 28px; width: auto; height: 28px; padding: 0 12px; border-radius: 14px; font-family: monospace; font-size: 0.85rem; }
-    .metric-pill:empty::before { content: '·'; }
+    .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-top: 1.5rem; max-width: 560px; }
+    .contact-box input, .contact-box textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 0.9rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; color: var(--text); margin-bottom: 0.8rem; resize: vertical; }
+    .contact-box input:focus, .contact-box textarea:focus { outline: none; border-color: rgba(37,99,235,0.5); }
+    .contact-send { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; background: rgba(8,145,178,0.1); border: 1px solid rgba(8,145,178,0.3); border-radius: 16px; color: #0891b2; font-size: 0.9rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
+    .contact-send:hover { background: rgba(8,145,178,0.2); }
   </style>
 </head>
 <body>
@@ -106,8 +109,8 @@
     <li><a href="#ozet" data-tr="Özet" data-en="Abstract">Özet</a></li>
     <li><a href="#bolumler" data-tr="İçerik" data-en="Content">İçerik</a></li>
     <li><a href="#sutunlar" data-tr="Sütunlar" data-en="Pillars">Sütunlar</a></li>
-    <li><a href="#mimari" data-tr="CDSA Mimarisi" data-en="CDSA Architecture">CDSA Mimarisi</a></li>
-    <li><a href="#uygulamalar" data-tr="Canlı Demolar" data-en="Live Demos">Canlı Demolar</a></li>
+    <li><a href="#mimari" data-tr="Mimari" data-en="Architecture">Mimari</a></li>
+    <li><a href="#uygulamalar" data-tr="Demolar" data-en="Demos">Demolar</a></li>
     <li><a href="#sonuc" data-tr="Sonuç" data-en="Conclusion">Sonuç</a></li>
     <li><a href="#kaynakca" data-tr="Kaynakça" data-en="References">Kaynakça</a></li>
   </ul>
@@ -120,8 +123,8 @@
     <h1 data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu" data-en="Wearable Technologies and Flight Safety Optimization within the Scope of <span>Complementary Diagnostic Safety Approach (CDSA)</span>">
       Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu
     </h1>
-    <p class="hero-sub" data-tr="Akıllı pilot saatleri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol." data-en="The diagnostic role that smart pilot watches and synthetic data processing architectures can assume in aviation accident analysis and proactive safety management.">
-      Akıllı pilot saatleri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol.
+    <p class="hero-sub" data-tr="Giyilebilir pilot teknolojileri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol." data-en="The diagnostic role that wearable pilot technologies and synthetic data processing architectures can assume in aviation accident analysis and proactive safety management.">
+      Giyilebilir pilot teknolojileri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol.
     </p>
     <div class="hero-meta">
       <span class="meta-tag" data-tr="Havacılık Emniyeti" data-en="Aviation Safety">Havacılık Emniyeti</span>
@@ -164,41 +167,37 @@
     <div class="arch-card">
       <h3>CDSA-ATM</h3>
       <p data-tr="Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu" data-en="Air Traffic Management — MA-FedPPO flow optimisation">Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu</p>
-      <div class="arch-steps">
-        <div class="arch-step"><div class="step-num metric-pill" id="atmMetric"></div><div class="step-text" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div></div>
-      </div>
       <div class="sim-wrapper">
-        <div class="sim-link" style="border-top:none;"><a href="/atm/" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+        <div class="sim-label" data-tr="CDSA-ATM · Faz A Paneli" data-en="CDSA-ATM · Faz A Panel">CDSA-ATM · Faz A Paneli</div>
+        <iframe src="/atm/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
+        <div class="sim-link"><a href="/atm/" target="_blank" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
       </div>
     </div>
     <div class="arch-card">
       <h3>CDSA-MRO</h3>
       <p data-tr="Bakım Emniyeti — motor + siber + bakım füzyonu" data-en="Maintenance Safety — engine + cyber + maintenance fusion">Bakım Emniyeti — motor + siber + bakım füzyonu</p>
-      <div class="arch-steps">
-        <div class="arch-step"><div class="step-num metric-pill" id="mroMetric"></div><div class="step-text" data-tr="kritik recall — dört konfigürasyon özdeş bulgu (Faz A)" data-en="critical recall — identical four-configuration finding (Faz A)">kritik recall — dört konfigürasyon özdeş bulgu (Faz A)</div></div>
-      </div>
       <div class="sim-wrapper">
-        <div class="sim-link" style="border-top:none;"><a href="/mro/" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+        <div class="sim-label" data-tr="CDSA-MRO · Faz A Paneli" data-en="CDSA-MRO · Faz A Panel">CDSA-MRO · Faz A Paneli</div>
+        <iframe src="/mro/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
+        <div class="sim-link"><a href="/mro/" target="_blank" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
       </div>
     </div>
     <div class="arch-card">
       <h3>CDSA-BB3</h3>
       <p data-tr="Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti" data-en="Pilot Biometrics — PPG + ECG + EEG cognitive-state detection">Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti</p>
-      <div class="arch-steps">
-        <div class="arch-step"><div class="step-num metric-pill" id="bb3Metric"></div><div class="step-text" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div></div>
-      </div>
       <div class="sim-wrapper">
-        <div class="sim-link" style="border-top:none;"><a href="/bb3/" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
+        <div class="sim-label" data-tr="CDSA-BB3 · Faz A Paneli" data-en="CDSA-BB3 · Faz A Panel">CDSA-BB3 · Faz A Paneli</div>
+        <iframe src="/bb3/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
+        <div class="sim-link"><a href="/bb3/" target="_blank" data-tr="▶ Faz A Sonuç Panelini Aç" data-en="▶ Open Faz A Results Panel">▶ Faz A Sonuç Panelini Aç</a></div>
       </div>
     </div>
     <div class="arch-card">
       <h3>CDSA-ORG</h3>
       <p data-tr="Üç sütun özeti — çerçeve, depolar ve DOI'ler" data-en="Three-pillar summary — framework, repositories and DOIs">Üç sütun özeti — çerçeve, depolar ve DOI'ler</p>
-      <div class="arch-steps">
-        <div class="arch-step"><div class="step-num metric-pill">3 × DOI</div><div class="step-text" data-tr="üç sütun · üç GitHub deposu · üç Zenodo kaydı" data-en="three pillars · three GitHub repositories · three Zenodo records">üç sütun · üç GitHub deposu · üç Zenodo kaydı</div></div>
-      </div>
       <div class="sim-wrapper">
-        <div class="sim-link" style="border-top:none;"><a href="/org/" data-tr="▶ Üç Sütun Özetini Aç" data-en="▶ Open Three-Pillar Summary">▶ Üç Sütun Özetini Aç</a></div>
+        <div class="sim-label" data-tr="CDSA-ORG · Üç Sütun Özeti" data-en="CDSA-ORG · Three-Pillar Summary">CDSA-ORG · Üç Sütun Özeti</div>
+        <iframe src="/org/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
+        <div class="sim-link"><a href="/org/" target="_blank" data-tr="▶ Üç Sütun Özetini Aç" data-en="▶ Open Three-Pillar Summary">▶ Üç Sütun Özetini Aç</a></div>
       </div>
     </div>
   </div>
@@ -207,7 +206,7 @@
 <div class="divider"></div>
 
 <section id="mimari" class="fade-in" style="padding-top:4rem;padding-bottom:4rem;">
-  <div class="section-label" data-tr="CDSA Mimarisi" data-en="CDSA Architecture">CDSA Mimarisi</div>
+  <div class="section-label" data-tr="Mimari" data-en="Architecture">Mimari</div>
   <div class="arch-grid">
     <div class="arch-card">
       <h3 data-tr="Aşama 1 — Tanısal / Bireysel Veri" data-en="Phase 1 — Diagnostic / Individual Data">Aşama 1 — Tanısal / Bireysel Veri</h3>
@@ -245,7 +244,7 @@
 
 <div class="apps-section" id="uygulamalar">
   <div class="apps-inner">
-    <div class="section-label fade-in" data-tr="Canlı Demolar" data-en="Live Demos">Canlı Demolar</div>
+    <div class="section-label fade-in" data-tr="Demolar" data-en="Demos">Demolar</div>
     <div class="apps-grid">
       <div class="app-card fade-in">
         <div class="app-header">
@@ -364,6 +363,17 @@
 
 <div class="divider"></div>
 
+<section id="iletisim" class="fade-in" style="padding:4rem 2rem;">
+  <div class="section-label" data-tr="İletişim" data-en="Contact">İletişim</div>
+  <div class="contact-box">
+    <input id="cSubject" type="text" placeholder="Konu / Subject">
+    <textarea id="cBody" rows="5" placeholder="Mesajınız / Your message"></textarea>
+    <button class="contact-send" onclick="sendContact()"><span data-tr="✉ Gönder" data-en="✉ Send">✉ Gönder</span></button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <footer>
   <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--accent);margin-bottom:0.5rem;">CDSA</p>
   <p data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı" data-en="Complementary Diagnostic Safety Approach">Tamamlayıcı Tanısal Emniyet Yaklaşımı</p>
@@ -421,20 +431,15 @@
   window.addEventListener('scroll', updateActiveNav);
   updateActiveNav();
 
-  // Sütun metrikleri — depolardaki results JSON kopyalarından okunur, hardcode edilmez.
-  (function () {
-    const targets = [['atm', 'atmMetric'], ['mro', 'mroMetric'], ['bb3', 'bb3Metric']];
-    targets.forEach(([p, id]) => {
-      fetch('/data/' + p + '/faz_a_results.json')
-        .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then(d => {
-          if (d.fedavg && d.fedavg.critical_recall != null) {
-            document.getElementById(id).textContent = String(d.fedavg.critical_recall);
-          }
-        })
-        .catch(() => { /* metrik yüklenemezse boş kalır — uydurma değer yazılmaz */ });
-    });
-  })();
+  function sendContact() {
+    const s = document.getElementById('cSubject').value.trim();
+    const b = document.getElementById('cBody').value.trim();
+    const a = ['metecantekin', 'gmail', 'com'];
+    location.href = 'mailto:' + a[0] + '@' + a[1] + '.' + a[2]
+      + '?subject=' + encodeURIComponent(s || 'CDSA iletisim')
+      + '&body=' + encodeURIComponent(b);
+  }
+
 </script>
 </body>
 </html>
