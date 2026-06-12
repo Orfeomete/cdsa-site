@@ -91,100 +91,85 @@
     .repo-name { font-size: 12px; font-weight: 600; color: var(--text); }
     .repo-path { font-size: 10px; color: var(--text-muted); font-family: monospace; }
   </style>
+  <style>
+    .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    a.pillar-card2 { display: flex; flex-direction: column; gap: 0.8rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; text-decoration: none; color: var(--text); transition: border-color 0.3s, transform 0.3s; }
+    a.pillar-card2:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
+    .pillar-card2 h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; }
+    .pillar-card2 .pm-v { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); min-height: 2.4rem; }
+    .pillar-card2 .pm-k { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+    .pillar-card2 .pd { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .doi-list { display: flex; flex-direction: column; gap: 8px; margin-top: 1.5rem; }
+    .doi-list .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-size: 0.85rem; }
+    .doi-list .row b { font-family: monospace; font-weight: 600; min-width: 80px; }
+    .about-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; background: rgba(37,99,235,0.08); border: 1px solid rgba(37,99,235,0.3); border-radius: 16px; color: var(--accent); text-decoration: none; font-size: 0.9rem; margin-top: 1.2rem; }
+    .about-cta:hover { background: rgba(37,99,235,0.15); }
+  </style>
 </head>
 <body>
 
+<script>
+  // Eski ana sayfa ankrajları /hakkinda'ya taşındı — gelen eski linkleri yönlendir.
+  (function () {
+    var moved = ['#ozet', '#bolumler', '#mimari', '#sonuc', '#kaynakca'];
+    function check() { if (moved.indexOf(location.hash) > -1) location.replace('/hakkinda/' + location.hash); }
+    check();
+    window.addEventListener('hashchange', check);
+  })();
+</script>
+
 <nav>
-  <a href="#" style="text-decoration:none;">
-    <img src="favicon.svg" width="60" height="60" alt="CDSA" style="border-radius:14px;display:block;">
+  <a href="/" style="text-decoration:none;">
+    <img src="/favicon.svg" width="60" height="60" alt="CDSA" style="border-radius:14px;display:block;">
   </a>
   <ul class="nav-links">
-    <li><a href="#ozet" data-tr="Özet" data-en="Abstract">Özet</a></li>
-    <li><a href="#bolumler" data-tr="İçerik" data-en="Content">İçerik</a></li>
-    <li><a href="#mimari" data-tr="CDSA Mimarisi" data-en="CDSA Architecture">CDSA Mimarisi</a></li>
+    <li><a href="#sutunlar" data-tr="Sütunlar" data-en="Pillars">Sütunlar</a></li>
     <li><a href="#uygulamalar" data-tr="Canlı Demolar" data-en="Live Demos">Canlı Demolar</a></li>
-    <li><a href="#sonuc" data-tr="Sonuç" data-en="Conclusion">Sonuç</a></li>
-    <li><a href="#kaynakca" data-tr="Kaynakça" data-en="References">Kaynakça</a></li>
+    <li><a href="/hakkinda/" data-tr="Hakkında" data-en="About">Hakkında</a></li>
   </ul>
   <button class="lang-btn" onclick="toggleLang()">EN</button>
 </nav>
 
-<div class="hero">
+<div class="hero" style="min-height:auto;padding:10rem 2rem 4rem;">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <h1 data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu" data-en="Wearable Technologies and Flight Safety Optimization within the Scope of <span>Complementary Diagnostic Safety Approach (CDSA)</span>">
-      Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span> Kapsamında Giyilebilir Teknolojiler ve Uçuş Emniyeti Optimizasyonu
-    </h1>
-    <p class="hero-sub" data-tr="Akıllı pilot saatleri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol." data-en="The diagnostic role that smart pilot watches and synthetic data processing architectures can assume in aviation accident analysis and proactive safety management.">
-      Akıllı pilot saatleri ve sentetik veri işleme mimarisinin havacılık kaza analizlerinde ve proaktif emniyet yönetiminde üstlenebileceği tanısal rol.
-    </p>
-    <div class="hero-meta">
-      <span class="meta-tag" data-tr="Havacılık Emniyeti" data-en="Aviation Safety">Havacılık Emniyeti</span>
-      <span class="meta-tag" data-tr="Tamamlayıcı Tanısal Katman" data-en="Complementary Diagnostic Layer">Tamamlayıcı Tanısal Katman</span>
-      <span class="meta-tag" data-tr="Giyilebilir Teknolojiler" data-en="Wearable Technologies">Giyilebilir Teknolojiler</span>
-      <span class="meta-tag" data-tr="Veri Mahremiyeti" data-en="Data Privacy">Veri Mahremiyeti</span>
-      <span class="meta-tag" data-tr="İnsan Faktörleri" data-en="Human Factors">İnsan Faktörleri</span>
-    </div>
+    <div class="hero-badge" data-tr="Sadece Eğitim Amaçlıdır" data-en="For Educational Purposes Only">Sadece Eğitim Amaçlıdır</div>
+    <h1>CDSA — <span data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı" data-en="Complementary Diagnostic Safety Approach">Tamamlayıcı Tanısal Emniyet Yaklaşımı</span></h1>
+    <p class="hero-sub" data-tr="Federatif Pekiştirmeli Öğrenme (FRL) tabanlı üç sütunlu havacılık emniyeti araştırma programı." data-en="A three-pillar aviation safety research programme based on Federated Reinforcement Learning (FRL).">Federatif Pekiştirmeli Öğrenme (FRL) tabanlı üç sütunlu havacılık emniyeti araştırma programı.</p>
   </div>
 </div>
 
 <div class="divider"></div>
 
-<section id="ozet" class="fade-in">
-  <div class="section-label" data-tr="Özet" data-en="Abstract">Özet</div>
-  <div class="abstract-box" style="margin-top:1rem;">
-    <p data-tr="Havacılık emniyeti tarihsel süreçte reaktif ve proaktif yaklaşımlarla gelişim sağlamış olsa da artık özellikle kaza kırım incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatacak üçüncü ve nihai bir paradigmaya ihtiyaç duyulmaktadır. Bu çalışmada akıllı pilot saatleri ve giyilebilir sensör teknolojilerinin kaza analiz sürecinde Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA) olarak üstlenebileceği roller ve bu teknolojik sıçramanın beraberinde getirebileceği karmaşık hukuki ve etik ikilemler incelenmektedir. Geleneksel uçuş veri kaydedicileri uçağın mekanik durumunu kaydetmekte oldukça başarılı olmalarına rağmen bazı ölümcül kazalarda pilotun karar alma anındaki akut stres, gizli hipoksi, mikro-uyku gibi içsel fizyolojisi ölçülemediğinden nedensellik analizlerinde bilişsel açıdan karanlıkta kalmaktadır." data-en="Although aviation safety has evolved through reactive and proactive approaches over time, there is now a need for a third and final paradigm — particularly in accident investigations — that can illuminate the cognitive and physiological state of flight crew. This study examines the roles that smart pilot watches and wearable sensor technologies can assume as a Complementary Diagnostic Safety Approach (CDSA) in accident analysis, and the complex legal and ethical dilemmas this technological leap may bring. While traditional flight data recorders are highly successful at recording the mechanical state of the aircraft, in some fatal accidents, the pilot's internal physiology at the moment of decision-making — such as acute stress, covert hypoxia, and micro-sleep — cannot be measured, leaving causal analyses cognitively in the dark.">
-      Havacılık emniyeti tarihsel süreçte reaktif ve proaktif yaklaşımlarla gelişim sağlamış olsa da artık özellikle kaza kırım incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatacak üçüncü ve nihai bir paradigmaya ihtiyaç duyulmaktadır. Bu çalışmada akıllı pilot saatleri ve giyilebilir sensör teknolojilerinin kaza analiz sürecinde Tamamlayıcı Tanısal Emniyet Yaklaşımı (CDSA) olarak üstlenebileceği roller ve bu teknolojik sıçramanın beraberinde getirebileceği karmaşık hukuki ve etik ikilemler incelenmektedir. Geleneksel uçuş veri kaydedicileri uçağın mekanik durumunu kaydetmekte oldukça başarılı olmalarına rağmen bazı ölümcül kazalarda pilotun karar alma anındaki akut stres, gizli hipoksi, mikro-uyku gibi içsel fizyolojisi ölçülemediğinden nedensellik analizlerinde bilişsel açıdan karanlıkta kalmaktadır.
-    </p>
+<section id="sutunlar" class="fade-in" style="padding:4rem 2rem;">
+  <div class="section-label" data-tr="Sütunlar" data-en="Pillars">Sütunlar</div>
+  <div class="pillar-grid">
+    <a class="pillar-card2" href="/atm/">
+      <h3>CDSA-ATM</h3>
+      <div class="pd" data-tr="Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu" data-en="Air Traffic Management — MA-FedPPO flow optimisation">Hava Trafik Yönetimi — MA-FedPPO akış optimizasyonu</div>
+      <div class="pm-v" id="atmMetric"></div>
+      <div class="pm-k" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div>
+    </a>
+    <a class="pillar-card2" href="/mro/">
+      <h3>CDSA-MRO</h3>
+      <div class="pd" data-tr="Bakım Emniyeti — motor + siber + bakım füzyonu" data-en="Maintenance Safety — engine + cyber + maintenance fusion">Bakım Emniyeti — motor + siber + bakım füzyonu</div>
+      <div class="pm-v" id="mroMetric"></div>
+      <div class="pm-k" data-tr="kritik recall — dört konfigürasyon özdeş bulgu (Faz A)" data-en="critical recall — identical four-configuration finding (Faz A)">kritik recall — dört konfigürasyon özdeş bulgu (Faz A)</div>
+    </a>
+    <a class="pillar-card2" href="/bb3/">
+      <h3>CDSA-BB3</h3>
+      <div class="pd" data-tr="Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti" data-en="Pilot Biometrics — PPG + ECG + EEG cognitive-state detection">Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti</div>
+      <div class="pm-v" id="bb3Metric"></div>
+      <div class="pm-k" data-tr="FedAvg kritik recall (Faz A)" data-en="FedAvg critical recall (Faz A)">FedAvg kritik recall (Faz A)</div>
+    </a>
+    <a class="pillar-card2" href="/org/">
+      <h3>CDSA-ORG</h3>
+      <div class="pd" data-tr="Üç sütun özeti — çerçeve, depolar ve DOI'ler" data-en="Three-pillar summary — framework, repositories and DOIs">Üç sütun özeti — çerçeve, depolar ve DOI'ler</div>
+      <div class="pm-v">3 × DOI</div>
+      <div class="pm-k" data-tr="üç sütun · üç GitHub deposu · üç Zenodo kaydı" data-en="three pillars · three GitHub repositories · three Zenodo records">üç sütun · üç GitHub deposu · üç Zenodo kaydı</div>
+    </a>
   </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="bolumler" class="fade-in">
-  <div class="section-label" data-tr="İçerik" data-en="Content">İçerik</div>
-  <div class="sections-grid" style="grid-template-columns:repeat(2,1fr);margin-top:1.5rem;">
-    <div class="section-card"><div class="section-num">01</div><h3 data-tr="Havacılık Emniyetinde Dönüşüm" data-en="Transformation in Aviation Safety">Havacılık Emniyetinde Dönüşüm</h3><p data-tr="Reaktif, proaktif ve tanısal yaklaşımların tarihsel evrimi. Geleneksel FDR/CVR sistemlerinin bilişsel karanlık bölgeleri ve CDSA'nın bu boşluğu nasıl kapatabileceği." data-en="Historical evolution of reactive, proactive and diagnostic approaches. The cognitive blind spots of traditional FDR/CVR systems and how CDSA can fill this gap.">Reaktif, proaktif ve tanısal yaklaşımların tarihsel evrimi. Geleneksel FDR/CVR sistemlerinin bilişsel karanlık bölgeleri ve CDSA'nın bu boşluğu nasıl kapatabileceği.</p></div>
-    <div class="section-card"><div class="section-num">02</div><h3 data-tr="Etik İkilemler ve Veri Mahremiyeti" data-en="Ethical Dilemmas and Data Privacy">Etik İkilemler ve Veri Mahremiyeti</h3><p data-tr="GDPR kapsamında biyometrik verilerin hukuki statüsü, Panoptikon etkisi, Adil Kültür ile çatışma riskleri ve ALPA'nın savunmacı tutumu." data-en="Legal status of biometric data under GDPR, the Panopticon effect, risks of conflict with Just Culture, and ALPA's defensive stance.">GDPR kapsamında biyometrik verilerin hukuki statüsü, Panoptikon etkisi, Adil Kültür ile çatışma riskleri ve ALPA'nın savunmacı tutumu.</p></div>
-    <div class="section-card"><div class="section-num">03</div><h3 data-tr="Bilişsel Verilerin Tanısal Gücü" data-en="Diagnostic Power of Cognitive Data">Bilişsel Verilerin Tanısal Gücü</h3><p data-tr="HRV, SpO₂ ve GSR verilerinin FDR ile milisaniyelik sensör füzyonu. CFIT ve LOC-I kaza tiplerinde gizli hipoksinin algoritmik tespiti." data-en="Millisecond sensor fusion of HRV, SpO₂ and GSR data with FDR. Algorithmic detection of covert hypoxia in CFIT and LOC-I accident types.">HRV, SpO₂ ve GSR verilerinin FDR ile milisaniyelik sensör füzyonu. CFIT ve LOC-I kaza tiplerinde gizli hipoksinin algoritmik tespiti.</p></div>
-    <div class="section-card"><div class="section-num">04</div><h3 data-tr="Regülasyon ve Sentetik Veri Modeli" data-en="Regulation and Synthetic Data Model">Regülasyon ve Sentetik Veri Modeli</h3><p data-tr="ICAO Ek-13'e Biyometrik Uçuş Verisi standardı eklenmesi. Kriptografik çoklu imza mimarisinin 5 katmanlı erişim kontrol modeli ve iki aşamalı veri işleme." data-en="Adding a Biometric Flight Data standard to ICAO Annex 13. The 5-layer access control model of cryptographic multi-signature architecture and two-phase data processing.">ICAO Ek-13'e Biyometrik Uçuş Verisi standardı eklenmesi. Kriptografik çoklu imza mimarisinin 5 katmanlı erişim kontrol modeli ve iki aşamalı veri işleme.</p></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="mimari" class="fade-in" style="padding-top:4rem;padding-bottom:4rem;">
-  <div class="section-label" data-tr="CDSA Mimarisi" data-en="CDSA Architecture">CDSA Mimarisi</div>
-  <div class="arch-grid">
-    <div class="arch-card">
-      <h3 data-tr="Aşama 1 — Tanısal / Bireysel Veri" data-en="Phase 1 — Diagnostic / Individual Data">Aşama 1 — Tanısal / Bireysel Veri</h3>
-      <p data-tr="Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı." data-en="Biometric data unlocked only with simultaneous approval of independent authorities at accident time.">Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı.</p>
-      <div class="arch-steps">
-        <div class="arch-step"><div class="step-num">1</div><div class="step-text" data-tr="Akıllı saatte anlık şifreleme" data-en="Real-time encryption on smartwatch">Akıllı saatte anlık şifreleme</div></div>
-        <div class="arch-step"><div class="step-num">2</div><div class="step-text" data-tr="3/3 eşik şeması ile çoklu imza" data-en="Multi-signature with 3/3 threshold scheme">3/3 eşik şeması ile çoklu imza</div></div>
-        <div class="arch-step"><div class="step-num">3</div><div class="step-text" data-tr="Bağımsız otorite onayı zorunluluğu" data-en="Independent authority approval requirement">Bağımsız otorite onayı zorunluluğu</div></div>
-      </div>
-      <div class="sim-wrapper">
-        <div class="sim-label" data-tr="Aşama 1 · PilotSense AUTH" data-en="PHASE 1 · PilotSense AUTH">Aşama 1 · PilotSense AUTH</div>
-        <iframe src="https://orfeomete.github.io/pilotsense-auth/?v=1" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
-        <div class="sim-link"><a href="https://orfeomete.github.io/pilotsense-auth/" target="_blank" data-tr="▶ PilotSense AUTH'u Aç" data-en="▶ Open PilotSense AUTH">▶ PilotSense AUTH'u Aç</a></div>
-      </div>
-    </div>
-    <div class="arch-card">
-      <h3 data-tr="Aşama 2 — Makro / Anonim Veri" data-en="Phase 2 — Macro / Anonymous Data">Aşama 2 — Makro / Anonim Veri</h3>
-      <p data-tr="Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır." data-en="Continuously flowing data stripped of pilot identity. Used for SMS-integrated proactive safety decisions.">Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır.</p>
-      <div class="arch-steps">
-        <div class="arch-step"><div class="step-num">1</div><div class="step-text" data-tr="Gerçek zamanlı anonimleştirme" data-en="Real-time anonymization">Gerçek zamanlı anonimleştirme</div></div>
-        <div class="arch-step"><div class="step-num">2</div><div class="step-text" data-tr="Emniyet Yönetim Sistemi entegrasyonu" data-en="Safety Management System integration">Emniyet Yönetim Sistemi entegrasyonu</div></div>
-        <div class="arch-step"><div class="step-num">3</div><div class="step-text" data-tr="Havayolu geneli proaktif analiz" data-en="Airline-wide proactive analysis">Havayolu geneli proaktif analiz</div></div>
-      </div>
-      <div class="sim-wrapper">
-        <div class="sim-label" data-tr="Aşama 2 · PilotSense OPS" data-en="PHASE 2 · PilotSense OPS">Aşama 2 · PilotSense OPS</div>
-        <iframe src="https://orfeomete.github.io/pilotsense-ops/?v=1" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
-        <div class="sim-link"><a href="https://orfeomete.github.io/pilotsense-ops/" target="_blank" data-tr="▶ PilotSense OPS'u Aç" data-en="▶ Open PilotSense OPS">▶ PilotSense OPS'u Aç</a></div>
-      </div>
-    </div>
-  </div>
+  <p style="margin-top:1rem;font-size:0.78rem;color:var(--text-muted);" data-tr="Metrikler depolardaki experiments/results JSON dosyalarından okunur — Precomputed seeded CPU-scale runs (Faz A, June 2026)." data-en="Metrics are read from the repositories' experiments/results JSON files — precomputed seeded CPU-scale runs (Faz A, June 2026).">Metrikler depolardaki experiments/results JSON dosyalarından okunur — Precomputed seeded CPU-scale runs (Faz A, June 2026).</p>
 </section>
 
 <div class="divider"></div>
@@ -222,35 +207,21 @@
       </div>
       <div class="app-card fade-in">
         <div class="app-header">
-          <div><div class="app-title">CDSA-ATM</div><div style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;" data-tr="Faz A Sonuç Paneli" data-en="Faz A Results Panel">Faz A Sonuç Paneli</div></div>
-          <span class="app-tag">FRL · XAI</span>
+          <div><div class="app-title">PilotSense AUTH</div><div style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;" data-tr="Aşama 1 — Tanısal / Bireysel Veri" data-en="Phase 1 — Diagnostic / Individual Data">Aşama 1 — Tanısal / Bireysel Veri</div></div>
+          <span class="app-tag" data-tr="Çoklu İmza" data-en="Multi-signature">Çoklu İmza</span>
         </div>
-        <div class="app-desc" data-tr="Hava trafik yönetimi sütunu: öğrenme eğrileri, konfigürasyon karşılaştırması, grup-Shapley katkıları ve eğitilmiş ajan karar örnekleri. Önceden hesaplanmış seed'li CPU-ölçekli koşular (Faz A, Haziran 2026)." data-en="Air traffic management pillar: learning curves, configuration comparison, group-Shapley contributions and trained-agent decision samples. Precomputed seeded CPU-scale runs (Faz A, June 2026).">Hava trafik yönetimi sütunu: öğrenme eğrileri, konfigürasyon karşılaştırması, grup-Shapley katkıları ve eğitilmiş ajan karar örnekleri. Önceden hesaplanmış seed'li CPU-ölçekli koşular (Faz A, Haziran 2026).</div>
-        <div style="border-top:1px solid var(--border);padding:0.75rem 1rem;text-align:center;"><a href="/atm/" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;"><span data-tr="▶ Paneli Aç" data-en="▶ Open Panel">▶ Paneli Aç</span></a></div>
+        <div class="app-desc" data-tr="Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı." data-en="Biometric data unlocked only with simultaneous approval of independent authorities at accident time.">Kaza anında yalnızca eşik sayıda bağımsız tarafın eşzamanlı onayıyla açılan kriptografik veri katmanı.</div>
+        <iframe class="app-frame" src="https://orfeomete.github.io/pilotsense-auth/?v=1" loading="lazy"></iframe>
+        <div style="border-top:1px solid var(--border);padding:0.75rem 1rem;text-align:center;"><a href="https://orfeomete.github.io/pilotsense-auth/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;"><span data-tr="▶ Tam Ekran Aç" data-en="▶ Open Full Screen">▶ Tam Ekran Aç</span></a></div>
       </div>
       <div class="app-card fade-in">
         <div class="app-header">
-          <div><div class="app-title">CDSA-MRO</div><div style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;" data-tr="Faz A Sonuç Paneli" data-en="Faz A Results Panel">Faz A Sonuç Paneli</div></div>
-          <span class="app-tag">FRL · FedProx</span>
+          <div><div class="app-title">PilotSense OPS</div><div style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;" data-tr="Aşama 2 — Makro / Anonim Veri" data-en="Phase 2 — Macro / Anonymous Data">Aşama 2 — Makro / Anonim Veri</div></div>
+          <span class="app-tag">SMS · ESARR</span>
         </div>
-        <div class="app-desc" data-tr="Bakım emniyeti sütunu: motor + siber + bakım modalite füzyonu koşu sonuçları ve eğitilmiş ajan karar örnekleri. Önceden hesaplanmış seed'li CPU-ölçekli koşular (Faz A, Haziran 2026)." data-en="Maintenance safety pillar: engine + cyber + maintenance modality fusion run results and trained-agent decision samples. Precomputed seeded CPU-scale runs (Faz A, June 2026).">Bakım emniyeti sütunu: motor + siber + bakım modalite füzyonu koşu sonuçları ve eğitilmiş ajan karar örnekleri. Önceden hesaplanmış seed'li CPU-ölçekli koşular (Faz A, Haziran 2026).</div>
-        <div style="border-top:1px solid var(--border);padding:0.75rem 1rem;text-align:center;"><a href="/mro/" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;"><span data-tr="▶ Paneli Aç" data-en="▶ Open Panel">▶ Paneli Aç</span></a></div>
-      </div>
-      <div class="app-card fade-in">
-        <div class="app-header">
-          <div><div class="app-title">CDSA-BB3</div><div style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;" data-tr="Faz A Sonuç Paneli" data-en="Faz A Results Panel">Faz A Sonuç Paneli</div></div>
-          <span class="app-tag">PPG · ECG · EEG</span>
-        </div>
-        <div class="app-desc" data-tr="Pilot biyometri sütunu: PPG + ECG + EEG füzyonuyla bilişsel durum tespiti koşu sonuçları, XAI katkıları ve karar örnekleri. Önceden hesaplanmış seed'li CPU-ölçekli koşular (Faz A, Haziran 2026)." data-en="Pilot biometric pillar: cognitive-state detection run results with PPG + ECG + EEG fusion, XAI contributions and decision samples. Precomputed seeded CPU-scale runs (Faz A, June 2026).">Pilot biyometri sütunu: PPG + ECG + EEG füzyonuyla bilişsel durum tespiti koşu sonuçları, XAI katkıları ve karar örnekleri. Önceden hesaplanmış seed'li CPU-ölçekli koşular (Faz A, Haziran 2026).</div>
-        <div style="border-top:1px solid var(--border);padding:0.75rem 1rem;text-align:center;"><a href="/bb3/" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;"><span data-tr="▶ Paneli Aç" data-en="▶ Open Panel">▶ Paneli Aç</span></a></div>
-      </div>
-      <div class="app-card fade-in">
-        <div class="app-header">
-          <div><div class="app-title">CDSA-ORG</div><div style="color:var(--text-muted);font-size:0.8rem;margin-top:0.3rem;" data-tr="Üç Sütun Özeti" data-en="Three-Pillar Summary">Üç Sütun Özeti</div></div>
-          <span class="app-tag">FRL · DOI</span>
-        </div>
-        <div class="app-desc" data-tr="CDSA çerçeve özeti: üç sütunun temel metrik kartları, GitHub depoları ve Zenodo DOI bağlantıları tek sayfada." data-en="CDSA framework overview: key metric cards for the three pillars, GitHub repositories and Zenodo DOI links on one page.">CDSA çerçeve özeti: üç sütunun temel metrik kartları, GitHub depoları ve Zenodo DOI bağlantıları tek sayfada.</div>
-        <div style="border-top:1px solid var(--border);padding:0.75rem 1rem;text-align:center;"><a href="/org/" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;"><span data-tr="▶ Özeti Aç" data-en="▶ Open Summary">▶ Özeti Aç</span></a></div>
+        <div class="app-desc" data-tr="Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır." data-en="Continuously flowing data stripped of pilot identity. Used for SMS-integrated proactive safety decisions.">Pilot kimliğinden arındırılmış, sürekli akış halindeki veri. SMS ile entegre proaktif emniyet kararları için kullanılır.</div>
+        <iframe class="app-frame" src="https://orfeomete.github.io/pilotsense-ops/?v=1" loading="lazy"></iframe>
+        <div style="border-top:1px solid var(--border);padding:0.75rem 1rem;text-align:center;"><a href="https://orfeomete.github.io/pilotsense-ops/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.3);border-radius:100px;color:#0891b2;font-size:0.85rem;text-decoration:none;"><span data-tr="▶ Tam Ekran Aç" data-en="▶ Open Full Screen">▶ Tam Ekran Aç</span></a></div>
       </div>
     </div>
   </div>
@@ -258,64 +229,15 @@
 
 <div class="divider"></div>
 
-<section id="sonuc" class="fade-in">
-  <div class="section-label" data-tr="Sonuç" data-en="Conclusion">Sonuç</div>
-  <div class="abstract-box">
-    <p data-tr="Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir." data-en="In today's industry where mechanical failures are approaching zero from an aviation safety perspective, the focus is on the human factor as the most complex and unpredictable component. The Complementary Diagnostic Safety Approach investigated in this study demonstrates that a new era can begin in accident and incident investigations, going beyond aviation's reactive and proactive safety barriers.">
-      Havacılık emniyeti açısından mekanik arızaların sıfıra yakınsadığı günümüz endüstrisinde, en karmaşık ve öngörülemez bileşen olarak insan faktörüne odaklanılmaktadır. Bu çalışmada araştırılan Tamamlayıcı Tanısal Emniyet Yaklaşımı, havacılığın reaktif ve proaktif emniyet bariyerlerini aşarak kaza ve olay incelemelerinde yeni bir dönemin başlayabileceğini göstermektedir. Uçuş telemetrisi (FDR/CVR) ile pilotun fizyolojik verilerinin (SpO₂, HRV) sensör füzyonu algoritmalarıyla birleştirilerek, kazaların bilişsel açıdan karanlıkta kalan bölgelerinin aydınlatılabileceği gösterilmektedir.
-    </p>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="kaynakca" class="fade-in">
-  <div class="section-label" data-tr="Kaynakça" data-en="References">Kaynakça</div>
-  <div class="abstract-box">
-    <div style="font-size:12px;color:#4b5563;line-height:2.2;">
-      <p>Cantekin, M. (2025). Mekanikten Yapay Zekaya Evrilen Pilot Saatlerinin Uçuş Emniyetindeki Yeni Rolü. <em>ATAConf'25</em> (Tam Metin Bildiri/Sözlü Sunum), Yayın No: 10232620.</p>
-      <p>Cavoukian, A. (2009). <em>Privacy by Design: The 7 Foundational Principles</em>. Information and Privacy Commissioner of Ontario.</p>
-      <p>Dekker, S. (2007). <em>Just Culture: Balancing Safety and Accountability</em>. Ashgate.</p>
-      <p>EASA. (2014). <em>AMC 20-25: Airworthiness and Operational Consideration for Electronic Flight Bags</em>. European Union Aviation Safety Agency.</p>
-      <p>European Parliament. (2016). <em>General Data Protection Regulation (GDPR) — Article 9</em>. Official Journal of the European Union.</p>
-      <p>FAA. (2019). <em>Advisory Circular 120-76D: Guidelines for EFB Certification and Operational Use</em>. Federal Aviation Administration.</p>
-      <p>Gerede, E. (2018). <em>Havacılıkta Emniyet Yönetimi</em>. Pegem Akademi Yayıncılık.</p>
-      <p>ICAO. (2016). <em>Annex 13 — Aircraft Accident and Incident Investigation</em> (11th ed.). International Civil Aviation Organization.</p>
-      <p>IFALPA. (2023). <em>Position Statement: The Use of Biometric and Health Data in the Flight Deck</em>. Montreal.</p>
-      <p>NTSB. (2023). <em>Integration of Wearable Device Data in Accident Investigation: Future Directions</em>. National Transportation Safety Board.</p>
-    </div>
-
-    <!-- GitHub Repoları -->
-    <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
-      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;" data-tr="Proje Kaynak Kodları — GitHub" data-en="Project Source Code — GitHub">Proje Kaynak Kodları — GitHub</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;">
-
-        <a href="https://github.com/Orfeomete/hipoksi-app-" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">PilotO2 Watch Application</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/pilotguard-app-" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">PilotGuard SmartWatch</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/PilotReflect-new" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">PilotReflect EFB</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/pilotsense-auth" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">PilotSense AUTH</div></div>
-        </a>
-
-        <a href="https://github.com/Orfeomete/pilotsense-ops" target="_blank" class="repo-card">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="gh-icon"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <div><div class="repo-name">PilotSense OPS</div></div>
-        </a>
-
-      </div>
+<section id="hakkinda-teaser" class="fade-in" style="padding:4rem 2rem;">
+  <div class="section-label" data-tr="Hakkında" data-en="About">Hakkında</div>
+  <div class="abstract-box" style="margin-top:1rem;">
+    <p data-tr="CDSA, kaza incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatmayı hedefleyen üçüncü nesil emniyet paradigmasıdır. Makale anlatısının tamamı — özet, içerik bölümleri, CDSA mimarisi, sonuç ve kaynakça — Hakkında sayfasındadır." data-en="CDSA is a third-generation safety paradigm aiming to illuminate the cognitive and physiological state of flight crew in accident investigations. The full article narrative — abstract, content sections, CDSA architecture, conclusion and references — is on the About page.">CDSA, kaza incelemelerinde uçuş ekibinin bilişsel ve fizyolojik durumunu aydınlatmayı hedefleyen üçüncü nesil emniyet paradigmasıdır. Makale anlatısının tamamı — özet, içerik bölümleri, CDSA mimarisi, sonuç ve kaynakça — Hakkında sayfasındadır.</p>
+    <a class="about-cta" href="/hakkinda/"><span data-tr="▶ Hakkında sayfasını aç" data-en="▶ Open the About page">▶ Hakkında sayfasını aç</span></a>
+    <div class="doi-list">
+      <div class="row"><b>cdsa-atm</b> <a href="https://github.com/Orfeomete/cdsa-atm" target="_blank">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20649857" target="_blank">DOI 10.5281/zenodo.20649857</a></div>
+      <div class="row"><b>cdsa-mro</b> <a href="https://github.com/Orfeomete/cdsa-mro" target="_blank">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20649672" target="_blank">DOI 10.5281/zenodo.20649672</a></div>
+      <div class="row"><b>cdsa-bb3</b> <a href="https://github.com/Orfeomete/cdsa-bb3" target="_blank">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20649676" target="_blank">DOI 10.5281/zenodo.20649676</a></div>
     </div>
   </div>
 </section>
@@ -350,30 +272,20 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  const navLinks = document.querySelectorAll('.nav-links a');
-  const sectionIds = ['ozet','bolumler','mimari','uygulamalar','sonuc','kaynakca'];
-
-  function updateActiveNav() {
-    const scrollY = window.scrollY + 120;
-    let current = '';
-    sectionIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.offsetTop <= scrollY) current = id;
+  // Sütun metrikleri — depolardaki results JSON kopyalarından okunur, hardcode edilmez.
+  (function () {
+    const targets = [['atm', 'atmMetric'], ['mro', 'mroMetric'], ['bb3', 'bb3Metric']];
+    targets.forEach(([p, id]) => {
+      fetch('/data/' + p + '/faz_a_results.json')
+        .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(d => {
+          if (d.fedavg && d.fedavg.critical_recall != null) {
+            document.getElementById(id).textContent = String(d.fedavg.critical_recall);
+          }
+        })
+        .catch(() => { /* metrik yüklenemezse boş kalır — uydurma değer yazılmaz */ });
     });
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href').replace('#','');
-      if (href === current) {
-        link.style.color = 'var(--accent)';
-        link.style.fontWeight = '600';
-      } else {
-        link.style.color = '';
-        link.style.fontWeight = '';
-      }
-    });
-  }
-
-  window.addEventListener('scroll', updateActiveNav);
-  updateActiveNav();
+  })();
 </script>
 </body>
 </html>
