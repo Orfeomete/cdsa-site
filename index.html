@@ -456,13 +456,39 @@
     const p = document.getElementById('contactPanel');
     p.hidden = !p.hidden;
   }
-  function sendContact() {
-    const s = document.getElementById('cSubject').value.trim();
-    const b = document.getElementById('cBody').value.trim();
-    const a = ['metecantekin', 'gmail', 'com'];
-    location.href = 'mailto:' + a[0] + '@' + a[1] + '.' + a[2]
-      + '?subject=' + encodeURIComponent(s || 'CDSA iletisim')
-      + '&body=' + encodeURIComponent(b);
+  async function sendContact() {
+    if (document.getElementById('cBot').checked) return;
+    const msg = document.getElementById('cBody').value.trim();
+    if (!msg) { document.getElementById('cBody').focus(); return; }
+    const btn = document.getElementById('cSend');
+    const span = btn.querySelector('span');
+    btn.disabled = true;
+    span.textContent = lang === 'tr' ? 'Gönderiliyor…' : 'Sending…';
+    const payload = {
+      access_key: '1a0c03fe-8b42-47a1-b085-21364f992f52',
+      subject: document.getElementById('cSubject').value.trim() || 'CDSA iletişim formu',
+      message: msg,
+      from_name: 'cdsa.app iletişim formu',
+      language: lang,
+      botcheck: false
+    };
+    const em = document.getElementById('cEmail').value.trim();
+    if (em) payload.email = em;
+    try {
+      const r = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const d = await r.json();
+      if (!d.success) throw new Error(d.message || 'submit failed');
+      document.getElementById('contactForm').hidden = true;
+      document.getElementById('contactOk').hidden = false;
+    } catch (e) {
+      document.getElementById('contactErr').hidden = false;
+      btn.disabled = false;
+      span.textContent = lang === 'tr' ? '✉ Gönder' : '✉ Send';
+    }
   }
 
 </script>
@@ -470,9 +496,15 @@
 <div id="contactWidget" class="contact-widget">
   <div class="contact-panel" id="contactPanel" hidden>
     <div class="cp-title" data-tr="İletişim" data-en="Contact">İletişim</div>
-    <input id="cSubject" type="text" placeholder="Konu / Subject">
-    <textarea id="cBody" rows="3" placeholder="Mesajınız / Your message"></textarea>
-    <button class="contact-send" onclick="sendContact()"><span data-tr="✉ Gönder" data-en="✉ Send">✉ Gönder</span></button>
+    <div id="contactForm">
+      <input type="checkbox" id="cBot" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <input id="cSubject" type="text" placeholder="Konu / Subject">
+      <input id="cEmail" type="email" placeholder="E-posta (yanıt için, opsiyonel) / Email (optional)">
+      <textarea id="cBody" rows="3" placeholder="Mesajınız / Your message"></textarea>
+      <button class="contact-send" id="cSend" onclick="sendContact()"><span data-tr="✉ Gönder" data-en="✉ Send">✉ Gönder</span></button>
+      <div id="contactErr" hidden style="margin-top:0.5rem;font-size:0.78rem;color:#be185d;line-height:1.5" data-tr="Gönderilemedi, lütfen metecantekin@gmail.com adresine yazın" data-en="Could not send — please write to metecantekin@gmail.com">Gönderilemedi, lütfen metecantekin@gmail.com adresine yazın</div>
+    </div>
+    <div id="contactOk" hidden style="font-size:0.88rem;color:#15803d;line-height:1.6" data-tr="✓ Mesajınız iletildi — teşekkürler" data-en="✓ Your message has been sent — thank you">✓ Mesajınız iletildi — teşekkürler</div>
   </div>
   <button class="contact-fab" onclick="toggleContact()" aria-label="İletişim">✉</button>
 </div>
