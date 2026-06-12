@@ -463,12 +463,12 @@
     const btn = document.getElementById('cSend');
     const span = btn.querySelector('span');
     btn.disabled = true;
-    span.textContent = lang === 'tr' ? 'Gönderiliyor…' : 'Sending…';
+    span.textContent = 'Sending…';
     const payload = {
       access_key: '1a0c03fe-8b42-47a1-b085-21364f992f52',
-      subject: document.getElementById('cSubject').value.trim() || 'CDSA iletişim formu',
+      subject: document.getElementById('cSubject').value.trim() || 'CDSA contact form',
       message: msg,
-      from_name: 'cdsa.app iletişim formu',
+      from_name: 'cdsa.app contact form',
       language: lang,
       botcheck: false
     };
@@ -487,7 +487,7 @@
     } catch (e) {
       document.getElementById('contactErr').hidden = false;
       btn.disabled = false;
-      span.textContent = lang === 'tr' ? '✉ Gönder' : '✉ Send';
+      span.textContent = '✉ Send';
     }
   }
 
@@ -495,18 +495,18 @@
 
 <div id="contactWidget" class="contact-widget">
   <div class="contact-panel" id="contactPanel" hidden>
-    <div class="cp-title" data-tr="İletişim" data-en="Contact">İletişim</div>
+    <div class="cp-title">Contact</div>
     <div id="contactForm">
       <input type="checkbox" id="cBot" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-      <input id="cSubject" type="text" placeholder="Konu / Subject">
-      <input id="cEmail" type="email" placeholder="E-posta (yanıt için, opsiyonel) / Email (optional)">
-      <textarea id="cBody" rows="3" placeholder="Mesajınız / Your message"></textarea>
-      <button class="contact-send" id="cSend" onclick="sendContact()"><span data-tr="✉ Gönder" data-en="✉ Send">✉ Gönder</span></button>
-      <div id="contactErr" hidden style="margin-top:0.5rem;font-size:0.78rem;color:#be185d;line-height:1.5" data-tr="Gönderilemedi, lütfen metecantekin@gmail.com adresine yazın" data-en="Could not send — please write to metecantekin@gmail.com">Gönderilemedi, lütfen metecantekin@gmail.com adresine yazın</div>
+      <input id="cSubject" type="text" placeholder="Subject">
+      <input id="cEmail" type="email" placeholder="Email (optional, for reply)">
+      <textarea id="cBody" rows="3" placeholder="Your message"></textarea>
+      <button class="contact-send" id="cSend" onclick="sendContact()"><span>✉ Send</span></button>
+      <div id="contactErr" hidden style="margin-top:0.5rem;font-size:0.78rem;color:#be185d;line-height:1.5">Could not send — please write to metecantekin@gmail.com</div>
     </div>
-    <div id="contactOk" hidden style="font-size:0.88rem;color:#15803d;line-height:1.6" data-tr="✓ Mesajınız iletildi — teşekkürler" data-en="✓ Your message has been sent — thank you">✓ Mesajınız iletildi — teşekkürler</div>
+    <div id="contactOk" hidden style="font-size:0.88rem;color:#15803d;line-height:1.6">✓ Your message has been sent — thank you</div>
   </div>
-  <button class="contact-fab" onclick="toggleContact()" aria-label="İletişim">✉</button>
+  <button class="contact-fab" onclick="toggleContact()" aria-label="Contact">✉</button>
 </div>
 </body>
 </html>
