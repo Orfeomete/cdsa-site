@@ -347,6 +347,98 @@ async function initFazC() {
   applyLang();
 }
 
+/* ═══ FAZ D — decoy-signal attribution / gated exploration ═══
+   Values are read at runtime from data/<pillar>/faz_d_*.json. */
+
+function renderFazdDecoy(d) {
+  const acts = d.shapley_pct_by_action || {};
+  const actNames = Object.keys(acts);
+  if (!actNames.length) return;
+  const groups = [];
+  actNames.forEach(a => Object.keys(acts[a]).forEach(g => { if (!groups.includes(g)) groups.push(g); }));
+  const hlTh = ' style="background:rgba(219,39,119,0.08);color:#be185d"';
+  const hlTd = ' style="background:rgba(219,39,119,0.08);font-weight:600"';
+  const head = groups.map(g => `<th${g === 'decoy' ? hlTh : ''}>${esc(g)}</th>`).join('');
+  const rows = actNames.map(a =>
+    `<tr><td>${esc(a)}</td>` + groups.map(g => {
+      const v = acts[a][g];
+      return `<td${g === 'decoy' ? hlTd : ''}>${v != null ? esc(v) + '%' : '—'}</td>`;
+    }).join('') + '</tr>').join('');
+  document.getElementById('fazdDecoyTable').innerHTML =
+    `<thead><tr><th ${t('Eylem / grup-Shapley payı', 'Action / group-Shapley share')}>Eylem / grup-Shapley payı</th>${head}</tr></thead><tbody>${rows}</tbody>`;
+
+  const ap = d.decoy_attribution_pct || {};
+  const chip = document.getElementById('fazdDecoyChip');
+  if (chip) chip.innerHTML = `<span ${t(`decoy atıf ort %${ap.mean} · maks %${ap.max}`, `decoy attribution mean ${ap.mean}% · max ${ap.max}%`)}>decoy atıf ort %${esc(ap.mean)} · maks %${esc(ap.max)}</span>`;
+
+  const f = d.final_eval || {};
+  document.getElementById('fazdDecoyFinal').innerHTML =
+    `<thead><tr><th ${t('Final (decoy koşusu)', 'Final (decoy run)')}>Final (decoy koşusu)</th>` +
+    `<th ${t('Ort. ödül', 'Mean reward')}>Ort. ödül</th>` +
+    `<th ${t('Doğruluk', 'Accuracy')}>Doğruluk</th>` +
+    `<th ${t('Kritik recall', 'Critical recall')}>Kritik recall</th>` +
+    `<th ${t('Kullanılan eylem', 'Distinct actions')}>Kullanılan eylem</th></tr></thead>` +
+    `<tbody><tr><td>FedProx (+2 decoy)</td><td>${esc(f.mean_reward)}</td><td>${esc(f.accuracy_pct)}%</td>` +
+    `<td>${esc(f.critical_recall)}</td><td>${esc(f.distinct_actions_used)}</td></tr></tbody>`;
+}
+
+function renderFazdGate(g) {
+  const log = g.gate_log || [];
+  if (!log.length) return;
+  const floor = g.design && g.design.recall_floor != null ? g.design.recall_floor : null;
+  const labels = log.map(e => e.round);
+  new Chart(document.getElementById('fazdGateChart'), {
+    data: {
+      labels,
+      datasets: [
+        { type: 'line', label: 'probe critical recall', data: log.map(e => e.probe_recall),
+          borderColor: '#2563eb', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 2, tension: 0.25, order: 1 },
+        ...(floor != null ? [{ type: 'line', label: 'recall floor (' + floor + ')', data: labels.map(() => floor),
+          borderColor: '#db2777', backgroundColor: 'transparent', borderDash: [6, 4], borderWidth: 1.5, pointRadius: 0, order: 2 }] : []),
+        { type: 'bar', label: 'gate on', data: log.map(e => e.gate_on_next ? 1 : null),
+          backgroundColor: 'rgba(8,145,178,0.14)', borderWidth: 0, barPercentage: 1, categoryPercentage: 1, order: 3 },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        x: { title: { display: true, text: 'round (probe)' } },
+        y: { min: 0, max: 1, title: { display: true, text: 'probe critical recall' } },
+      },
+    },
+  });
+  const chip = document.getElementById('fazdGateChip');
+  if (chip) chip.innerHTML = `<span ${t('gate_on oranı: ' + g.gate_on_ratio, 'gate_on ratio: ' + g.gate_on_ratio)}>gate_on oranı: ${esc(g.gate_on_ratio)}</span>`;
+  const f = g.final || {};
+  document.getElementById('fazdGateTable').innerHTML =
+    `<thead><tr><th ${t('Final (kapılı keşif)', 'Final (gated exploration)')}>Final (kapılı keşif)</th>` +
+    `<th ${t('Doğruluk', 'Accuracy')}>Doğruluk</th>` +
+    `<th ${t('Kritik recall', 'Critical recall')}>Kritik recall</th>` +
+    `<th ${t('Kullanılan eylem', 'Distinct actions')}>Kullanılan eylem</th></tr></thead>` +
+    `<tbody><tr><td>FedProx (gated ent)</td><td>${esc(f.accuracy_pct)}%</td>` +
+    `<td>${esc(f.critical_recall)}</td><td>${esc(f.distinct_actions_used)}</td></tr></tbody>`;
+}
+
+async function initFazD() {
+  const p = window.PILLAR;
+  if (!p || !document.getElementById('fazdSection')) return;
+  try {
+    const [dec, gat] = await Promise.all([
+      loadJSON('../data/' + p.key + '/faz_d_decoy.json'),
+      loadJSON('../data/' + p.key + '/faz_d_gated_entropy.json'),
+    ]);
+    renderFazdDecoy(dec);
+    renderFazdGate(gat);
+    const meta = document.getElementById('fazdMeta');
+    if (meta) meta.textContent = `${dec.date || ''} · seed ${dec.seed} · ${(dec.design && dec.design.rounds) || ''} round · k_decoy ${(dec.design && dec.design.k_decoy) || ''}`;
+  } catch (e) {
+    document.getElementById('fazdSection').insertAdjacentHTML('afterbegin',
+      `<div class="err-box">Faz D verisi yüklenemedi / Faz D data could not be loaded: ${esc(e.message)}</div>`);
+  }
+  applyLang();
+}
+
 async function initFazB() {
   const p = window.PILLAR;
   if (!p || !document.getElementById('fazbSection')) return;

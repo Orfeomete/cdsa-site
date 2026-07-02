@@ -118,6 +118,28 @@
     <div class="card" style="margin-top:0.8rem;overflow-x:auto"><table class="dyncmp" id="fazcEntTable"></table></div>
     <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_c_entropy.json — eğriler eğitim boyunca ort. ödül, tablo final değerler." data-en="Source: experiments/results/faz_c_entropy.json — curves show mean reward during training, table shows final values.">Kaynak: experiments/results/faz_c_entropy.json — eğriler eğitim boyunca ort. ödül, tablo final değerler.</p>
   </section>
+  <!-- FAZ D -->
+  <section id="fazdSection">
+    <h2 data-tr="Faz D — Yem-Sinyal Testi ve Kapılı Keşif" data-en="Faz D — Decoy-Signal Test &amp; Gated Exploration">Faz D — Yem-Sinyal Testi ve Kapılı Keşif</h2>
+    <div class="fazb-band fazd-band positive" data-tr="Not: Yem-sinyal testi net geçildi — decoy atıfı %6.4 ile tekdüze payın (%25) çok altında, tabana yakın. Kapılı keşif (taban 0.90) kritik recall'u 0.975'e yükseltti; iki ara uyarı sınıfı yine kapsanmıyor." data-en="Note: the decoy test is passed cleanly — decoy attribution is 6.4%, far below the 25% uniform share, near the floor. Gated exploration (floor 0.90) raised critical recall to 0.975; the two intermediate alert classes remain uncovered.">Not: Yem-sinyal testi net geçildi — decoy atıfı %6.4 ile tekdüze payın (%25) çok altında, tabana yakın. Kapılı keşif (taban 0.90) kritik recall'u 0.975'e yükseltti; iki ara uyarı sınıfı yine kapsanmıyor.</div>
+    <p style="margin-top:-0.4rem;margin-bottom:1.2rem;font-size:0.85rem;color:var(--text-muted);line-height:1.7"><span data-tr="Her iki deney 160 turluk ayrı FedProx yeniden eğitimidir (seed 42). Decoy testi gözleme eklenen 2 alakasız U(0,1) kanalın grup-Shapley atıfını ölçer; kapılı keşifte 0.05 entropi bonusu yalnız probe kritik-recall &gt;= 0.90 iken aktiftir." data-en="Both experiments are separate 160-round FedProx retrainings (seed 42). The decoy test measures the group-Shapley attribution of 2 irrelevant U(0,1) channels added to the observation; in gated exploration the 0.05 entropy bonus is active only while the probe critical recall is &gt;= 0.90.">Her iki deney 160 turluk ayrı FedProx yeniden eğitimidir (seed 42). Decoy testi gözleme eklenen 2 alakasız U(0,1) kanalın grup-Shapley atıfını ölçer; kapılı keşifte 0.05 entropi bonusu yalnız probe kritik-recall &gt;= 0.90 iken aktiftir.</span> <span class="meta-tag" id="fazdMeta"></span></p>
+
+    <h2 style="margin-top:1rem" data-tr="Yem-Sinyal (Decoy) Atıf Testi (FedProx)" data-en="Decoy-Signal Attribution Test (FedProx)">Yem-Sinyal (Decoy) Atıf Testi (FedProx)</h2>
+    <div class="card">
+      <div class="fazb-controls"><span class="meta-tag" id="fazdDecoyChip"></span></div>
+      <div style="overflow-x:auto"><table class="dyncmp" id="fazdDecoyTable"></table></div>
+      <div style="overflow-x:auto;margin-top:1rem"><table class="dyncmp" id="fazdDecoyFinal"></table></div>
+    </div>
+    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_d_decoy.json — grup-Shapley payları eylem başına (decoy sütunu vurgulu); alt tablo final değerler." data-en="Source: experiments/results/faz_d_decoy.json — group-Shapley shares per action (decoy column highlighted); lower table shows final values.">Kaynak: experiments/results/faz_d_decoy.json — grup-Shapley payları eylem başına (decoy sütunu vurgulu); alt tablo final değerler.</p>
+
+    <h2 style="margin-top:2rem" data-tr="Kapılı Keşif — Recall Tabanlı Entropi (FedProx)" data-en="Gated Exploration — Recall-Floored Entropy (FedProx)">Kapılı Keşif — Recall Tabanlı Entropi (FedProx)</h2>
+    <div class="card" style="height:300px"><canvas id="fazdGateChart"></canvas></div>
+    <div class="card" style="margin-top:0.8rem">
+      <div class="fazb-controls"><span class="meta-tag" id="fazdGateChip"></span></div>
+      <div style="overflow-x:auto"><table class="dyncmp" id="fazdGateTable"></table></div>
+    </div>
+    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_d_gated_entropy.json — çizgi probe kritik-recall, kesikli çizgi taban, gölgeli bölgeler kapının açık olduğu aralıklar." data-en="Source: experiments/results/faz_d_gated_entropy.json — line shows probe critical recall, dashed line the floor, shaded regions the intervals where the gate is open.">Kaynak: experiments/results/faz_d_gated_entropy.json — çizgi probe kritik-recall, kesikli çizgi taban, gölgeli bölgeler kapının açık olduğu aralıklar.</p>
+  </section>
 </main>
 
 
@@ -125,7 +147,7 @@
 window.PILLAR = { key: 'bb3' };
 </script>
 <script src="../assets/pillar.js"></script>
-<script>initPillarPage(); initFazB(); initFazC();</script>
+<script>initPillarPage(); initFazB(); initFazC(); initFazD();</script>
 <footer class="micro-footer">
   <span data-tr="⚠ İnteraktif simülasyon — operasyonel değil" data-en="⚠ Interactive simulation — not operational">⚠ İnteraktif simülasyon — operasyonel değil</span> ·
   <a href="https://github.com/Orfeomete/cdsa-bb3" target="_blank" rel="noopener">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20649676" target="_blank" rel="noopener">DOI</a> ·
