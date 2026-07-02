@@ -288,6 +288,65 @@ function renderFazbDyn(dyn) {
       `<tr><td ${t(ktr, ken)}>${ktr}</td><td>${esc(b)}</td><td>${esc(v)}</td></tr>`).join('') + '</tbody>';
 }
 
+/* ═══ FAZ C — ε sweep / entropy-targeted exploration ═══
+   Values are read at runtime from data/<pillar>/faz_c_*.json. */
+
+function renderFazcBlock(data, prefix, chartId, tableId) {
+  const keys = Object.keys(data).filter(k => k.startsWith(prefix)).sort();
+  if (!keys.length) return;
+  const colors = ['#2563eb', '#db2777', '#0891b2', '#d97706'];
+  const maxLen = Math.max(...keys.map(k => (data[k].curve || []).length));
+  new Chart(document.getElementById(chartId), {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: maxLen }, (_, i) => i + 1),
+      datasets: keys.map((k, i) => ({
+        label: k, data: data[k].curve || [],
+        borderColor: colors[i % colors.length], backgroundColor: 'transparent',
+        borderWidth: 2, pointRadius: 2, tension: 0.25,
+      })),
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: {
+        x: { title: { display: true, text: 'evaluation checkpoint' } },
+        y: { title: { display: true, text: 'mean reward (eval)' } },
+      },
+    },
+  });
+  const rows = keys.map(k => {
+    const f = data[k].final || {};
+    return `<tr><td>${esc(k)}</td><td>${esc(f.mean_reward)}</td><td>${esc(f.accuracy_pct)}%</td>` +
+           `<td>${esc(f.critical_recall)}</td><td>${esc(f.distinct_actions_used)}</td></tr>`;
+  }).join('');
+  document.getElementById(tableId).innerHTML =
+    `<thead><tr><th ${t('Konfigürasyon', 'Configuration')}>Konfigürasyon</th>` +
+    `<th ${t('Ort. ödül', 'Mean reward')}>Ort. ödül</th>` +
+    `<th ${t('Doğruluk', 'Accuracy')}>Doğruluk</th>` +
+    `<th ${t('Kritik recall', 'Critical recall')}>Kritik recall</th>` +
+    `<th ${t('Kullanılan eylem', 'Distinct actions')}>Kullanılan eylem</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+async function initFazC() {
+  const p = window.PILLAR;
+  if (!p || !document.getElementById('fazcSection')) return;
+  try {
+    const [dp, ent] = await Promise.all([
+      loadJSON('../data/' + p.key + '/faz_c_dp_sweep.json'),
+      loadJSON('../data/' + p.key + '/faz_c_entropy.json'),
+    ]);
+    renderFazcBlock(dp, 'eps_', 'fazcDpChart', 'fazcDpTable');
+    renderFazcBlock(ent, 'ent_', 'fazcEntChart', 'fazcEntTable');
+    const meta = document.getElementById('fazcMeta');
+    if (meta) meta.textContent = `${dp.date || ''} · seed ${dp.seed} · ${(dp.design && dp.design.rounds) || ''} round · ${(dp.design && dp.design.agg) || ''}`;
+  } catch (e) {
+    document.getElementById('fazcSection').insertAdjacentHTML('afterbegin',
+      `<div class="err-box">Faz C verisi yüklenemedi / Faz C data could not be loaded: ${esc(e.message)}</div>`);
+  }
+  applyLang();
+}
+
 async function initFazB() {
   const p = window.PILLAR;
   if (!p || !document.getElementById('fazbSection')) return;

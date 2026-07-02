@@ -102,6 +102,21 @@
 
     <p class="fazb-method"><span data-tr="Yöntem: Dayanıklılık ve confusion-matrix sonuçları için eğitilmiş ajanlar yeniden eğitilmeden, yalnızca gözlemlere uygulanan seed&#39;li bozulmalar altında yeniden değerlendirildi (üç değerlendirme seed&#39;i). Tempo-duyarlı ödül denemesinde ise ayrı bir ajan 160 tur yeniden eğitilip statik-ödül ortamında değerlendirildi. Ham JSON&#39;lar GitHub deposunda:" data-en="Method: for the robustness and confusion-matrix results, trained agents were re-evaluated without retraining, under seeded perturbations applied to observations only (three evaluation seeds). For the tempo-aware reward experiment, a separate agent was retrained for 160 rounds and evaluated in the static-reward environment. Raw JSONs in the GitHub repository:">Yöntem: Dayanıklılık ve confusion-matrix sonuçları için eğitilmiş ajanlar yeniden eğitilmeden, yalnızca gözlemlere uygulanan seed&#39;li bozulmalar altında yeniden değerlendirildi (üç değerlendirme seed&#39;i). Tempo-duyarlı ödül denemesinde ise ayrı bir ajan 160 tur yeniden eğitilip statik-ödül ortamında değerlendirildi. Ham JSON&#39;lar GitHub deposunda:</span> <a href="https://github.com/Orfeomete/cdsa-bb3/tree/main/experiments/results" target="_blank" rel="noopener">cdsa-bb3/experiments/results</a></p>
   </section>
+  <!-- FAZ C -->
+  <section id="fazcSection">
+    <h2 data-tr="Faz C — ε Taraması ve Entropi-Hedefli Keşif" data-en="Faz C — ε Sweep &amp; Entropy-Targeted Exploration">Faz C — ε Taraması ve Entropi-Hedefli Keşif</h2>
+    <p style="margin-top:-0.4rem;margin-bottom:1.2rem;font-size:0.85rem;color:var(--text-muted);line-height:1.7"><span data-tr="Her konfigürasyon, 160 turluk ayrı bir FedProx yeniden eğitimidir (seed 42); değerler statik-ödül ortamındaki final değerlendirmedir. Revizyon-hazırlık malzemesi — tüm değerler koşu JSON&#39;larından okunur." data-en="Each configuration is a separate 160-round FedProx retraining (seed 42); values are the final evaluation in the static-reward environment. Revision-preparation material — all values are read from the run JSONs.">Her konfigürasyon, 160 turluk ayrı bir FedProx yeniden eğitimidir (seed 42); değerler statik-ödül ortamındaki final değerlendirmedir. Revizyon-hazırlık malzemesi — tüm değerler koşu JSON&#39;larından okunur.</span> <span class="meta-tag" id="fazcMeta"></span></p>
+
+    <h2 style="margin-top:1rem" data-tr="Diferansiyel Mahremiyet — ε Taraması (FedProx+DP)" data-en="Differential Privacy — ε Sweep (FedProx+DP)">Diferansiyel Mahremiyet — ε Taraması (FedProx+DP)</h2>
+    <div class="card" style="height:300px"><canvas id="fazcDpChart"></canvas></div>
+    <div class="card" style="margin-top:0.8rem;overflow-x:auto"><table class="dyncmp" id="fazcDpTable"></table></div>
+    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_c_dp_sweep.json — eğriler eğitim boyunca ort. ödül, tablo final değerler." data-en="Source: experiments/results/faz_c_dp_sweep.json — curves show mean reward during training, table shows final values.">Kaynak: experiments/results/faz_c_dp_sweep.json — eğriler eğitim boyunca ort. ödül, tablo final değerler.</p>
+
+    <h2 style="margin-top:2rem" data-tr="Entropi-Hedefli Keşif (FedProx)" data-en="Entropy-Targeted Exploration (FedProx)">Entropi-Hedefli Keşif (FedProx)</h2>
+    <div class="card" style="height:300px"><canvas id="fazcEntChart"></canvas></div>
+    <div class="card" style="margin-top:0.8rem;overflow-x:auto"><table class="dyncmp" id="fazcEntTable"></table></div>
+    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_c_entropy.json — eğriler eğitim boyunca ort. ödül, tablo final değerler." data-en="Source: experiments/results/faz_c_entropy.json — curves show mean reward during training, table shows final values.">Kaynak: experiments/results/faz_c_entropy.json — eğriler eğitim boyunca ort. ödül, tablo final değerler.</p>
+  </section>
 </main>
 
 
@@ -109,7 +124,7 @@
 window.PILLAR = { key: 'bb3' };
 </script>
 <script src="../assets/pillar.js"></script>
-<script>initPillarPage(); initFazB();</script>
+<script>initPillarPage(); initFazB(); initFazC();</script>
 <footer class="micro-footer">
   <span data-tr="⚠ İnteraktif simülasyon — operasyonel değil" data-en="⚠ Interactive simulation — not operational">⚠ İnteraktif simülasyon — operasyonel değil</span> ·
   <a href="https://github.com/Orfeomete/cdsa-bb3" target="_blank" rel="noopener">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20649676" target="_blank" rel="noopener">DOI</a> ·
