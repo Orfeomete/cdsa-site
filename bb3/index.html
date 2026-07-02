@@ -19,6 +19,7 @@
     <span class="precomp-badge">Precomputed seeded CPU-scale runs (Faz A, June 2026)</span>
     <span class="meta-tag" id="metaDate"></span>
     <span class="meta-tag" data-tr="İnteraktif simülasyon — operasyonel değil" data-en="Interactive simulation — not operational">İnteraktif simülasyon — operasyonel değil</span>
+    <button class="lang-chip lang-btn" onclick="toggleLang()">EN</button>
   </div>
 </header>
 
@@ -74,6 +75,33 @@
       <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/sample_decisions.json — eğitilmiş FedProx ajanıyla seed'li inference örnekleri." data-en="Source: experiments/results/sample_decisions.json — seeded inference samples from the trained FedProx agent.">Kaynak: experiments/results/sample_decisions.json — eğitilmiş FedProx ajanıyla seed'li inference örnekleri.</p>
     </div>
   </section>
+  <!-- FAZ B -->
+  <section id="fazbSection">
+    <h2 data-tr="Faz B — Dayanıklılık ve Confusion-Matrix Analizi" data-en="Faz B — Robustness &amp; Confusion-Matrix Analysis">Faz B — Dayanıklılık ve Confusion-Matrix Analizi</h2>
+    <div class="fazb-band positive" data-tr="Modalite ablasyonu SHAP sıralamasını bağımsız bir yöntemle doğruluyor: ECG düştüğünde kritik recall 0.917→0.041&#39;e iniyor; PPG düştüğünde model tümü-uyarı moduna geçiyor. Not: model iki ara uyarı sınıfını (fatigue_alert, reduced_sa_alert) bu koşullarda hiç tahmin etmiyor (recall 0)." data-en="Modality ablation independently confirms the SHAP ranking: dropping ECG collapses critical recall from 0.917 to 0.041; dropping PPG switches the model into an all-alert mode. Note: the model never predicts the two intermediate alert classes (fatigue_alert, reduced_sa_alert) in these runs (recall 0).">Modalite ablasyonu SHAP sıralamasını bağımsız bir yöntemle doğruluyor: ECG düştüğünde kritik recall 0.917→0.041&#39;e iniyor; PPG düştüğünde model tümü-uyarı moduna geçiyor. Not: model iki ara uyarı sınıfını (fatigue_alert, reduced_sa_alert) bu koşullarda hiç tahmin etmiyor (recall 0).</div>
+
+    <div class="card" style="height:360px"><canvas id="fazbRobChart"></canvas></div>
+    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)"><span data-tr="Kaynak: experiments/results/faz_b_robustness.json — FedProx; çubuk = doğruluk, çizgi = kritik recall; imleçte ort±std." data-en="Source: experiments/results/faz_b_robustness.json — FedProx; bars = accuracy, line = critical recall; hover shows mean±std.">Kaynak: experiments/results/faz_b_robustness.json — FedProx; çubuk = doğruluk, çizgi = kritik recall; imleçte ort±std.</span> <span class="meta-tag" id="fazbMeta"></span></p>
+
+    <h2 style="margin-top:2rem">Confusion Matrix (FedProx)</h2>
+    <div class="card">
+      <div class="fazb-controls">
+        <label for="fazbCondSel" data-tr="Koşul:" data-en="Condition:">Koşul:</label>
+        <select id="fazbCondSel" onchange="renderFazbHeat()"></select>
+      </div>
+      <div class="heat-wrap"><table class="heat" id="fazbHeat"></table></div>
+      <div class="heat-note" data-tr="Satır = gerçek sınıf, sütun = tahmin; hücreler ham sayımlar (renk satır-normalize). Kaynak: faz_b_confusion.json." data-en="Rows = true class, columns = prediction; cells are raw counts (colour row-normalised). Source: faz_b_confusion.json.">Satır = gerçek sınıf, sütun = tahmin; hücreler ham sayımlar (renk satır-normalize). Kaynak: faz_b_confusion.json.</div>
+    </div>
+
+    <h2 style="margin-top:2rem" data-tr="Tempo-Duyarlı Ödül Denemesi" data-en="Tempo-Aware Reward Experiment">Tempo-Duyarlı Ödül Denemesi</h2>
+    <div class="card">
+      <div class="fazb-controls"><span class="meta-tag" id="fazbDynParams"></span></div>
+      <div style="overflow-x:auto"><table class="dyncmp" id="fazbDynTable"></table></div>
+      <div class="dyn-verdict" data-tr="Sonuç: tempo-duyarlı ödül, statik-ödül taban çizgisine göre iyileşme sağlamadı — doğruluktaki küçük artışa karşın kritik recall geriledi." data-en="Result: the tempo-aware reward did not improve on the static-reward baseline — despite a small accuracy gain, critical recall declined.">Sonuç: tempo-duyarlı ödül, statik-ödül taban çizgisine göre iyileşme sağlamadı — doğruluktaki küçük artışa karşın kritik recall geriledi.</div>
+    </div>
+
+    <p class="fazb-method"><span data-tr="Yöntem: Dayanıklılık ve confusion-matrix sonuçları için eğitilmiş ajanlar yeniden eğitilmeden, yalnızca gözlemlere uygulanan seed&#39;li bozulmalar altında yeniden değerlendirildi (üç değerlendirme seed&#39;i). Tempo-duyarlı ödül denemesinde ise ayrı bir ajan 160 tur yeniden eğitilip statik-ödül ortamında değerlendirildi. Ham JSON&#39;lar GitHub deposunda:" data-en="Method: for the robustness and confusion-matrix results, trained agents were re-evaluated without retraining, under seeded perturbations applied to observations only (three evaluation seeds). For the tempo-aware reward experiment, a separate agent was retrained for 160 rounds and evaluated in the static-reward environment. Raw JSONs in the GitHub repository:">Yöntem: Dayanıklılık ve confusion-matrix sonuçları için eğitilmiş ajanlar yeniden eğitilmeden, yalnızca gözlemlere uygulanan seed&#39;li bozulmalar altında yeniden değerlendirildi (üç değerlendirme seed&#39;i). Tempo-duyarlı ödül denemesinde ise ayrı bir ajan 160 tur yeniden eğitilip statik-ödül ortamında değerlendirildi. Ham JSON&#39;lar GitHub deposunda:</span> <a href="https://github.com/Orfeomete/cdsa-bb3/tree/main/experiments/results" target="_blank" rel="noopener">cdsa-bb3/experiments/results</a></p>
+  </section>
 </main>
 
 
@@ -81,7 +109,7 @@
 window.PILLAR = { key: 'bb3' };
 </script>
 <script src="../assets/pillar.js"></script>
-<script>initPillarPage();</script>
+<script>initPillarPage(); initFazB();</script>
 <footer class="micro-footer">
   <span data-tr="⚠ İnteraktif simülasyon — operasyonel değil" data-en="⚠ Interactive simulation — not operational">⚠ İnteraktif simülasyon — operasyonel değil</span> ·
   <a href="https://github.com/Orfeomete/cdsa-bb3" target="_blank" rel="noopener">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20649676" target="_blank" rel="noopener">DOI</a> ·

@@ -188,3 +188,129 @@ async function initPillarPage() {
   }
   applyLang();
 }
+
+/* ═══ FAZ B — robustness / confusion-matrix / dynamic reward ═══
+   All numbers are read at runtime from data/<pillar>/faz_b_*.json
+   (verbatim copies of the repos' experiments/results outputs). */
+
+const FAZB_ORDER = ['clean', 'gauss_0.05', 'gauss_0.10', 'gauss_0.20', 'drop_0.05', 'drop_0.10'];
+function fazbConds(obj) {
+  const keys = Object.keys(obj);
+  const head = FAZB_ORDER.filter(c => keys.includes(c));
+  const mods = keys.filter(c => c.startsWith('moddrop_')).sort();
+  const rest = keys.filter(c => !head.includes(c) && !mods.includes(c)).sort();
+  return [...head, ...mods, ...rest];
+}
+
+let fazbRobChart = null;
+function renderFazbRob(rob) {
+  const fp = rob.models && rob.models.fedprox;
+  if (!fp) return;
+  const conds = fazbConds(fp);
+  const acc  = conds.map(c => fp[c].accuracy_pct.mean);
+  const accS = conds.map(c => fp[c].accuracy_pct.std);
+  const cr   = conds.map(c => fp[c].critical_recall.mean);
+  const crS  = conds.map(c => fp[c].critical_recall.std);
+  if (fazbRobChart) fazbRobChart.destroy();
+  fazbRobChart = new Chart(document.getElementById('fazbRobChart'), {
+    data: {
+      labels: conds,
+      datasets: [
+        { type: 'bar', label: 'accuracy (%)', data: acc, yAxisID: 'y',
+          backgroundColor: 'rgba(37,99,235,0.45)', borderColor: '#2563eb', borderWidth: 1, borderRadius: 4 },
+        { type: 'line', label: 'critical recall', data: cr, yAxisID: 'y1',
+          borderColor: '#db2777', backgroundColor: 'transparent', borderWidth: 2,
+          pointRadius: 3, pointBackgroundColor: '#db2777', tension: 0.2 },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: (c) => {
+          const s = c.datasetIndex === 0 ? accS[c.dataIndex] : crS[c.dataIndex];
+          const unit = c.datasetIndex === 0 ? '%' : '';
+          return ` ${c.dataset.label}: ${c.raw}${unit} ±${s}`;
+        } } },
+      },
+      scales: {
+        x: { ticks: { font: { size: 9 }, maxRotation: 60, minRotation: 40 } },
+        y:  { min: 0, max: 100, title: { display: true, text: 'accuracy (%)' } },
+        y1: { min: 0, max: 1, position: 'right', grid: { drawOnChartArea: false },
+              title: { display: true, text: 'critical recall' } },
+      },
+    },
+  });
+}
+
+let fazbConf = null;
+function renderFazbHeat() {
+  if (!fazbConf) return;
+  const cond = document.getElementById('fazbCondSel').value;
+  const m = fazbConf.matrices.fedprox[cond];
+  const labels = fazbConf.action_labels;
+  const short = (s) => s.length > 11 ? s.slice(0, 10) + '…' : s;
+  let html = '<thead><tr><th></th>' + labels.map(l =>
+    `<th title="${esc(l)}">${esc(short(l))}</th>`).join('') + '</tr></thead><tbody>';
+  m.forEach((row, i) => {
+    const rowMax = Math.max(...row, 1);
+    html += `<tr><th class="rowh" title="${esc(labels[i])}">${esc(short(labels[i]))}</th>` +
+      row.map(v => {
+        const a = v / rowMax;
+        const bg = `rgba(37,99,235,${(a * 0.85).toFixed(2)})`;
+        const fg = a > 0.75 ? '#fff' : 'var(--text)';
+        return `<td style="background:${bg};color:${fg}">${v}</td>`;
+      }).join('') + '</tr>';
+  });
+  document.getElementById('fazbHeat').innerHTML = html + '</tbody>';
+}
+
+function renderFazbDyn(dyn) {
+  const base = dyn.static_fedprox_baseline, dr = dyn.dynrew_fedprox;
+  if (!base || !dr) return;
+  const d = dyn.design || {};
+  const params = document.getElementById('fazbDynParams');
+  if (params) {
+    const kap = (typeof d.kappa === 'number' && Number.isInteger(d.kappa)) ? d.kappa.toFixed(1) : d.kappa;
+    params.textContent = `κ=${kap} · T=${d.window} · ${d.agg || ''} · ${d.rounds || ''} round`;
+  }
+  const rows = [
+    ['Ort. ödül', 'Mean reward', String(base.mean_reward), String(dr.mean_reward)],
+    ['Doğruluk', 'Accuracy', base.accuracy_pct + '%', dr.accuracy_pct + '%'],
+    ['Kritik recall', 'Critical recall', String(base.critical_recall), String(dr.critical_recall)],
+    ['Kullanılan eylem sayısı', 'Distinct actions used', String(base.distinct_actions_used), String(dr.distinct_actions_used)],
+  ];
+  document.getElementById('fazbDynTable').innerHTML =
+    `<thead><tr><th ${t('Metrik', 'Metric')}>Metrik</th>` +
+    `<th ${t('Statik ödül (taban)', 'Static reward (baseline)')}>Statik ödül (taban)</th>` +
+    `<th ${t('Tempo-duyarlı ödül', 'Tempo-aware reward')}>Tempo-duyarlı ödül</th></tr></thead><tbody>` +
+    rows.map(([ktr, ken, b, v]) =>
+      `<tr><td ${t(ktr, ken)}>${ktr}</td><td>${esc(b)}</td><td>${esc(v)}</td></tr>`).join('') + '</tbody>';
+}
+
+async function initFazB() {
+  const p = window.PILLAR;
+  if (!p || !document.getElementById('fazbSection')) return;
+  try {
+    const [rob, conf, dyn] = await Promise.all([
+      loadJSON('../data/' + p.key + '/faz_b_robustness.json'),
+      loadJSON('../data/' + p.key + '/faz_b_confusion.json'),
+      loadJSON('../data/' + p.key + '/faz_b_dynamic_reward.json'),
+    ]);
+    renderFazbRob(rob);
+    fazbConf = conf;
+    const sel = document.getElementById('fazbCondSel');
+    sel.innerHTML = fazbConds(conf.matrices.fedprox).map(c =>
+      `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    sel.value = 'clean';
+    renderFazbHeat();
+    renderFazbDyn(dyn);
+    const meta = document.getElementById('fazbMeta');
+    if (meta) meta.textContent = `${rob.date || dyn.date || ''} · seed ${rob.seed} · eval_reps ${rob.eval_reps} · eval_steps ${rob.eval_steps}`;
+  } catch (e) {
+    const s = document.getElementById('fazbSection');
+    s.insertAdjacentHTML('afterbegin',
+      `<div class="err-box">Faz B verisi yüklenemedi / Faz B data could not be loaded: ${esc(e.message)}</div>`);
+  }
+  applyLang();
+}
