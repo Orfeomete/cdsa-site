@@ -24,9 +24,7 @@
 </header>
 
 <main id="content">
-  <section id="fazaSection">
-    <h2 data-tr="Faz A — Seed'li Referans Koşular" data-en="Faz A — Seeded Reference Runs">Faz A — Seed'li Referans Koşular</h2>
-    <div class="fazb-band faza-band" data-tr="Not: Faz A metrikleri seed'li CPU-ölçek referans koşulardır ve sentetik/açık veriye dayanır. Yüksek kritik recall (0.919), Faz B'de karakterize edilen aşırı-uyarı rejimi içinde elde edilmiştir — aşağıdaki Faz B dürüstlük notuna bakınız." data-en="Note: Faz A metrics are seeded CPU-scale reference runs on synthetic and open data. The high critical recall (0.919) is achieved inside the over-alert regime characterised in Faz B — see the Faz B honesty note below.">Not: Faz A metrikleri seed'li CPU-ölçek referans koşulardır ve sentetik/açık veriye dayanır. Yüksek kritik recall (0.919), Faz B'de karakterize edilen aşırı-uyarı rejimi içinde elde edilmiştir — aşağıdaki Faz B dürüstlük notuna bakınız.</div>
+  <section>
     <div class="chips" id="chips"></div>
   </section>
 
@@ -52,7 +50,6 @@
       <h2 data-tr="Karşıolgusal Örnek" data-en="Counterfactual Example">Karşıolgusal Örnek</h2>
       <div class="card" id="cfCard"></div>
     </div>
-    <p style="margin-top:1rem;font-size:0.82rem;color:var(--text-muted);line-height:1.7" data-tr="Atıflar şablon-üretimli sentetik korpusa dayanır ve açıklama-kapasitesi kanıtı olarak okunmalıdır, saha-doğrulamalı havacılık bulgusu olarak değil. Yem-sinyal yanlışlama testi için Faz D bölümüne bakınız." data-en="Attributions rest on template-generated synthetic corpora and should be read as proof of explanatory capability, not as field-validated aviation findings. See the Faz D section for the decoy falsification test.">Atıflar şablon-üretimli sentetik korpusa dayanır ve açıklama-kapasitesi kanıtı olarak okunmalıdır, saha-doğrulamalı havacılık bulgusu olarak değil. Yem-sinyal yanlışlama testi için Faz D bölümüne bakınız.</p>
   </section>
 
   <section>
@@ -105,44 +102,6 @@
 
     <p class="fazb-method"><span data-tr="Yöntem: Dayanıklılık ve confusion-matrix sonuçları için eğitilmiş ajanlar yeniden eğitilmeden, yalnızca gözlemlere uygulanan seed&#39;li bozulmalar altında yeniden değerlendirildi (üç değerlendirme seed&#39;i). Tempo-duyarlı ödül denemesinde ise ayrı bir ajan 160 tur yeniden eğitilip statik-ödül ortamında değerlendirildi. Ham JSON&#39;lar GitHub deposunda:" data-en="Method: for the robustness and confusion-matrix results, trained agents were re-evaluated without retraining, under seeded perturbations applied to observations only (three evaluation seeds). For the tempo-aware reward experiment, a separate agent was retrained for 160 rounds and evaluated in the static-reward environment. Raw JSONs in the GitHub repository:">Yöntem: Dayanıklılık ve confusion-matrix sonuçları için eğitilmiş ajanlar yeniden eğitilmeden, yalnızca gözlemlere uygulanan seed&#39;li bozulmalar altında yeniden değerlendirildi (üç değerlendirme seed&#39;i). Tempo-duyarlı ödül denemesinde ise ayrı bir ajan 160 tur yeniden eğitilip statik-ödül ortamında değerlendirildi. Ham JSON&#39;lar GitHub deposunda:</span> <a href="https://github.com/Orfeomete/cdsa-atm/tree/main/experiments/results" target="_blank" rel="noopener">cdsa-atm/experiments/results</a></p>
   </section>
-  <!-- FAZ C -->
-  <section id="fazcSection">
-    <h2 data-tr="Faz C — ε Taraması ve Entropi-Hedefli Keşif" data-en="Faz C — ε Sweep &amp; Entropy-Targeted Exploration">Faz C — ε Taraması ve Entropi-Hedefli Keşif</h2>
-    <div class="fazb-band fazc-band" data-tr="Dürüstlük notu: ε taraması iki uçlu — ε=2.0 korumasız taban çizgisiyle örtüşüyor, ε=0.5 politikayı tek eyleme çökertiyor. 0.05 entropi bonusu beş eylemin tümünü geri kazandırıyor ancak kritik recall 0.927'den 0.878'e geriliyor — kapsam, recall pahasına geliyor." data-en="Honesty note: the ε sweep is two-sided — ε=2.0 matches the undefended baseline while ε=0.5 collapses the policy to a single action. An entropy bonus of 0.05 recovers all five actions, but critical recall falls from 0.927 to 0.878 — coverage comes at a recall cost.">Dürüstlük notu: ε taraması iki uçlu — ε=2.0 korumasız taban çizgisiyle örtüşüyor, ε=0.5 politikayı tek eyleme çökertiyor. 0.05 entropi bonusu beş eylemin tümünü geri kazandırıyor ancak kritik recall 0.927'den 0.878'e geriliyor — kapsam, recall pahasına geliyor.</div>
-    <p style="margin-top:-0.4rem;margin-bottom:1.2rem;font-size:0.85rem;color:var(--text-muted);line-height:1.7"><span data-tr="Her konfigürasyon, 160 turluk ayrı bir FedProx yeniden eğitimidir (seed 42); değerler statik-ödül ortamındaki final değerlendirmedir. Revizyon-hazırlık malzemesi — tüm değerler koşu JSON&#39;larından okunur." data-en="Each configuration is a separate 160-round FedProx retraining (seed 42); values are the final evaluation in the static-reward environment. Revision-preparation material — all values are read from the run JSONs.">Her konfigürasyon, 160 turluk ayrı bir FedProx yeniden eğitimidir (seed 42); değerler statik-ödül ortamındaki final değerlendirmedir. Revizyon-hazırlık malzemesi — tüm değerler koşu JSON&#39;larından okunur.</span> <span class="meta-tag" id="fazcMeta"></span></p>
-
-    <h2 style="margin-top:1rem" data-tr="Diferansiyel Mahremiyet — ε Taraması (FedProx+DP)" data-en="Differential Privacy — ε Sweep (FedProx+DP)">Diferansiyel Mahremiyet — ε Taraması (FedProx+DP)</h2>
-    <div class="card" style="height:300px"><canvas id="fazcDpChart"></canvas></div>
-    <div class="card" style="margin-top:0.8rem;overflow-x:auto"><table class="dyncmp" id="fazcDpTable"></table></div>
-    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_c_dp_sweep.json — eğriler eğitim boyunca ort. ödül, tablo final değerler." data-en="Source: experiments/results/faz_c_dp_sweep.json — curves show mean reward during training, table shows final values.">Kaynak: experiments/results/faz_c_dp_sweep.json — eğriler eğitim boyunca ort. ödül, tablo final değerler.</p>
-
-    <h2 style="margin-top:2rem" data-tr="Entropi-Hedefli Keşif (FedProx)" data-en="Entropy-Targeted Exploration (FedProx)">Entropi-Hedefli Keşif (FedProx)</h2>
-    <div class="card" style="height:300px"><canvas id="fazcEntChart"></canvas></div>
-    <div class="card" style="margin-top:0.8rem;overflow-x:auto"><table class="dyncmp" id="fazcEntTable"></table></div>
-    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_c_entropy.json — eğriler eğitim boyunca ort. ödül, tablo final değerler." data-en="Source: experiments/results/faz_c_entropy.json — curves show mean reward during training, table shows final values.">Kaynak: experiments/results/faz_c_entropy.json — eğriler eğitim boyunca ort. ödül, tablo final değerler.</p>
-  </section>
-  <!-- FAZ D -->
-  <section id="fazdSection">
-    <h2 data-tr="Faz D — Yem-Sinyal Testi ve Kapılı Keşif" data-en="Faz D — Decoy-Signal Test &amp; Gated Exploration">Faz D — Yem-Sinyal Testi ve Kapılı Keşif</h2>
-    <div class="fazb-band fazd-band" data-tr="Dürüstlük notu: Yem-sinyal testinde decoy atıfı %15.3 ile tekdüze payın (%25) altında kaldı; göreli yükseklik, neredeyse-sabit çıktılar üzerinde hesaplanan atıfların dağılmasını yansıtıyor. Kapılı keşifte (taban 0.90) recall korundu (0.928) ancak politika iki-eylemde kaldı — kapsam-recall sınırı bu ölçekte bağlayıcı." data-en="Honesty note: in the decoy test the decoy attribution stayed below its uniform share (15.3% vs 25%); the relative elevation reflects attribution computed over near-constant outputs. Under gated exploration (floor 0.90) recall is preserved (0.928) but the policy remains two-action — the coverage-recall frontier binds at this scale.">Dürüstlük notu: Yem-sinyal testinde decoy atıfı %15.3 ile tekdüze payın (%25) altında kaldı; göreli yükseklik, neredeyse-sabit çıktılar üzerinde hesaplanan atıfların dağılmasını yansıtıyor. Kapılı keşifte (taban 0.90) recall korundu (0.928) ancak politika iki-eylemde kaldı — kapsam-recall sınırı bu ölçekte bağlayıcı.</div>
-    <p style="margin-top:-0.4rem;margin-bottom:1.2rem;font-size:0.85rem;color:var(--text-muted);line-height:1.7"><span data-tr="Her iki deney 160 turluk ayrı FedProx yeniden eğitimidir (seed 42). Decoy testi gözleme eklenen 2 alakasız U(0,1) kanalın grup-Shapley atıfını ölçer; kapılı keşifte 0.05 entropi bonusu yalnız probe kritik-recall &gt;= 0.90 iken aktiftir." data-en="Both experiments are separate 160-round FedProx retrainings (seed 42). The decoy test measures the group-Shapley attribution of 2 irrelevant U(0,1) channels added to the observation; in gated exploration the 0.05 entropy bonus is active only while the probe critical recall is &gt;= 0.90.">Her iki deney 160 turluk ayrı FedProx yeniden eğitimidir (seed 42). Decoy testi gözleme eklenen 2 alakasız U(0,1) kanalın grup-Shapley atıfını ölçer; kapılı keşifte 0.05 entropi bonusu yalnız probe kritik-recall &gt;= 0.90 iken aktiftir.</span> <span class="meta-tag" id="fazdMeta"></span></p>
-
-    <h2 style="margin-top:1rem" data-tr="Yem-Sinyal (Decoy) Atıf Testi (FedProx)" data-en="Decoy-Signal Attribution Test (FedProx)">Yem-Sinyal (Decoy) Atıf Testi (FedProx)</h2>
-    <div class="card">
-      <div class="fazb-controls"><span class="meta-tag" id="fazdDecoyChip"></span></div>
-      <div style="overflow-x:auto"><table class="dyncmp" id="fazdDecoyTable"></table></div>
-      <div style="overflow-x:auto;margin-top:1rem"><table class="dyncmp" id="fazdDecoyFinal"></table></div>
-    </div>
-    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_d_decoy.json — grup-Shapley payları eylem başına (decoy sütunu vurgulu); alt tablo final değerler." data-en="Source: experiments/results/faz_d_decoy.json — group-Shapley shares per action (decoy column highlighted); lower table shows final values.">Kaynak: experiments/results/faz_d_decoy.json — grup-Shapley payları eylem başına (decoy sütunu vurgulu); alt tablo final değerler.</p>
-
-    <h2 style="margin-top:2rem" data-tr="Kapılı Keşif — Recall Tabanlı Entropi (FedProx)" data-en="Gated Exploration — Recall-Floored Entropy (FedProx)">Kapılı Keşif — Recall Tabanlı Entropi (FedProx)</h2>
-    <div class="card" style="height:300px"><canvas id="fazdGateChart"></canvas></div>
-    <div class="card" style="margin-top:0.8rem">
-      <div class="fazb-controls"><span class="meta-tag" id="fazdGateChip"></span></div>
-      <div style="overflow-x:auto"><table class="dyncmp" id="fazdGateTable"></table></div>
-    </div>
-    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted)" data-tr="Kaynak: experiments/results/faz_d_gated_entropy.json — çizgi probe kritik-recall, kesikli çizgi taban, gölgeli bölgeler kapının açık olduğu aralıklar." data-en="Source: experiments/results/faz_d_gated_entropy.json — line shows probe critical recall, dashed line the floor, shaded regions the intervals where the gate is open.">Kaynak: experiments/results/faz_d_gated_entropy.json — çizgi probe kritik-recall, kesikli çizgi taban, gölgeli bölgeler kapının açık olduğu aralıklar.</p>
-  </section>
 </main>
 
 
@@ -150,7 +109,7 @@
 window.PILLAR = { key: 'atm' };
 </script>
 <script src="../assets/pillar.js"></script>
-<script>initPillarPage(); initFazB(); initFazC(); initFazD();</script>
+<script>initPillarPage(); initFazB();</script>
 <footer class="micro-footer">
   <span data-tr="⚠ İnteraktif simülasyon — operasyonel değil" data-en="⚠ Interactive simulation — not operational">⚠ İnteraktif simülasyon — operasyonel değil</span> ·
   <a href="https://github.com/Orfeomete/cdsa-atm" target="_blank" rel="noopener">GitHub</a> · <a href="https://doi.org/10.5281/zenodo.20649856" target="_blank" rel="noopener">DOI</a> ·
