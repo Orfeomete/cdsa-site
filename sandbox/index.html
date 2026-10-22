@@ -1,83 +1,30 @@
 <!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="CDSA KARAKUTU araştırmaları: sentetik senaryolar, olay kaydı, 2/3 eşik anahtar erişimi ve paket bütünlüğü için etkileşimli laboratuvar.">
-  <meta name="theme-color" content="#142c3b"><title>CDSA — KARAKUTU Sandbox</title>
-  <link rel="icon" href="./mark.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KARAKUTU Sandbox — CDSA</title>
+<meta name="description" content="CDSA KARAKUTU sandbox: sentetik hava trafiği, kilitli kutu ve bakım senaryoları. AES-256-GCM ve Shamir 2/3 tarayıcıda gerçekten çalışır.">
+<meta name="theme-color" content="#05080F">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="karakutu.css?v=20261023">
+<style>
+html,body{margin:0;background:#05080F;color:#E6EDF5}
+body{font-family:'B612 TR',system-ui,sans-serif;padding:20px 16px 40px}
+.top{max-width:1500px;margin:0 auto 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.top a{color:#3CC8E8;text-decoration:none;font:400 12px 'B612 Mono TR',monospace;letter-spacing:.08em;border:1px solid #26324A;padding:5px 10px}
+.top a:hover{border-color:#3CC8E8}
+.top h1{font:700 18px 'B612 TR',system-ui,sans-serif;letter-spacing:.06em;margin:0}
+.top p{flex-basis:100%;margin:0;color:#93A3BB;font-size:14px;line-height:1.6;max-width:820px}
+.wrap{max-width:1500px;margin:0 auto}
+</style>
 </head>
 <body>
-<a href="#main" class="skip">İçeriğe geç</a>
-<aside class="sidebar">
-  <a class="brand" href="https://cdsa.app/" aria-label="CDSA ana sayfası"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 25h7l5-16 7 25 4-15h7"/></svg><span>CDSA<small>RESEARCH LAB</small></span></a>
-  <div class="workspace-label">ÇALIŞMA ALANI <span>01</span></div>
-  <nav aria-label="Sandbox bölümleri">
-    <button data-view="scenario" class="nav-item active"><span>◉</span> Senaryo masası</button>
-    <button data-view="events" class="nav-item"><span>≋</span> Olay defteri <b id="eventCount">0</b></button>
-    <button data-view="vault" class="nav-item"><span>◇</span> Kilitli kayıt</button>
-    <button data-view="evidence" class="nav-item"><span>▤</span> Yöntem & kanıt</button>
-  </nav>
-  <div class="sidebar-note"><span class="green-dot"></span> Tarayıcı içinde çalışır<p>Senaryo verileri sentetik.<br>Gerçek kişi verisi kullanılmaz.</p></div>
-  <a class="back-link" href="https://cdsa.app/">↗ cdsa.app</a>
-  <div class="sidebar-footer">KARAKUTU <span>v1.0.1 · 22 EKİM 2026</span></div>
-</aside>
-<div class="workspace">
- <header class="topbar"><div><span class="crumb">CDSA / Sandbox</span><span class="top-divider"></span><span class="top-note">Tamamlayıcı Tanısal Emniyet Yaklaşımı</span></div><span class="badge"><span class="green-dot"></span> Etkileşimli araştırma demosu</span></header>
- <main id="main">
-  <div class="heading"><div><p class="eyebrow">KARAKUTU / DENEYİMLE & İNCELE</p><h1 id="pageTitle">Karar anını görünür kıl.</h1><p id="pageSubtitle">Sinyali değiştir. Olayı kaydet. Kanıtın neyi koruduğunu gör.</p></div><button id="export" class="button secondary">↓ Oturumu indir</button></div>
-  <div class="notice"><span>i</span><p>Bu masa <strong>sentetik senaryo üretir</strong>; eğitilmiş PPO modeli çalıştırmaz. Kayıtlı araştırma bulguları <button data-go="evidence">Yöntem & kanıt</button> bölümündedir.</p></div>
-
-  <section id="view-scenario" class="view active" aria-label="Senaryo masası">
-   <div class="domain-tabs" role="group" aria-label="Araştırma alanı">
-    <button class="domain active" data-domain="bb3"><span class="domain-icon">⌁</span><span><b>Pilot biyometrisi</b><small>BB3 · fizyolojik sinyal</small></span><span class="domain-arrow">↗</span></button>
-    <button class="domain" data-domain="mro"><span class="domain-icon">⚙</span><span><b>Bakım emniyeti</b><small>MRO · motor & veri</small></span><span class="domain-arrow">↗</span></button>
-    <button class="domain" data-domain="atm"><span class="domain-icon">⌖</span><span><b>Hava trafiği</b><small>ATM · konum & ayırma</small></span><span class="domain-arrow">↗</span></button>
-   </div>
-   <div class="lab-grid">
-    <div class="live-column">
-     <article class="signal-card">
-      <div class="signal-top"><div><span class="signal-tag" id="domainCode">BB3 / SİNYAL AKIŞI</span><h2 id="signalTitle">Pilot biyometrisi</h2></div><span id="runStatus" class="live-status">● HAZIR</span></div>
-      <div class="metric-row" id="metrics"></div>
-      <div id="chart" class="chart" role="img" aria-label="Sentetik sinyallerin zamana göre grafiği"></div>
-      <div class="chart-legend" id="chartLegend"></div>
-      <div class="transport"><button id="play" class="button primary">▶ Akışı başlat</button><button id="reset" class="icon-button" aria-label="Senaryoyu sıfırla">↺</button><div class="transport-time"><b id="timeLabel">00:00</b><span>/ 10:00</span></div><label class="speed">Hız <select id="speed"><option value="1">1×</option><option value="4" selected>4×</option><option value="16">16×</option></select></label></div>
-      <label class="scrubber"><span class="sr-only">Senaryo zamanı</span><input id="timeline" type="range" min="0" max="599" value="0"></label>
-      <p class="chart-note" id="domainNote"></p>
-     </article>
-     <div class="insight-grid">
-      <article class="card"><p class="eyebrow">ÖRNEK KARAR KURALI</p><div id="actionLabel" class="action-label">İzlemeyi sürdür</div><p id="actionExplanation">Gösterge, açıklanabilir ve sabit bir demo kuralından üretilir.</p><div class="meter"><span id="riskBar"></span></div><small>Model olasılığı veya tanı değildir.</small></article>
-      <article class="card"><p class="eyebrow">KAYIT SÜREKLİLİĞİ</p><div class="coverage-number"><b id="coveragePct">90%</b><span>paket teslimi</span></div><div id="miniPackets" class="mini-packets"></div><p>En uzun kesintisiz pencere: <strong id="longest">—</strong></p><small>Seçilen tam 600 saniyelik örüntünün hesabı.</small></article>
-     </div>
-    </div>
-    <aside class="config-column">
-     <article class="card controls"><div class="card-title"><h2>Senaryoyu kur</h2><span>01 — 03</span></div><label>Örnek durum<select id="preset"></select></label><label>Tekrar üretim tohumu<input id="seed" type="number" min="1" max="999999" value="42"></label><label class="range-title">Sinyal gürültüsü <output id="noiseValue">12</output><input id="noise" type="range" min="0" max="40" value="12"></label><div class="rule"></div><label class="range-title">Paket kaybı <output id="lossValue">10%</output><input id="loss" type="range" min="0" max="40" value="10" step="5"></label><fieldset><legend>Kayıp örüntüsü</legend><div class="segmented"><label><input type="radio" name="pattern" value="random" checked><span>Dağınık</span></label><label><input type="radio" name="pattern" value="burst"><span>Tek kesinti</span></label></div></fieldset><button id="apply" class="button secondary wide">Senaryoyu uygula ↗</button><p class="tiny">Değişiklikler yeni bir örnek akış başlatır. Aynı tohum ve ayarlar aynı sinyali üretir.</p></article>
-     <article class="next-card"><span>SONRAKİ ADIM</span><h3>Bir sinyal, birden fazla soru.</h3><p>Ne gözlendi? Neden biliniyor mu? Kaydın ne kadarı korunuyor?</p><button data-go="events">Olay defterini incele →</button></article>
-    </aside>
-   </div>
-  </section>
-
-  <section id="view-events" class="view" aria-label="Olay defteri">
-   <div class="section-intro"><p class="eyebrow">B / ÇİFT DEMİRLEME</p><h2>Gözlem ile nedeni ayrı tut.</h2><p>Bir gösterge değişikliği, nedenin veya saldırganın bilindiği anlamına gelmez. Bu form senaryonun bilgisini taşır; otomatik olay sınıflandırıcısı değildir.</p></div>
-   <div class="event-grid"><article class="card"><p class="eyebrow">01 / GÖZLENEN OLAY</p><h3 id="occurrence"></h3><p id="canonical"></p><label>İncelemeci notu<textarea id="analystNote" rows="4" maxlength="1500" placeholder="Gözlenen etkiyi ve belirsizlikleri yazın. Kişisel veri girmeyin."></textarea></label><small>Not yalnız bu oturumda ve indirdiğiniz JSON içinde tutulur.</small></article><article class="card"><p class="eyebrow">02 / MEKANİZMA</p><span id="certainty" class="pill"></span><h3 id="mechanism"></h3><p id="mechanismRef"></p><div class="notice soft">Eşleme bir araştırma önerisidir; saldırı kanıtı veya mevzuat uygunluğu kararı üretmez.</div></article></div>
-   <article class="card event-log"><div class="card-title"><h2>Zaman damgalı olaylar</h2><span id="eventWindow">00:00'a kadar</span></div><p>Akışı başlatın veya zaman çizgisini ilerletin. Paket boşlukları ile demo karar değişimleri birlikte görünür.</p><div id="events"></div></article>
-  </section>
-
-  <section id="view-vault" class="view" aria-label="Kilitli kayıt">
-   <div class="section-intro"><p class="eyebrow">C / EŞİK ANAHTAR EMANETİ</p><h2>Kayıt kilitli. Erişim ortak.</h2><p>Bu tarayıcıda gerçek AES-256-GCM paket şifrelemesini ve Shamir 2/3 anahtar paylaşımını deneyin. Kurumlar ve onaylar temsili; üç pay aynı oturum belleğindedir.</p></div>
-   <div class="vault-grid"><article class="card"><div class="card-title"><h2>01 · Kaydı mühürle</h2><span class="pill">600 × 1 saniye</span></div><p>Seçili sentetik senaryo şifrelenir. Her paket için ayrı IV ve doğrulanan ek veri kullanılır.</p><button id="seal" class="button primary">◇ Şifreli kayıt oluştur</button><p id="sealStatus" class="status-text" role="status">Henüz şifreli kayıt oluşturulmadı.</p><div class="cipher-box" id="cipherPreview">Şifreli paket burada görünecek.</div><div class="rule"></div><h3>02 · İki tarafın payını birleştir</h3><div class="approvers"><button data-approver="0" disabled><span>01</span><b>İnceleme otoritesi</b><em>Pay bekliyor</em></button><button data-approver="1" disabled><span>02</span><b>Pilot temsilcisi</b><em>Pay bekliyor</em></button><button data-approver="2" disabled><span>03</span><b>Yargı makamı</b><em>Pay bekliyor</em></button></div><div class="approval-line"><span id="approvalCount">0 / 3 pay hazır</span><strong>Gerekli: 2</strong></div></article>
-    <article class="card"><div class="card-title"><h2>03 · Doğrula ve aç</h2><span class="pill">GCM etiketi</span></div><label>Paket numarası<input id="packetIndex" type="number" min="0" max="599" value="120"></label><label class="check-row"><input id="tamper" type="checkbox"><span>Bu paketin şifreli verisinde bir baytı değiştir</span></label><button id="decrypt" class="button secondary wide" disabled>Kayıt parçasını aç</button><p id="decryptStatus" role="status" class="status-text">Önce kayıt oluşturun ve iki payı seçin.</p><pre id="plaintext">Kilitli kayıt</pre><div class="explain"><h3>Paket bütünlüğü ≠ akış bütünlüğü</h3><p>GCM, anahtarı bilmeyen tarafın değiştirdiği paketi reddeder. Eksik veya yeniden sıralanmış paketleri tek başına tespit etmez. Kayıp aralıkları ayrıca sayılır.</p><p id="vaultCoverage"></p></div></article></div>
-   <div class="scope-note">Aynı cihazdaki rol düğmeleri bağımsız kurumsal onay veya güvenli anahtar saklama sağlamaz. Anahtar ve paylar dışa aktarılmaz; sayfa yenilendiğinde kaybolur. Bu demo çoklu imza uygulaması değildir.</div>
-  </section>
-
-  <section id="view-evidence" class="view" aria-label="Yöntem ve kanıt">
-   <div class="section-intro"><p class="eyebrow">SONUÇLARI KAYNAĞIYLA OKU</p><h2>Demo ile araştırma aynı şey değil.</h2><p>Bu sayfanın ürettiği sinyaller öğretici örneklerdir. Aşağıdaki sayılar ise 21 Ekim 2026 tarihli mevcut makale sürümlerinden aktarılmıştır; burada yeniden eğitim veya deney yapılmaz.</p></div>
-   <article class="card"><div class="card-title"><h2>A · Ön kayıtlı yöntem karşılaştırması</h2><span class="pill">A v75 · beş tohum</span></div><p>Üç sentetik görevde karar ağacı, en yüksek ortalama makro-F1 veren PPO kolundan daha yüksek sonuç vermiştir. Bu sandbox’ın karar göstergesi bu modellerden biri değildir.</p><div id="researchBars"></div><div class="scope-note">Ortalama ± standart sapma. Alanlar sırasıyla BB3, MRO, ATM. Görev başına 1.800 kararlık protokol; tekrarlar bağımsız operasyonel vaka sayılmaz. Eylemden bağımsız geçişli görevler bağlamsal haydut niteliğindedir.</div></article>
-   <div class="event-grid"><article class="card"><p class="eyebrow">B v27 / SINIFLANDIRMA</p><h3>Sonucu gözle, mekanizmayı gerekçelendir.</h3><p>Olay alanı önce kaydedilir. Nedeni belirsiz GNSS bozulması, otomatik olarak karıştırma ya da aldatma sınıfına sokulmaz. Sandbox tam taksonomi veya metin sınıflandırıcısı sunmaz.</p><span class="pill">Olay defterinde örnekleniyor</span></article><article class="card"><p class="eyebrow">C EN v66 / TR v76</p><h3>Aynı teslim oranı, farklı kanıt penceresi.</h3><p>Makaledeki 600 paketlik örnekte %10 dağınık kayıp ve 60 saniyelik tek kesinti 540 paket teslim ederken en uzun kesintisiz pencere 40 ve 270 saniyedir. Bu sayfanın tohumlu örüntüsü kendi sonucunu ayrıca hesaplar.</p><span class="pill">AES-GCM + Shamir 2/3</span></article></div>
-   <article class="card"><h2>Kaynak ve kapsam</h2><table class="source-table"><tbody><tr><th>Çatı</th><td>KARAKUTU Tez v42 · 21 Ekim 2026</td></tr><tr><th>A</th><td>Sentetik Havacılık Görevlerinde Birleşik Pekiştirmeli Öğrenmenin Değerlendirilmesi · v75</td></tr><tr><th>B</th><td>Havacılık Bilgi Güvenliği Olaylarının Çift Demirlemeyle Sınıflandırılması · v27</td></tr><tr><th>C</th><td>Eşik Anahtar Emanetiyle Havacılık İncelemesi İçin Fizyolojik Kayıt · EN v66 / TR v76</td></tr><tr><th>Bu uygulama</th><td>Yeni, tohumlu ve sentetik tarayıcı demonstratörü · v1.0.1 · 22 Ekim 2026</td></tr></tbody></table><p>Gerçek sensör bağlantısı, eğitilmiş model ağırlığı, klinik tanı, operasyonel uçuş kararı veya resmî bildirim çıktısı içermez. LIMULUS uçuş/eğitim sonuçlarıyla birleştirilmez.</p><a href="https://cdsa.app/" class="text-link">CDSA araştırma programına dön ↗</a></article>
-  </section>
-  <footer>CDSA · KARAKUTU Sandbox <span>Veri yerelliği · Açık yöntem · Görünür sınırlar</span><a href="#main">Başa dön ↑</a></footer>
- </main>
+<div class="top">
+  <a href="/">← CDSA.APP</a>
+  <h1>KARAKUTU · COCKPIT SANDBOX</h1>
+  <p>Hava trafiği, kilitli kutu ve bakım senaryoları tarayıcınızda çalışır. Veriler sentetiktir, şifreleme ve anahtar paylaştırma gerçektir. / Air traffic, locked box and maintenance scenarios run in your browser. The data is synthetic, the encryption and key sharing are real.</p>
 </div>
-<div id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="./app.mjs"></script>
-</body></html>
+<div class="wrap"><div data-karakutu="full"></div></div>
+<script src="karakutu.js?v=20261023"></script>
+</body>
+</html>
