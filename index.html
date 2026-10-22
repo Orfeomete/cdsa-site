@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/sandbox/karakutu.css?v=20261023">
   <style>
     :root {
       --bg: #f8fafc; --surface: #ffffff; --surface2: #f1f5f9;
@@ -20,7 +21,7 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
     nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 100; padding: 0.6rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); width: calc(100% - 160px); max-width: 900px; }
     .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.1em; color: var(--accent); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; }
     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
     .lang-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 1rem; border-radius: 16px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
@@ -111,6 +112,7 @@
     <img src="/favicon.svg" width="60" height="60" alt="CDSA" style="border-radius:14px;display:block;">
   </a>
   <ul class="nav-links">
+    <li><a href="#sandbox" data-tr="Sandbox" data-en="Sandbox">Sandbox</a></li>
     <li><a href="#ozet" data-tr="Özet" data-en="Abstract">Özet</a></li>
     <li><a href="#bolumler" data-tr="İçerik" data-en="Content">İçerik</a></li>
     <li><a href="#sutunlar" data-tr="Sütunlar" data-en="Pillars">Sütunlar</a></li>
@@ -139,13 +141,21 @@
       <span class="meta-tag" data-tr="Açıklanabilir Yapay Zekâ" data-en="Explainable AI">Açıklanabilir Yapay Zekâ</span>
       <span class="meta-tag" data-tr="Açık Bilim" data-en="Open Science">Açık Bilim</span>
     </div>
+    <a href="#sandbox" class="kk-cta" data-tr="▶ KARAKUTU SANDBOX" data-en="▶ KARAKUTU SANDBOX">▶ KARAKUTU SANDBOX</a>
   
 
 
 </div>
 </div>
 
-<div class="divider"></div>
+<div class="kk-band" id="sandbox">
+  <div class="kk-band-in">
+    <div class="kk-kick" data-tr="KARAKUTU SANDBOX · KOKPİT GÖRÜNÜMÜ" data-en="KARAKUTU SANDBOX · COCKPIT VIEW">KARAKUTU SANDBOX · KOKPİT GÖRÜNÜMÜ</div>
+    <h2 data-tr="KARAKUTU'yu kokpitten deneyin" data-en="Try KARAKUTU from the cockpit">KARAKUTU'yu kokpitten deneyin</h2>
+    <p class="kk-lead" data-tr="Hava trafiği radarında GNSS karışmasını ve ayırma uyarısını izleyin, kilitli kutuyu iki emanetçiyle açın, bakım olayını MCDU üzerinden iki çapaya bağlayın. Veriler sentetik, şifreleme ve anahtar paylaştırma tarayıcınızda gerçekten çalışır." data-en="Watch GNSS interference and a separation alert on the air traffic radar, open the locked box with two custodians, and anchor a maintenance occurrence twice from the MCDU. The data is synthetic, while encryption and key sharing really run in your browser.">Hava trafiği radarında GNSS karışmasını ve ayırma uyarısını izleyin, kilitli kutuyu iki emanetçiyle açın, bakım olayını MCDU üzerinden iki çapaya bağlayın. Veriler sentetik, şifreleme ve anahtar paylaştırma tarayıcınızda gerçekten çalışır.</p>
+    <div data-karakutu></div>
+  </div>
+</div>
 
 <section id="ozet" class="fade-in">
   <div class="section-label" data-tr="Özet" data-en="Abstract">Özet</div>
@@ -433,6 +443,7 @@
       const val = el.getAttribute('data-' + lang);
       if (val) el.innerHTML = val;
     });
+    if (window.KARAKUTU) window.KARAKUTU.setLang(lang);
   }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
@@ -440,7 +451,7 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   const navLinks = document.querySelectorAll('.nav-links a');
-  const sectionIds = ['ozet','bolumler','sutunlar','mimari','uygulamalar','sonuc','kaynakca'];
+  const sectionIds = ['sandbox','ozet','bolumler','sutunlar','mimari','uygulamalar','sonuc','kaynakca'];
 
   function updateActiveNav() {
     const scrollY = window.scrollY + 120;
@@ -526,5 +537,6 @@
   </div>
   <button class="contact-fab" onclick="toggleContact()" aria-label="Contact">✉</button>
 </div>
+<script src="/sandbox/karakutu.js?v=20261023" defer></script>
 </body>
 </html>
