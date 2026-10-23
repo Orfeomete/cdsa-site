@@ -28,7 +28,7 @@
 .kk-lab em{font-style:normal;margin-left:auto;color:var(--C);opacity:0;transition:opacity .2s}
 .kk-scr{position:relative;background:#000;border-radius:4px;overflow:hidden;flex:1;min-height:0}
 .kk-main .kk-scr{aspect-ratio:640/600}
-.kk-scr svg{display:block;width:100%;height:100%;user-select:none;-webkit-user-select:none;touch-action:none}
+.kk-scr svg{display:block;width:100%;height:100%;user-select:none;-webkit-user-select:none;touch-action:pan-y;-webkit-tap-highlight-color:transparent}
 .kk-side .kk-scr svg{position:absolute;inset:0}
 .kk-side .kk-du{cursor:pointer;transition:border-color .2s}
 .kk-side .kk-du:hover,.kk-side .kk-du:focus-visible{border-color:var(--C);outline:none}
@@ -41,7 +41,7 @@
 .kk [role=button]{outline:none}
 .kk g[role=button]:focus-visible rect,.kk g[role=button]:focus-visible circle{stroke:#fff}
 @media (max-width:900px){.kk-grid{grid-template-columns:1fr}.kk-side{display:none}}
-@media (max-width:600px){.kk-grid{overflow-x:auto;padding:8px}.kk-main{min-width:540px}.kk-stat{margin-left:0}}
+.kk-compact .kk-grid{padding:8px}.kk-compact .kk-du{padding:4px}.kk-compact .kk-head{padding:10px;gap:10px}.kk-compact .kk-mods{width:100%}.kk-compact .kk-mods button{flex:1;padding:10px 0;font-size:12.5px}.kk-compact .kk-stat{margin-left:0;width:100%;justify-content:space-between}.kk-compact .kk-full{padding:7px 10px}
 @media (prefers-reduced-motion:reduce){.kk .kk-flow{animation:none}}
 /* homepage band */
 .kk-band{background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(60,200,232,.10),transparent 70%),#05080F;padding:72px 24px 64px;border-top:1px solid #0F1A2B;border-bottom:1px solid #0F1A2B;scroll-margin-top:90px}
@@ -49,5 +49,6 @@
 .kk-band .kk-kick{font:400 12px 'B612 Mono TR',monospace;letter-spacing:.2em;color:#3CC8E8;margin-bottom:.8rem}
 .kk-band h2{color:#E6EDF5;margin-bottom:.8rem}
 .kk-band .kk-lead{color:#93A3BB;max-width:780px;line-height:1.7;font-size:1rem;margin-bottom:1.8rem}
+@media (max-width:600px){.kk-band{padding:48px 8px 40px}.kk-band .kk-kick,.kk-band h2,.kk-band .kk-lead{padding:0 8px}}
 .kk-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;padding:.75rem 1.4rem;background:#05080F;color:#3CC8E8;border:1px solid #3CC8E8;border-radius:4px;font:400 13px 'B612 Mono TR',monospace;letter-spacing:.12em;text-decoration:none;box-shadow:0 6px 24px rgba(5,8,15,.25);transition:background .2s}
 .kk-cta:hover{background:#0B1626}
