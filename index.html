@@ -22,6 +22,7 @@
     nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 100; padding: 0.6rem 1.5rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); width: calc(100% - 48px); max-width: 960px; }
     .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.1em; color: var(--accent); }
     .nav-links { display: flex; gap: 1.2rem; list-style: none; }
+    @media (min-width: 1024px) { .nav-links { flex: 1; justify-content: space-between; gap: 1rem; margin: 0 1.75rem; } }
     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
     .lang-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 1rem; border-radius: 16px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
