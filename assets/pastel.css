@@ -1,0 +1,163 @@
+/* Reversible presentation layer, aligned with LIMULUS. Cockpit and chart semantics stay local. */
+:root {
+  --pearl:#edece6; --orange:#efb088; --sage:#a4b6a2; --coral:#efa89b;
+  --bg:#fafaf7; --surface:#fff; --surface2:#f0f2eb;
+  --text:#0f172a; --text-muted:#61738a; --border:#dfe3d9;
+  --sage-ink:#50684e; --pastel-ink:#203025;
+}
+body { -webkit-font-smoothing:antialiased; }
+button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
+:focus-visible { outline:3px solid #2563eb; outline-offset:4px; }
+.cdsa-home nav {
+  top:20px; width:calc(100% - 64px); max-width:1240px; min-height:72px;
+  padding:10px 20px; gap:16px; box-shadow:0 8px 35px #233d6010;
+}
+.cdsa-home nav::after {
+  content:''; position:absolute; left:20px; right:20px; bottom:0; height:3px;
+  background:linear-gradient(90deg,var(--pearl) 0 25%,var(--orange) 25% 50%,var(--sage) 50% 75%,var(--coral) 75%);
+  border-radius:3px; pointer-events:none;
+}
+.cdsa-home nav > a { flex-shrink:0; }
+.cdsa-home nav > a img { width:48px; height:48px; }
+.cdsa-home .nav-links { gap:18px; align-items:center; margin:0 12px; }
+.cdsa-home .nav-links a { display:inline-flex; align-items:center; min-height:44px; font-size:14px; font-weight:500; white-space:nowrap; color:#5a6d85; }
+.cdsa-home .nav-links a:hover { color:#2563eb; }
+.cdsa-home .lang-btn,.cdsa-home .nav-toggle { min-width:44px; min-height:44px; border-radius:10px; flex-shrink:0; font-family:inherit; }
+.cdsa-home .lang-btn { padding:8px 12px; min-width:48px; font-size:12px; }
+.cdsa-home .lang-btn:hover { background:#e6ede3; border-color:#bacab5; color:var(--pastel-ink); }
+.cdsa-home .hero { min-height:0; padding:170px 32px 100px; }
+.cdsa-home .hero-bg {
+  background:radial-gradient(ellipse 65% 65% at 30% 30%,#a4b6a214,transparent 75%),radial-gradient(ellipse 50% 65% at 85% 80%,#efb08812,transparent 75%);
+}
+.cdsa-home .hero-content { max-width:1000px; }
+.cdsa-home .hero h1 { font-size:clamp(32px,3.1vw,46px); line-height:1.16; letter-spacing:-.035em; }
+.cdsa-home .hero-acronym { background:none; -webkit-text-fill-color:currentColor; color:var(--sage-ink); }
+.cdsa-home .hero-sub { margin:0 auto 30px; font-size:16px; line-height:1.9; }
+.cdsa-home .hero-meta { gap:8px; }
+.cdsa-home .hero-meta .meta-tag { background:var(--pearl); border-color:#17233312; color:var(--pastel-ink); padding:9px 13px; font-size:11px; border-radius:9px; }
+.cdsa-home .hero-meta .meta-tag:nth-child(2) { background:var(--orange); }
+.cdsa-home .hero-meta .meta-tag:nth-child(3) { background:var(--sage); }
+.cdsa-home .hero-meta .meta-tag:nth-child(4) { background:var(--coral); }
+.cdsa-home .hero-meta .meta-tag:nth-child(5) { background:#f1f3ed; }
+.cdsa-home .kk-cta {
+  background:var(--sage); border-color:var(--sage); color:var(--pastel-ink); min-height:48px;
+  justify-content:center; border-radius:10px; padding:13px 22px; box-shadow:0 5px 14px #50684e16;
+  font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; font-weight:600; letter-spacing:.02em;
+}
+.cdsa-home .kk-cta:hover { background:#b5c5b3; border-color:#b5c5b3; }
+.cdsa-home > section { max-width:1240px; padding:80px 32px; }
+.cdsa-home .section-label { font-size:11px; font-weight:600; letter-spacing:.14em; }
+.cdsa-home .abstract-box { box-shadow:0 5px 20px #233d6005; }
+.cdsa-home #ozet .abstract-box { border-top:3px solid var(--sage); }
+.cdsa-home .section-card,.cdsa-home .arch-card,.cdsa-home .app-card { min-width:0; }
+.cdsa-home .section-card:hover,.cdsa-home .app-card:hover { border-color:#bacab5; }
+.cdsa-home .section-num { font-family:'Plus Jakarta Sans',sans-serif; font-size:15px; font-weight:700; letter-spacing:.06em; color:var(--pastel-ink); display:inline-flex; padding:10px 14px; border-radius:9px; background:var(--sage); margin-bottom:22px; }
+.cdsa-home .section-card:nth-child(2) .section-num { background:var(--orange); }
+.cdsa-home .section-card:nth-child(3) .section-num { background:var(--coral); }
+.cdsa-home .section-card:nth-child(4) .section-num { background:var(--pearl); }
+.cdsa-home #sutunlar .arch-card:nth-child(1),.cdsa-home #mimari .arch-card:nth-child(1) { border-top:4px solid var(--sage); }
+.cdsa-home #sutunlar .arch-card:nth-child(2),.cdsa-home #mimari .arch-card:nth-child(2) { border-top:4px solid var(--orange); }
+.cdsa-home #sutunlar .arch-card:nth-child(3) { border-top:4px solid var(--coral); }
+.cdsa-home #sutunlar .arch-card:nth-child(4) { border-top:4px solid var(--pearl); }
+.cdsa-home .arch-card h3 { color:var(--sage-ink); }
+.cdsa-home .sim-label { background:#f0f2eb; font-size:10px; }
+.cdsa-home .sim-link a { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; min-height:44px; border-radius:10px; }
+.cdsa-home .sim-link a:hover { background:#dce7d7; }
+.cdsa-home .step-num { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; }
+.cdsa-home #mimari .arch-card:nth-child(2) .step-num { background:#f8e5d8; border-color:#eac6af; color:#523c2d; }
+.cdsa-home .apps-section { background:#f1f2eb; padding:80px 32px; }
+.cdsa-home .apps-inner { max-width:1176px; }
+.cdsa-home .apps-grid { grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); }
+.cdsa-home .app-card { background:white; }
+.cdsa-home .app-header { gap:12px; background:#f9faf6; }
+.cdsa-home .app-tag { flex-shrink:0; background:#e6ede3; border-color:#c1d0bc; color:#3e583e; }
+.cdsa-home .app-card:nth-child(2) .app-tag { background:#f8e5d8; border-color:#eac6af; color:#523c2d; }
+.cdsa-home .app-card:nth-child(3) .app-tag { background:#fae4df; border-color:#ebc6be; color:#794b43; }
+.cdsa-home .app-card > div:last-child > a { background:#e6ede3!important; border-color:#c1d0bc!important; color:#3e583e!important; min-height:44px; border-radius:10px!important; }
+.cdsa-home #program .abstract-box { border-top:3px solid var(--orange); }
+.cdsa-home #sonuc .abstract-box { border-top:3px solid var(--coral); }
+.cdsa-home #kaynakca { background:#f1f1e9; border-radius:18px; margin-top:32px; margin-bottom:70px; }
+.cdsa-home .repo-card { background:#fafbf7; min-height:58px; }
+.cdsa-home .repo-card:hover { border-color:#a4b6a2; }
+.cdsa-home footer { line-height:1.9; }
+.cdsa-home .contact-fab { background:var(--sage); color:var(--pastel-ink); box-shadow:0 6px 20px #50684e25; }
+.cdsa-home .contact-fab:hover { background:#b5c5b3; }
+.cdsa-home .contact-send { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; min-height:44px; }
+.cdsa-home .kk-mods button,.cdsa-home .kk-full { min-height:44px; display:inline-flex; justify-content:center; align-items:center; }
+.cdsa-home .kk-band { border-top:4px solid var(--sage); }
+.cdsa-pillar .page-head { border-top:4px solid var(--sage); margin-top:28px; padding-top:28px; }
+.cdsa-pillar .page-head .section-label { color:var(--sage-ink); }
+.cdsa-pillar .precomp-badge { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; }
+.cdsa-pillar .meta-tag { background:#f1f2eb; }
+.cdsa-pillar .badge-line { gap:8px; }
+.cdsa-pillar .lang-chip { min-width:44px; min-height:44px; border-radius:10px; }
+.cdsa-pillar .dec-nav button,.cdsa-pillar .fazb-controls select { min-height:44px; }
+.cdsa-pillar .btn-row a { min-height:44px; align-items:center; background:#e6ede3; border-color:#c1d0bc; color:#3e583e; border-radius:10px; }
+@media(min-width:1081px) {
+  .cdsa-home .nav-links { display:flex; flex:1; justify-content:space-between; }
+  .cdsa-home .nav-toggle { display:none; }
+}
+@media(max-width:1080px) {
+  .cdsa-home nav { width:calc(100% - 40px); flex-wrap:wrap; }
+  .cdsa-home .nav-links { display:none; }
+  .cdsa-home .nav-toggle { display:inline-flex; margin-left:auto; margin-right:0; }
+  .cdsa-home nav.open .nav-links {
+    position:static; display:flex; order:3; flex-basis:100%; width:100%; flex-direction:column; align-items:stretch;
+    margin:6px 0 0; gap:1px; padding:8px 0 4px; border:0; border-top:1px solid var(--border);
+    border-radius:0; box-shadow:none; background:transparent; max-height:calc(100dvh - 130px); overflow-y:auto;
+  }
+  .cdsa-home nav.open .nav-links a { display:flex; min-height:44px; padding:7px 12px; font-size:14px; border-radius:7px; }
+  .cdsa-home nav.open .nav-links a:hover { background:#f0f2eb; }
+}
+@media(max-width:800px) {
+  .cdsa-home .hero { padding:134px 24px 65px; text-align:left; }
+  .cdsa-home .hero-content { max-width:640px; }
+  .cdsa-home .hero h1 { font-size:40px; }
+  .cdsa-home .hero-title-text { text-wrap:initial; }
+  .cdsa-home .hero-sub { max-width:none; }
+  .cdsa-home .hero-meta { justify-content:flex-start; }
+  .cdsa-home > section { padding:65px 24px; }
+  .cdsa-home .arch-grid,.cdsa-home .sections-grid { grid-template-columns:minmax(0,1fr)!important; gap:22px; }
+  .cdsa-home .arch-card,.cdsa-home .section-card { padding:26px; }
+  .cdsa-home .apps-section { padding:65px 24px; }
+  .cdsa-home .apps-grid { gap:24px; }
+  .cdsa-home #kaynakca { border-radius:0; margin:0; }
+  .cdsa-pillar .page-head { margin-top:16px; padding:24px; }
+  .cdsa-pillar main { padding:0 24px 40px; }
+  .cdsa-pillar .card,.cdsa-pillar .pillar-card { min-width:0; }
+  .cdsa-pillar .pillar-grid { grid-template-columns:minmax(0,1fr); }
+}
+@media(max-width:480px) {
+  .cdsa-home nav { width:calc(100% - 28px); top:14px; min-height:66px; padding:8px 12px; gap:9px; }
+  .cdsa-home nav > a img { width:44px; height:44px; }
+  .cdsa-home .hero { padding:128px 22px 55px; }
+  .cdsa-home .hero h1 { font-size:34px; }
+  .cdsa-home .hero-sub { font-size:14px; line-height:1.85; margin-bottom:26px; }
+  .cdsa-home .hero-meta { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cdsa-home .hero-meta .meta-tag { padding:11px 10px; font-size:10px; }
+  .cdsa-home .hero-meta .meta-tag:last-child { grid-column:1/-1; }
+  .cdsa-home .kk-cta { display:flex; width:100%; margin-top:24px; }
+  .cdsa-home > section,.cdsa-home .apps-section { padding:55px 22px; }
+  .cdsa-home .abstract-box,.cdsa-home .arch-card,.cdsa-home .section-card { padding:22px 20px; }
+  .cdsa-home .abstract-box p { font-size:14px; line-height:1.9; }
+  .cdsa-home .arch-grid,.cdsa-home .sections-grid,.cdsa-home .apps-grid { margin-top:28px; }
+  .cdsa-home .arch-card h3 { font-size:17px; line-height:1.5; }
+  .cdsa-home .arch-card p,.cdsa-home .section-card p { font-size:14px; line-height:1.85; }
+  .cdsa-home .sim-label { padding:9px 10px; font-size:9px; }
+  .cdsa-home .sim-link { padding:12px 10px; }
+  .cdsa-home .sim-link a { display:flex; justify-content:center; padding:10px; font-size:12px; }
+  .cdsa-home .app-header { padding:20px; flex-wrap:wrap; }
+  .cdsa-home .app-desc { padding:16px 20px; }
+  .cdsa-home .kk-band { padding:28px 12px; }
+  .cdsa-home .contact-widget { right:14px; bottom:14px; }
+  .cdsa-home footer { padding:32px 22px; font-size:11px; }
+  .cdsa-pillar .page-head { padding:22px; }
+  .cdsa-pillar main { padding:0 22px 32px; }
+  .cdsa-pillar .card,.cdsa-pillar .pillar-card { padding:20px; }
+  .cdsa-pillar .chips { gap:10px; }
+  .cdsa-pillar .chip { min-width:0; flex:1 1 120px; padding:16px; }
+  .cdsa-pillar .badge-line > span { max-width:100%; overflow-wrap:anywhere; }
+  .cdsa-pillar .dec-nav { flex-wrap:wrap; gap:10px; }
+}
+@media(max-width:360px) { .cdsa-home .hero h1 { font-size:30px; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.cdsa-home .fade-in { opacity:1; transform:none; transition:none; } }
