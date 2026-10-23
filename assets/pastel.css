@@ -20,7 +20,7 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home nav > a { flex-shrink:0; }
 .cdsa-home nav > a img { width:48px; height:48px; }
 .cdsa-home .nav-links { gap:18px; align-items:center; margin:0 12px; }
-.cdsa-home .nav-links a { display:inline-flex; align-items:center; min-height:44px; font-size:14px; font-weight:500; white-space:nowrap; color:#5a6d85; }
+.cdsa-home .nav-links a { display:inline-flex; align-items:center; min-height:44px; font-size:16px; font-weight:500; white-space:nowrap; color:#5a6d85; }
 .cdsa-home .nav-links a:hover { color:#2563eb; }
 .cdsa-home .lang-btn,.cdsa-home .nav-toggle { min-width:44px; min-height:44px; border-radius:10px; flex-shrink:0; font-family:inherit; }
 .cdsa-home .lang-btn { padding:8px 12px; min-width:48px; font-size:12px; }
@@ -98,6 +98,7 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
   .cdsa-home .nav-links { display:flex; flex:1; justify-content:space-between; }
   .cdsa-home .nav-toggle { display:none; }
 }
+@media(min-width:1081px) and (max-width:1200px) { .cdsa-home .nav-links { gap:10px; margin:0 6px; } }
 @media(max-width:1080px) {
   .cdsa-home nav { width:calc(100% - 40px); flex-wrap:wrap; }
   .cdsa-home .nav-links { display:none; }
@@ -107,7 +108,7 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
     margin:6px 0 0; gap:1px; padding:8px 0 4px; border:0; border-top:1px solid var(--border);
     border-radius:0; box-shadow:none; background:transparent; max-height:calc(100dvh - 130px); overflow-y:auto;
   }
-  .cdsa-home nav.open .nav-links a { display:flex; min-height:44px; padding:7px 12px; font-size:14px; border-radius:7px; }
+  .cdsa-home nav.open .nav-links a { display:flex; min-height:44px; padding:7px 12px; font-size:16px; border-radius:7px; }
   .cdsa-home nav.open .nav-links a:hover { background:#f0f2eb; }
 }
 @media(max-width:800px) {
