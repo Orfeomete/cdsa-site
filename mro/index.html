@@ -6,7 +6,7 @@
   <title>CDSA-MRO — Faz A Sonuç Paneli</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/pillar.css">
+  <link rel="stylesheet" href="../assets/pillar.css?v=20261023e">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@
 
 <header class="page-head">
   <div class="section-label">CDSA-MRO</div>
-  <h1 data-tr="Bakım Emniyeti Sütunu — Motor + Siber + Bakım Füzyonu" data-en="Maintenance Safety Pillar — Engine + Cyber + Maintenance Fusion">Bakım Emniyeti Sütunu — Motor + Siber + Bakım Füzyonu</h1>
+  <h1><span class="pillar-title" data-tr="Bakım Emniyeti" data-en="Maintenance Safety">Bakım Emniyeti</span><span class="pillar-subtitle" data-tr="Motor + Siber + Bakım Füzyonu" data-en="Engine + Cyber + Maintenance Fusion">Motor + Siber + Bakım Füzyonu</span></h1>
   <div class="badge-line">
     <span class="precomp-badge">Precomputed seeded CPU-scale runs (Faz A, June 2026)</span>
     <span class="meta-tag" id="metaDate"></span>
@@ -112,7 +112,7 @@ window.PILLAR = {
   noteEn: 'Honesty note: In this CPU-scale Faz A run, the four trained configurations (Central PPO, FedAvg, FedProx, FedProx+DP) converged to identical metrics — the table values are exactly the same and all converge at evaluation round 1 (source: faz_a_results.json). A discriminating comparison is deferred to framework-scale training in Faz B.'
 };
 </script>
-<script src="../assets/pillar.js"></script>
+<script src="../assets/pillar.js?v=20261023e"></script>
 <script>initPillarPage(); initFazB();</script>
 <footer class="micro-footer">
   <span data-tr="⚠ İnteraktif simülasyon — operasyonel değil" data-en="⚠ Interactive simulation — not operational">⚠ İnteraktif simülasyon — operasyonel değil</span> ·

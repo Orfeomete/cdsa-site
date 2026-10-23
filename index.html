@@ -34,7 +34,8 @@
     .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.5); } }
     .hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
-    .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-title-text { display: block; text-wrap: balance; }
+    .hero-acronym { display: block; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.7; }
     .hero-meta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .meta-tag { background: var(--surface2); border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 16px; font-size: 0.8rem; color: var(--text-muted); }
@@ -74,6 +75,9 @@
     .arch-steps { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
     #mimari .arch-card { display: flex; flex-direction: column; }
     #mimari .arch-steps { margin-top: auto; padding-top: 1rem; }
+    #sutunlar .arch-card { display: flex; flex-direction: column; }
+    #sutunlar .arch-card > p { padding-bottom: 1.5rem; }
+    #sutunlar .sim-wrapper { margin-top: auto; }
     .arch-step { display: flex; gap: 1rem; align-items: flex-start; }
     .step-num { min-width: 28px; height: 28px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--accent); font-weight: 700; }
     .step-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; padding-top: 0.2rem; }
@@ -136,8 +140,9 @@
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <h1 data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span>" data-en="Complementary Diagnostic Safety Approach <span>(CDSA)</span>">
-      Tamamlayıcı Tanısal Emniyet Yaklaşımı <span>(CDSA)</span>
+    <h1>
+      <span class="hero-title-text" data-tr="Tamamlayıcı Tanısal Emniyet Yaklaşımı" data-en="Complementary Diagnostic Safety Approach">Tamamlayıcı Tanısal Emniyet Yaklaşımı</span>
+      <span class="hero-acronym" translate="no">(CDSA)</span>
     </h1>
     <p class="hero-sub" data-tr="Pilot biyometrisi, bakım emniyeti ve hava trafik yönetimi alanlarında, kurumsal veri sınırlarını ihlal etmeden ortak öğrenmeyi mümkün kılan yöntemler geliştiren bir emniyet araştırma programı." data-en="A safety research programme developing methods that enable shared learning across pilot biometrics, maintenance safety and air traffic management without violating institutional data boundaries.">
       Pilot biyometrisi, bakım emniyeti ve hava trafik yönetimi alanlarında, kurumsal veri sınırlarını ihlal etmeden ortak öğrenmeyi mümkün kılan yöntemler geliştiren bir emniyet araştırma programı.
@@ -188,7 +193,7 @@
   <div class="arch-grid" style="margin-top:1.5rem;">
     <div class="arch-card">
       <h3>CDSA-BB3</h3>
-      <p data-tr="Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti" data-en="Pilot Biometrics — PPG + ECG + EEG cognitive-state detection">Pilot Biyometri — PPG + ECG + EEG bilişsel durum tespiti</p>
+      <p data-tr="Pilot biyometrisi — PPG, ECG ve EEG ile bilişsel durum tespiti." data-en="Pilot biometrics — cognitive-state detection with PPG, ECG and EEG.">Pilot biyometrisi — PPG, ECG ve EEG ile bilişsel durum tespiti.</p>
       <div class="sim-wrapper">
         <div class="sim-label" data-tr="CDSA-BB3 · Faz A Paneli" data-en="CDSA-BB3 · Faz A Panel">CDSA-BB3 · Faz A Paneli</div>
         <iframe src="/bb3/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
@@ -197,7 +202,7 @@
     </div>
     <div class="arch-card">
       <h3>CDSA-MRO</h3>
-      <p data-tr="Bakım Emniyeti — motor + siber + bakım füzyonu" data-en="Maintenance Safety — engine + cyber + maintenance fusion">Bakım Emniyeti — motor + siber + bakım füzyonu</p>
+      <p data-tr="Bakım emniyeti — motor, siber olay ve bakım verilerinin füzyonu." data-en="Maintenance safety — engine, cyber-event and maintenance-data fusion.">Bakım emniyeti — motor, siber olay ve bakım verilerinin füzyonu.</p>
       <div class="sim-wrapper">
         <div class="sim-label" data-tr="CDSA-MRO · Faz A Paneli" data-en="CDSA-MRO · Faz A Panel">CDSA-MRO · Faz A Paneli</div>
         <iframe src="/mro/" style="width:100%;height:480px;border:none;display:block;" loading="lazy"></iframe>
@@ -449,6 +454,12 @@
   }
   document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => toggleNav(false)));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleNav(false); });
+  function syncPillarLang() {
+    document.querySelectorAll('#sutunlar iframe').forEach(frame => {
+      frame.contentWindow.postMessage({ type: 'cdsa-language', lang }, location.origin);
+    });
+  }
+  document.querySelectorAll('#sutunlar iframe').forEach(frame => frame.addEventListener('load', syncPillarLang));
   function toggleLang() {
     lang = lang === 'tr' ? 'en' : 'tr';
     document.documentElement.lang = lang;
@@ -458,6 +469,7 @@
       if (val) el.innerHTML = val;
     });
     if (window.KARAKUTU) window.KARAKUTU.setLang(lang);
+    syncPillarLang();
   }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });

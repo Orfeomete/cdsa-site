@@ -5,6 +5,7 @@
 
 let lang = 'tr';
 function applyLang() {
+  document.documentElement.lang = lang;
   const btn = document.querySelector('.lang-btn');
   if (btn) btn.textContent = lang === 'tr' ? 'EN' : 'TR';
   document.querySelectorAll('[data-tr]').forEach(el => {
@@ -13,6 +14,12 @@ function applyLang() {
   });
 }
 function toggleLang() { lang = lang === 'tr' ? 'en' : 'tr'; applyLang(); }
+window.addEventListener('message', event => {
+  if (event.source !== window.parent || event.origin !== location.origin || event.data?.type !== 'cdsa-language') return;
+  if (event.data.lang !== 'tr' && event.data.lang !== 'en') return;
+  lang = event.data.lang;
+  applyLang();
+});
 
 function t(tr, en) { return `data-tr="${tr.replace(/"/g, '&quot;')}" data-en="${en.replace(/"/g, '&quot;')}"`; }
 function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
