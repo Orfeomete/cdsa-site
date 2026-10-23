@@ -78,6 +78,7 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home #sonuc .abstract-box { border-top:3px solid var(--coral); }
 .cdsa-home #kaynakca { background:#f1f1e9; border-radius:18px; margin-top:32px; margin-bottom:70px; }
 .cdsa-home .repo-card { background:#fafbf7; min-height:58px; }
+.cdsa-home .repo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; scroll-margin-top:110px; }
 .cdsa-home .repo-card:hover { border-color:#a4b6a2; }
 .cdsa-home footer { line-height:1.9; }
 .cdsa-home .contact-fab { background:var(--sage); color:var(--pastel-ink); box-shadow:0 6px 20px #50684e25; }
@@ -110,6 +111,7 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
   .cdsa-home nav.open .nav-links a:hover { background:#f0f2eb; }
 }
 @media(max-width:800px) {
+  .cdsa-home .repo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .cdsa-home .hero { padding:134px 24px 65px; text-align:left; }
   .cdsa-home .hero-content { max-width:640px; }
   .cdsa-home .hero h1 { font-size:40px; }
@@ -159,5 +161,6 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
   .cdsa-pillar .badge-line > span { max-width:100%; overflow-wrap:anywhere; }
   .cdsa-pillar .dec-nav { flex-wrap:wrap; gap:10px; }
 }
+@media(max-width:600px) { .cdsa-home .repo-grid { grid-template-columns:minmax(0,1fr); } }
 @media(max-width:360px) { .cdsa-home .hero h1 { font-size:30px; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.cdsa-home .fade-in { opacity:1; transform:none; transition:none; } }
