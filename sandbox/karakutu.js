@@ -6,7 +6,6 @@ const I18N={
 tr:{
  brand_sub:'SANDBOX', synth:'SENTETİK VERİ', notop:'OPERASYONEL DEĞİL', full:'TAM EKRAN ↗', promote:'ANA EKRANA AL',
  du_atm:'ATM · HAVA TRAFİĞİ', du_bb3:'BB3 · KİLİTLİ KUTU', du_mro:'MRO · BAKIM',
- foot:'Bütün uçuşlar, kayıtlar ve olaylar sentetiktir. BB3 ekranındaki şifreleme ve anahtar paylaştırma tarayıcınızda gerçekten çalışır: WebCrypto AES-256-GCM ve p = 2²⁵⁷ − 93 üzerinde Shamir 2/3. Kaynak depolar v2.4.0:',
  // ATM
  hdr1:'İSTANBUL ACC · SBX-C · 80 NM', hdr2:'PSR + SSR + ADS-B · TARAMA 4 s',
  alerts:'UYARILAR', a_stca:'STCA', a_los:'AYIRMA', a_dev:'SAPMA', a_gnss:'GNSS', a_rec:'KAYIT', a_none:'UYARI YOK',
@@ -44,7 +43,6 @@ tr:{
 en:{
  brand_sub:'SANDBOX', synth:'SYNTHETIC DATA', notop:'NOT OPERATIONAL', full:'FULL SCREEN ↗', promote:'MOVE TO MAIN',
  du_atm:'ATM · AIR TRAFFIC', du_bb3:'BB3 · LOCKED BOX', du_mro:'MRO · MAINTENANCE',
- foot:'All flights, records and occurrences are synthetic. On the BB3 display, encryption and key sharing really run in your browser: WebCrypto AES-256-GCM and Shamir 2-of-3 over p = 2²⁵⁷ − 93. Source repositories v2.4.0:',
  hdr1:'ISTANBUL ACC · SBX-C · 80 NM', hdr2:'PSR + SSR + ADS-B · SCAN 4 s',
  alerts:'ALERTS', a_stca:'STCA', a_los:'LOSS SEP', a_dev:'DEVIATION', a_gnss:'GNSS', a_rec:'RECORD', a_none:'NO ALERTS',
  gnss_rfi:'GNSS RFI', tracks:'TRACKS', records:'REC', adsb_psr:'ADS-B/PSR',
@@ -498,8 +496,7 @@ function mount(root){if(root.__kk)return;root.__kk=1;const full=root.getAttribut
   <div class="kk-stat"><span class="kk-box kk-amb" data-k="synth"></span><span class="kk-utc">UTC <b>--:--:--</b></span>${full?'<button type="button" class="kk-lang">EN</button>':'<a class="kk-full" href="/sandbox/" data-k="full"></a>'}</div></div>
  <div class="kk-grid"><div class="kk-du kk-main"><div class="kk-lab"><span>DU 1</span><b></b><i class="dot"></i></div><div class="kk-scr"></div></div>
   <div class="kk-side"><div class="kk-du" role="button" tabindex="0"><div class="kk-lab"><span>DU 2</span><b></b><em data-k="promote"></em></div><div class="kk-scr"></div></div>
-  <div class="kk-du" role="button" tabindex="0"><div class="kk-lab"><span>DU 3</span><b></b><em data-k="promote"></em></div><div class="kk-scr"></div></div></div></div>
- <div class="kk-foot"><span data-k="foot"></span> <a href="https://github.com/Orfeomete/cdsa-atm" target="_blank" rel="noopener">cdsa-atm</a> · <a href="https://github.com/Orfeomete/cdsa-bb3" target="_blank" rel="noopener">cdsa-bb3</a> · <a href="https://github.com/Orfeomete/cdsa-mro" target="_blank" rel="noopener">cdsa-mro</a></div>`;
+  <div class="kk-du" role="button" tabindex="0"><div class="kk-lab"><span>DU 3</span><b></b><em data-k="promote"></em></div><div class="kk-scr"></div></div></div></div>`;
  const I={root,full,order:['atm','bb3','mro'],mods:{}};
  for(const k in MODS)I.mods[k]=new MODS[k](I);
  const slots=[...root.querySelectorAll('.kk-du')];I.slots=slots;

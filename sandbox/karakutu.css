@@ -34,8 +34,6 @@
 .kk-side .kk-du:hover,.kk-side .kk-du:focus-visible{border-color:var(--C);outline:none}
 .kk-side .kk-du:hover em,.kk-side .kk-du:focus-visible em{opacity:1}
 .kk-side .kk-scr svg *{pointer-events:none}
-.kk-foot{font:400 11px/1.6 'B612 TR',system-ui,sans-serif;color:var(--g);padding:10px 4px 0}
-.kk-foot a{color:var(--C)}
 .kk .kk-flow{stroke-dasharray:6 6;animation:kkflow 1s linear infinite}
 @keyframes kkflow{to{stroke-dashoffset:-12}}
 .kk [role=button]{outline:none}
@@ -44,11 +42,8 @@
 .kk-compact .kk-grid{padding:8px}.kk-compact .kk-du{padding:4px}.kk-compact .kk-head{padding:10px;gap:10px}.kk-compact .kk-mods{width:100%}.kk-compact .kk-mods button{flex:1;padding:10px 0;font-size:12.5px}.kk-compact .kk-stat{margin-left:0;width:100%;justify-content:space-between}.kk-compact .kk-full{padding:7px 10px}
 @media (prefers-reduced-motion:reduce){.kk .kk-flow{animation:none}}
 /* homepage band */
-.kk-band{background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(60,200,232,.10),transparent 70%),#05080F;padding:72px 24px 64px;border-top:1px solid #0F1A2B;border-bottom:1px solid #0F1A2B;scroll-margin-top:90px}
+.kk-band{background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(60,200,232,.10),transparent 70%),#05080F;padding:48px 24px;border-top:1px solid #0F1A2B;border-bottom:1px solid #0F1A2B;scroll-margin-top:90px}
 .kk-band-in{max-width:1240px;margin:0 auto}
-.kk-band .kk-kick{font:400 12px 'B612 Mono TR',monospace;letter-spacing:.2em;color:#3CC8E8;margin-bottom:.8rem}
-.kk-band h2{color:#E6EDF5;margin-bottom:.8rem}
-.kk-band .kk-lead{color:#93A3BB;max-width:780px;line-height:1.7;font-size:1rem;margin-bottom:1.8rem}
-@media (max-width:600px){.kk-band{padding:48px 8px 40px}.kk-band .kk-kick,.kk-band h2,.kk-band .kk-lead{padding:0 8px}}
+@media (max-width:600px){.kk-band{padding:28px 8px}}
 .kk-cta{display:inline-flex;align-items:center;gap:.5rem;margin-top:2rem;padding:.75rem 1.4rem;background:#05080F;color:#3CC8E8;border:1px solid #3CC8E8;border-radius:4px;font:400 13px 'B612 Mono TR',monospace;letter-spacing:.12em;text-decoration:none;box-shadow:0 6px 24px rgba(5,8,15,.25);transition:background .2s}
 .kk-cta:hover{background:#0B1626}
