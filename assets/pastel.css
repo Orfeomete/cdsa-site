@@ -31,7 +31,7 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 }
 .cdsa-home .hero-content { max-width:1000px; }
 .cdsa-home .hero h1 { font-size:clamp(32px,3.1vw,46px); line-height:1.16; letter-spacing:-.035em; }
-.cdsa-home .hero-acronym { background:none; -webkit-text-fill-color:currentColor; color:var(--pearl); }
+.cdsa-home .hero-acronym { background:none; -webkit-text-fill-color:currentColor; color:var(--sage-ink); }
 .cdsa-home .hero-sub { margin:0 auto 30px; font-size:16px; line-height:1.9; }
 .cdsa-home .hero-meta { gap:8px; }
 .cdsa-home .hero-meta .meta-tag { background:var(--pearl); border-color:#17233312; color:var(--pastel-ink); padding:9px 13px; font-size:11px; border-radius:9px; }
@@ -73,7 +73,8 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home .app-tag { flex-shrink:0; background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; }
 .cdsa-home .app-card:nth-child(2) .app-tag { background:#e1eff7; border-color:#bfd7e6; color:#38556a; }
 .cdsa-home .app-card:nth-child(3) .app-tag { background:#e6edf1; border-color:#c4d1db; color:#465f72; }
-.cdsa-home .app-card > div:last-child > a { background:#e8eaeb!important; border-color:#c6cdd2!important; color:#3f5363!important; min-height:44px; border-radius:10px!important; }
+.cdsa-home .app-card > div:last-child > a { background:#bdd9e9!important; border-color:#9fbfd1!important; color:var(--pastel-ink)!important; min-height:44px; border-radius:10px!important; }
+.cdsa-home .app-card > div:last-child > a:hover { background:#abcbdc!important; border-color:#8eb2c7!important; }
 .cdsa-home #program .abstract-box { border-top:3px solid var(--orange); }
 .cdsa-home #sonuc .abstract-box { border-top:3px solid var(--coral); }
 .cdsa-home #kaynakca { background:#edf4fa; border-radius:18px; margin-top:32px; margin-bottom:70px; }
