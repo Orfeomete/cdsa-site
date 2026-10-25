@@ -78,9 +78,10 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home #program .abstract-box { border-top:3px solid var(--orange); }
 .cdsa-home #sonuc .abstract-box { border-top:3px solid var(--coral); }
 .cdsa-home #kaynakca { background:#edf4fa; border-radius:18px; margin-top:32px; margin-bottom:70px; }
-.cdsa-home .repo-card { background:#fbfdff; min-height:58px; }
+.cdsa-home .repo-card { background:#bdd9e9; border-color:#9fbfd1; min-height:58px; }
+.cdsa-home .repo-card .repo-name,.cdsa-home .repo-card .gh-icon { color:var(--pastel-ink); }
 .cdsa-home .repo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; scroll-margin-top:110px; }
-.cdsa-home .repo-card:hover { border-color:#b8b6b0; }
+.cdsa-home .repo-card:hover { background:#abcbdc; border-color:#8eb2c7; }
 .cdsa-home footer { line-height:1.9; }
 .cdsa-home .contact-fab { background:var(--sage); color:var(--pastel-ink); box-shadow:0 6px 20px #555a6025; }
 .cdsa-home .contact-fab:hover { background:#cbc9c3; }
