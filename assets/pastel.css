@@ -1,9 +1,9 @@
 /* Reversible presentation layer, aligned with LIMULUS. Cockpit and chart semantics stay local. */
 :root {
-  --pearl:#edece6; --orange:#efb088; --sage:#a4b6a2; --coral:#efa89b;
+  --pearl:#e6e5e1; --orange:#cfe5f2; --sage:#b8b6b0; --coral:#abcbdc;
   --bg:#f3f8fc; --surface:#fff; --surface2:#edf4fa;
   --text:#0f172a; --text-muted:#596b82; --border:#d6e3ed;
-  --sage-ink:#50684e; --pastel-ink:#203025;
+  --sage-ink:#555a60; --pastel-ink:#263746;
 }
 body { -webkit-font-smoothing:antialiased; }
 button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
@@ -24,7 +24,7 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home .nav-links a:hover { color:#2563eb; }
 .cdsa-home .lang-btn,.cdsa-home .nav-toggle { min-width:44px; min-height:44px; border-radius:10px; flex-shrink:0; font-family:inherit; }
 .cdsa-home .lang-btn { padding:8px 12px; min-width:48px; font-size:12px; }
-.cdsa-home .lang-btn:hover { background:#e6ede3; border-color:#bacab5; color:var(--pastel-ink); }
+.cdsa-home .lang-btn:hover { background:#e8eaeb; border-color:#b5bdc3; color:var(--pastel-ink); }
 .cdsa-home .hero { min-height:0; padding:170px 32px 100px; }
 .cdsa-home .hero-bg {
   background:radial-gradient(ellipse 65% 65% at 30% 30%,#b9d8ec33,transparent 75%),radial-gradient(ellipse 50% 65% at 85% 80%,#d9eaf533,transparent 75%);
@@ -41,16 +41,16 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home .hero-meta .meta-tag:nth-child(5) { background:#f4f9fc; }
 .cdsa-home .kk-cta {
   background:var(--sage); border-color:var(--sage); color:var(--pastel-ink); min-height:48px;
-  justify-content:center; border-radius:10px; padding:13px 22px; box-shadow:0 5px 14px #50684e16;
+  justify-content:center; border-radius:10px; padding:13px 22px; box-shadow:0 5px 14px #555a6016;
   font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; font-weight:600; letter-spacing:.02em;
 }
-.cdsa-home .kk-cta:hover { background:#b5c5b3; border-color:#b5c5b3; }
+.cdsa-home .kk-cta:hover { background:#cbc9c3; border-color:#cbc9c3; }
 .cdsa-home > section { max-width:1240px; padding:80px 32px; }
 .cdsa-home .section-label { font-size:11px; font-weight:600; letter-spacing:.14em; }
 .cdsa-home .abstract-box { box-shadow:0 5px 20px #233d6005; }
 .cdsa-home #ozet .abstract-box { border-top:3px solid var(--sage); }
 .cdsa-home .section-card,.cdsa-home .arch-card,.cdsa-home .app-card { min-width:0; }
-.cdsa-home .section-card:hover,.cdsa-home .app-card:hover { border-color:#bacab5; }
+.cdsa-home .section-card:hover,.cdsa-home .app-card:hover { border-color:#b5bdc3; }
 .cdsa-home .section-num { font-family:'Plus Jakarta Sans',sans-serif; font-size:15px; font-weight:700; letter-spacing:.06em; color:var(--pastel-ink); display:inline-flex; padding:10px 14px; border-radius:9px; background:var(--sage); margin-bottom:22px; }
 .cdsa-home .section-card:nth-child(2) .section-num { background:var(--orange); }
 .cdsa-home .section-card:nth-child(3) .section-num { background:var(--coral); }
@@ -61,39 +61,39 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home #sutunlar .arch-card:nth-child(4) { border-top:4px solid var(--pearl); }
 .cdsa-home .arch-card h3 { color:var(--sage-ink); }
 .cdsa-home .sim-label { background:#f0f6fb; font-size:10px; }
-.cdsa-home .sim-link a { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; min-height:44px; border-radius:10px; }
-.cdsa-home .sim-link a:hover { background:#dce7d7; }
-.cdsa-home .step-num { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; }
-.cdsa-home #mimari .arch-card:nth-child(2) .step-num { background:#f8e5d8; border-color:#eac6af; color:#523c2d; }
+.cdsa-home .sim-link a { background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; min-height:44px; border-radius:10px; }
+.cdsa-home .sim-link a:hover { background:#dce7ee; }
+.cdsa-home .step-num { background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; }
+.cdsa-home #mimari .arch-card:nth-child(2) .step-num { background:#e1eff7; border-color:#bfd7e6; color:#38556a; }
 .cdsa-home .apps-section { background:#eef5fa; padding:80px 32px; }
 .cdsa-home .apps-inner { max-width:1176px; }
 .cdsa-home .apps-grid { grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); }
 .cdsa-home .app-card { background:white; }
 .cdsa-home .app-header { gap:12px; background:#f9fcfe; }
-.cdsa-home .app-tag { flex-shrink:0; background:#e6ede3; border-color:#c1d0bc; color:#3e583e; }
-.cdsa-home .app-card:nth-child(2) .app-tag { background:#f8e5d8; border-color:#eac6af; color:#523c2d; }
-.cdsa-home .app-card:nth-child(3) .app-tag { background:#fae4df; border-color:#ebc6be; color:#794b43; }
-.cdsa-home .app-card > div:last-child > a { background:#e6ede3!important; border-color:#c1d0bc!important; color:#3e583e!important; min-height:44px; border-radius:10px!important; }
+.cdsa-home .app-tag { flex-shrink:0; background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; }
+.cdsa-home .app-card:nth-child(2) .app-tag { background:#e1eff7; border-color:#bfd7e6; color:#38556a; }
+.cdsa-home .app-card:nth-child(3) .app-tag { background:#e6edf1; border-color:#c4d1db; color:#465f72; }
+.cdsa-home .app-card > div:last-child > a { background:#e8eaeb!important; border-color:#c6cdd2!important; color:#3f5363!important; min-height:44px; border-radius:10px!important; }
 .cdsa-home #program .abstract-box { border-top:3px solid var(--orange); }
 .cdsa-home #sonuc .abstract-box { border-top:3px solid var(--coral); }
 .cdsa-home #kaynakca { background:#edf4fa; border-radius:18px; margin-top:32px; margin-bottom:70px; }
 .cdsa-home .repo-card { background:#fbfdff; min-height:58px; }
 .cdsa-home .repo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; scroll-margin-top:110px; }
-.cdsa-home .repo-card:hover { border-color:#a4b6a2; }
+.cdsa-home .repo-card:hover { border-color:#b8b6b0; }
 .cdsa-home footer { line-height:1.9; }
-.cdsa-home .contact-fab { background:var(--sage); color:var(--pastel-ink); box-shadow:0 6px 20px #50684e25; }
-.cdsa-home .contact-fab:hover { background:#b5c5b3; }
-.cdsa-home .contact-send { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; min-height:44px; }
+.cdsa-home .contact-fab { background:var(--sage); color:var(--pastel-ink); box-shadow:0 6px 20px #555a6025; }
+.cdsa-home .contact-fab:hover { background:#cbc9c3; }
+.cdsa-home .contact-send { background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; min-height:44px; }
 .cdsa-home .kk-mods button,.cdsa-home .kk-full { min-height:44px; display:inline-flex; justify-content:center; align-items:center; }
 .cdsa-home .kk-band { border-top:4px solid var(--sage); }
 .cdsa-pillar .page-head { border-top:4px solid var(--sage); margin-top:28px; padding-top:28px; }
 .cdsa-pillar .page-head .section-label { color:var(--sage-ink); }
-.cdsa-pillar .precomp-badge { background:#e6ede3; border-color:#c1d0bc; color:#3e583e; }
+.cdsa-pillar .precomp-badge { background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; }
 .cdsa-pillar .meta-tag { background:#f0f6fb; }
 .cdsa-pillar .badge-line { gap:8px; }
 .cdsa-pillar .lang-chip { min-width:44px; min-height:44px; border-radius:10px; }
 .cdsa-pillar .dec-nav button,.cdsa-pillar .fazb-controls select { min-height:44px; }
-.cdsa-pillar .btn-row a { min-height:44px; align-items:center; background:#e6ede3; border-color:#c1d0bc; color:#3e583e; border-radius:10px; }
+.cdsa-pillar .btn-row a { min-height:44px; align-items:center; background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; border-radius:10px; }
 @media(min-width:1081px) {
   .cdsa-home .nav-links { display:flex; flex:1; justify-content:space-between; }
   .cdsa-home .nav-toggle { display:none; }
