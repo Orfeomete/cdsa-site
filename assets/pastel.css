@@ -166,3 +166,36 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 @media(max-width:600px) { .cdsa-home .repo-grid { grid-template-columns:minmax(0,1fr); } }
 @media(max-width:360px) { .cdsa-home .hero h1 { font-size:30px; } }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; }.cdsa-home .fade-in { opacity:1; transform:none; transition:none; } }
+
+/* 25 Oct 2026: approved LIMULUS 69B light typography for CDSA presentation. */
+.cdsa-home,.cdsa-pillar { font-family:'Plus Jakarta Sans',sans-serif; font-weight:400; }
+.cdsa-home h1,.cdsa-home h2,.cdsa-pillar .page-head h1,.cdsa-pillar h2 {
+  font-family:'Plus Jakarta Sans',sans-serif; font-weight:400;
+  letter-spacing:.025em; line-height:1.2;
+}
+.cdsa-home .hero h1 { font-weight:400; letter-spacing:.025em; line-height:1.2; }
+.cdsa-home h3,.cdsa-home .section-card h3,.cdsa-home .arch-card h3,
+.cdsa-pillar h3,.cdsa-pillar .pillar-card h3,.cdsa-home .app-title,
+.cdsa-home .author-name,.cdsa-home .contact-panel .cp-title {
+  font-family:'Plus Jakarta Sans',sans-serif; font-weight:500;
+  letter-spacing:.012em; line-height:1.4;
+}
+.cdsa-home .nav-links a { font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; font-weight:400; letter-spacing:.08em; }
+.cdsa-pillar .nav-home { font-family:'Plus Jakarta Sans',sans-serif; font-weight:400; letter-spacing:.08em; }
+.cdsa-home .section-label,.cdsa-pillar .section-label { font-weight:500; letter-spacing:.12em; }
+.cdsa-home :is(button,input,textarea,select,summary,[role="tab"],.kk-cta,.kk-full,.meta-tag,.keyword,.app-tag,.step-num,.section-num,.repo-name),
+.cdsa-home .sim-link a,.cdsa-home .app-card > div:last-child > a,
+.cdsa-pillar :is(button,input,textarea,select,summary,[role="tab"],.meta-tag,.precomp-badge,.chip .v),
+.cdsa-pillar .btn-row a {
+  font-family:'Plus Jakarta Sans',sans-serif!important; font-weight:400!important; letter-spacing:.02em;
+}
+.cdsa-home button :is(strong,b,span),.cdsa-home summary :is(strong,b,span),
+.cdsa-pillar button :is(strong,b,span),.cdsa-pillar summary :is(strong,b,span) {
+  font-family:inherit!important; font-weight:400!important;
+}
+@media(max-width:600px) {
+  .cdsa-home h1,.cdsa-home h2,.cdsa-home .hero h1,.cdsa-pillar .page-head h1,.cdsa-pillar h2 { letter-spacing:.005em; line-height:1.25; }
+  .cdsa-home h3,.cdsa-home .section-card h3,.cdsa-home .arch-card h3,.cdsa-pillar h3,.cdsa-pillar .pillar-card h3 { letter-spacing:0; }
+  .cdsa-home .nav-links a,.cdsa-pillar .nav-home { letter-spacing:.04em; }
+  .cdsa-home .kk-cta,.cdsa-home .sim-link a,.cdsa-home .app-card > div:last-child > a,.cdsa-pillar .btn-row a { letter-spacing:.01em; }
+}
