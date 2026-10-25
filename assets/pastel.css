@@ -34,11 +34,11 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home .hero-acronym { background:none; -webkit-text-fill-color:currentColor; color:var(--sage-ink); }
 .cdsa-home .hero-sub { margin:0 auto 30px; font-size:16px; line-height:1.9; }
 .cdsa-home .hero-meta { gap:8px; }
-.cdsa-home .hero-meta .meta-tag { background:var(--pearl); border-color:#17233312; color:var(--pastel-ink); padding:9px 13px; font-size:11px; border-radius:9px; }
+.cdsa-home .hero-meta .meta-tag { background:var(--orange); border-color:#17233312; color:var(--pastel-ink); padding:9px 13px; font-size:11px; border-radius:9px; }
 .cdsa-home .hero-meta .meta-tag:nth-child(2) { background:var(--orange); }
-.cdsa-home .hero-meta .meta-tag:nth-child(3) { background:var(--sage); }
-.cdsa-home .hero-meta .meta-tag:nth-child(4) { background:var(--coral); }
-.cdsa-home .hero-meta .meta-tag:nth-child(5) { background:#f4f9fc; }
+.cdsa-home .hero-meta .meta-tag:nth-child(3) { background:var(--orange); }
+.cdsa-home .hero-meta .meta-tag:nth-child(4) { background:var(--orange); }
+.cdsa-home .hero-meta .meta-tag:nth-child(5) { background:var(--orange); }
 .cdsa-home .kk-cta {
   background:var(--sage); border-color:var(--sage); color:var(--pastel-ink); min-height:48px;
   justify-content:center; border-radius:10px; padding:13px 22px; box-shadow:0 5px 14px #555a6016;
