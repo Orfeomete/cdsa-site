@@ -40,11 +40,11 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home .hero-meta .meta-tag:nth-child(4) { background:var(--orange); }
 .cdsa-home .hero-meta .meta-tag:nth-child(5) { background:var(--orange); }
 .cdsa-home .kk-cta {
-  background:var(--sage); border-color:var(--sage); color:var(--pastel-ink); min-height:48px;
-  justify-content:center; border-radius:10px; padding:13px 22px; box-shadow:0 5px 14px #555a6016;
+  background:var(--orange); border-color:var(--coral); color:var(--pastel-ink); min-height:48px;
+  justify-content:center; border-radius:10px; padding:13px 22px; box-shadow:0 5px 14px #38556a16;
   font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; font-weight:600; letter-spacing:.02em;
 }
-.cdsa-home .kk-cta:hover { background:#cbc9c3; border-color:#cbc9c3; }
+.cdsa-home .kk-cta:hover { background:#bdd9e9; border-color:#abcbdc; }
 .cdsa-home > section { max-width:1240px; padding:80px 32px; }
 .cdsa-home .section-label { font-size:11px; font-weight:600; letter-spacing:.14em; }
 .cdsa-home .abstract-box { box-shadow:0 5px 20px #233d6005; }
@@ -61,8 +61,8 @@ button,a,select,input,summary { -webkit-tap-highlight-color:transparent; }
 .cdsa-home #sutunlar .arch-card:nth-child(4) { border-top:4px solid var(--pearl); }
 .cdsa-home .arch-card h3 { color:var(--sage-ink); }
 .cdsa-home .sim-label { background:#f0f6fb; font-size:10px; }
-.cdsa-home .sim-link a { background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; min-height:44px; border-radius:10px; }
-.cdsa-home .sim-link a:hover { background:#dce7ee; }
+.cdsa-home .sim-link a { background:#e1eff7; border-color:#bfd7e6; color:#38556a; min-height:44px; border-radius:10px; }
+.cdsa-home .sim-link a:hover { background:#cfe5f2; }
 .cdsa-home .step-num { background:#e8eaeb; border-color:#c6cdd2; color:#3f5363; }
 .cdsa-home #mimari .arch-card:nth-child(2) .step-num { background:#e1eff7; border-color:#bfd7e6; color:#38556a; }
 .cdsa-home .apps-section { background:#eef5fa; padding:80px 32px; }
